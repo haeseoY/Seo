@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>축복이와 하동이의 English Game</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7ff, #eef9ff);
+      color: #1f2937;
+      min-height: 100vh;
+    }
+    .hidden { display: none !important; }
+    .screen {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 20px 0 10px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 28px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .menu-btn, .action-btn, .choice-btn {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+    }
+    .menu-btn:hover, .action-btn:hover, .choice-btn:hover { transform: translateY(-2px); }
+    .menu-btn {
+      background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+      color: #1e3a8a;
+      box-shadow: 0 8px 16px rgba(59,130,246,0.16);
+      min-height: 110px;
+    }
+    .action-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .action-btn {
+      background: #111827;
+      color: white;
+      width: auto;
+      min-width: 140px;
+      padding: 12px 16px;
+    }
+    .action-btn.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+    .hud {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .hud-box {
+      background: white;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+      text-align: center;
+      font-weight: 700;
+    }
+    .question-box {
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      margin-bottom: 16px;
+      line-height: 1.7;
+      font-size: 1.2rem;
+    }
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .choice-btn {
+      background: white;
+      border: 2px solid #d1d5db;
+      color: #111827;
+      min-height: 68px;
+    }
+    .choice-btn.correct {
+      background: #dcfce7;
+      border-color: #22c55e;
+    }
+    .choice-btn.wrong {
+      background: #fee2e2;
+      border-color: #ef4444;
+    }
+    .message {
+      margin-top: 14px;
+      font-weight: 700;
+      min-height: 28px;
+    }
+    .answer-panel {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .answer-input {
+      flex: 1;
+      min-width: 260px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 2px solid #cbd5e1;
+      outline: none;
+    }
+    .answer-input:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(96,165,250,0.15);
+    }
+    canvas {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      border: 1px solid #d1d5db;
+    }
+    .game-help {
+      text-align: center;
+      color: #4b5563;
+      margin: 12px 0 18px;
+      line-height: 1.6;
+    }
+    .footer-note {
+      text-align: center;
+      color: #6b7280;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+    .calendar-section {
+      margin-top: 28px;
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .calendar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .calendar-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+    }
+    .calendar-nav {
+      display: flex;
+      gap: 10px;
+    }
+    .calendar-nav button {
+      border: none;
+      background: #111827;
+      color: white;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .month-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fcfdff;
+    }
+    .month-title {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 14px 10px;
+      background: #eef2ff;
+      color: #1e3a8a;
+      border-bottom: 1px solid #dbeafe;
+    }
+    .month-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 0.92rem;
+    }
+    .month-table th,
+    .month-table td {
+      border: 1px solid #e5e7eb;
+      text-align: center;
+      vertical-align: top;
+      height: 44px;
+      padding: 6px 2px;
+    }
+    .month-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: #475569;
+    }
+    .holiday-red {
+      color: #dc2626 !important;
+      font-weight: 700;
+    }
+    .holiday-cell {
+      background: #fef2f2;
+    }
+    .other-month {
+      color: #cbd5e1;
+      background: #fafafa;
+    }
+    .today-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+    .date-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2px;
+      min-height: 32px;
+    }
+    .date-icons {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+      min-height: 14px;
+      font-size: 0.8rem;
+      line-height: 1;
+    }
+    .birthday-icon {
+      color: #ef4444;
+    }
+    .schedule-icon {
+      color: #eab308;
+    }
+    .calendar-day-btn {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+    }
+    .calendar-day-btn:hover {
+      background: rgba(59,130,246,0.06);
+    }
+    .detail-box {
+      margin-top: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: #f8fbff;
+      padding: 18px;
+    }
+    .detail-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+    .detail-empty {
+      color: #6b7280;
+    }
+    .detail-item {
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      background: white;
+      border: 1px solid #e5e7eb;
+    }
+    .detail-item:last-child {
+      margin-bottom: 0;
+    }
+    .detail-birthday {
+      border-left: 5px solid #ef4444;
+    }
+    .detail-schedule {
+      border-left: 5px solid #eab308;
+    }
+    .mobile-controls {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .control-btn {
+      border: none;
+      background: #2563eb;
+      color: white;
+      border-radius: 14px;
+      padding: 14px 22px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-width: 96px;
+      box-shadow: 0 8px 18px rgba(37,99,235,0.2);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    .control-btn:active {
+      transform: scale(0.97);
+    }
+    @media (max-width: 900px) {
+      .calendar-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="menuScreen" class="screen">
+    <div class="title">축복이와 하동이의 English Game</div>
+    <div class="subtitle">문법, 단어, 자동차 피하기, 비행기 게임을 한 페이지에서 즐겨보세요.</div>
+    <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocabGame()">1. 축복이 금주 27/28<br>영단어 시험</button></div>
+      <div class="card"><button class="menu-btn" onclick="startHadongStage5Game()">2. 하동이의 금주<br>Stage 5 단어시험</button></div>
+      <div class="card"><button class="menu-btn" onclick="startGrammarGame()">3. 축복이와 하동이의<br>English 문법 Game</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordGame()">4. 축복이와 하동이의<br>English 단어 Game</button></div>
+      <div class="card"><button class="menu-btn" onclick="startCarGame()">5. 미니 자동차 피하기 Game</button></div>
+      <div class="card"><button class="menu-btn" onclick="startPlaneGame()">6. 미니 비행기 Game</button></div>
+    </div>
+    <div class="footer-note">퀴즈 게임은 맞춘 개수와 틀린 개수가 계속 누적됩니다.</div>
+    <div class="calendar-section">
+      <div class="calendar-header">
+        <div class="calendar-title">우리 가족 달력</div>
+        <div class="calendar-nav">
+          <button onclick="moveCalendar(-1)">◀ 이전달</button>
+          <button onclick="moveCalendar(1)">다음달 ▶</button>
+        </div>
+      </div>
+      <div id="calendarGrid" class="calendar-grid"></div>
+      <div id="calendarDetailBox" class="detail-box">
+        <div class="detail-title">상세</div>
+        <div id="calendarDetailContent" class="detail-empty">날짜를 클릭하면 가족 생일과 일정을 볼 수 있어요.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quizScreen" class="screen hidden">
+    <div class="title" id="quizTitle"></div>
+    <div class="hud">
+      <div class="hud-box" id="stageBox">Stage 1 / 1000</div>
+      <div class="hud-box" id="scoreBox">점수: 0</div>
+      <div class="hud-box" id="correctBox">맞춤: 0</div>
+      <div class="hud-box" id="wrongBox">틀림: 0</div>
+    </div>
+    <div class="question-box" id="questionBox"></div>
+    <div class="choices" id="choicesBox"></div>
+    <div id="typingPanel" class="answer-panel hidden">
+      <input id="answerInput" class="answer-input" type="text" placeholder="영단어를 입력하세요" autocomplete="off" />
+      <button class="action-btn" onclick="submitTypingAnswer()">정답 확인</button>
+    </div>
+    <div class="message" id="quizMessage"></div>
+    <div class="action-row">
+      <button class="action-btn" id="nextBtn" onclick="nextQuizStage()" disabled>다음 문제</button>
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
+  <div id="arcadeScreen" class="screen hidden">
+    <div class="title" id="arcadeTitle"></div>
+    <div class="game-help" id="arcadeHelp"></div>
+    <div class="hud">
+      <div class="hud-box" id="arcadeScore">점수: 0</div>
+      <div class="hud-box" id="arcadeBest">최고점수: 0</div>
+      <div class="hud-box" id="arcadeStatus">상태: 준비</div>
+    </div>
+    <canvas id="gameCanvas" width="900" height="500"></canvas>
+    <div class="mobile-controls">
+      <button class="control-btn" id="leftControlBtn">◀ 왼쪽</button>
+      <button class="control-btn" id="rightControlBtn">오른쪽 ▶</button>
+    </div>
+    <div class="action-row">
+      <button class="action-btn" onclick="restartArcadeGame()">다시 시작</button>
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL_STAGES = 1000;
+    const WEEKLY_VOCAB_TOTAL = 60;
+    const HADONG_STAGE5_TOTAL = 30;
+    let currentQuizType = '';
+    let currentStage = 1;
+    let currentScore = 0;
+    let correctCount = 0;
+    let wrongCount = 0;
+    let currentQuestion = null;
+    let answered = false;
+    let calendarCenter = { year: 2026, month: 4 };
+    let selectedCalendarDate = null;
+    let wordOrder = [];
+    let weeklyWordOrder = [];
+    let hadongWordOrder = [];
+    let grammarUsedKeys = new Set();
+
+    const pronouns = ['I', 'You', 'We', 'They', 'He', 'She', 'Minho', 'Jiyun', 'My brother', 'Our teacher'];
+    const verbs = [
+      { base: 'play', s: 'plays', ing: 'playing', ed: 'played' },
+      { base: 'study', s: 'studies', ing: 'studying', ed: 'studied' },
+      { base: 'watch', s: 'watches', ing: 'watching', ed: 'watched' },
+      { base: 'make', s: 'makes', ing: 'making', ed: 'made' },
+      { base: 'read', s: 'reads', ing: 'reading', ed: 'read' },
+      { base: 'write', s: 'writes', ing: 'writing', ed: 'wrote' },
+      { base: 'go', s: 'goes', ing: 'going', ed: 'went' },
+      { base: 'do', s: 'does', ing: 'doing', ed: 'did' },
+      { base: 'eat', s: 'eats', ing: 'eating', ed: 'ate' },
+      { base: 'buy', s: 'buys', ing: 'buying', ed: 'bought' }
+    ];
+    const places = ['at school', 'in the library', 'at home', 'in the park', 'every morning', 'after dinner', 'on weekends', 'before class'];
+    const grammarPatterns = ['present-be', 'present-do', 'past', 'future', 'progressive', 'modal', 'preposition', 'comparative', 'conjunction', 'infinitive'];
+
+    const vocabData = [
+      ['honest', '정직한'], ['borrow', '빌리다'], ['return', '돌려주다'], ['invite', '초대하다'], ['promise', '약속하다'],
+      ['during', '~동안'], ['among', '~사이에'], ['through', '~을 통해'], ['decide', '결정하다'], ['improve', '향상시키다'],
+      ['environment', '환경'], ['culture', '문화'], ['habit', '습관'], ['future', '미래'], ['knowledge', '지식'],
+      ['instead', '대신에'], ['repair', '수리하다'], ['celebrate', '축하하다'], ['protect', '보호하다'], ['discover', '발견하다'],
+      ['experience', '경험'], ['important', '중요한'], ['possible', '가능한'], ['careful', '조심하는'], ['special', '특별한'],
+      ['dangerous', '위험한'], ['favorite', '가장 좋아하는'], ['friendly', '친절한'], ['different', '다른'], ['comfortable', '편안한'],
+      ['accept', '받아들이다'], ['achieve', '성취하다'], ['describe', '묘사하다'], ['connect', '연결하다'], ['compare', '비교하다'],
+      ['include', '포함하다'], ['prepare', '준비하다'], ['support', '지지하다'], ['share', '공유하다'], ['create', '만들다'],
+      ['bright', '밝은'], ['quiet', '조용한'], ['ancient', '고대의'], ['modern', '현대의'], ['ordinary', '평범한'],
+      ['solve', '해결하다'], ['repeat', '반복하다'], ['imagine', '상상하다'], ['notice', '알아차리다'], ['carry', '나르다']
+    ];
+
+    const wrongMeaningPool = ['기쁘게 하다', '숨기다', '계산하다', '설명하다', '선택하다', '출발하다', '증가하다', '감소하다', '기억하다', '실패하다'];
+
+    const weeklyVocabData = [
+      ['biology', '생물학'], ['chemistry', '화학'], ['element', '요소, 성분, 원소'], ['acid', '산'], ['storage', '저장, 저장소'],
+      ['steam', '증기'], ['gene', '유전자'], ['mammal', '포유동물'], ['melt', '녹다, 녹이다'], ['cell', '세포'],
+      ['microscope', '현미경'], ['reproduce', '번식하다, 재생·재현하다, 복제하다'], ['evolution', '진화'], ['extinct', '멸종된, 사라진'], ['clone', '복제하다, 복제 생물'],
+      ['identical', '동일한'], ['animate', '살아 있는, 생물인'], ['carbon', '탄소'], ['mixture', '혼합물, 혼합'], ['substance', '물질'],
+      ['liquid', '액체, 액체의'], ['filter', '거르다, 여과하다, 여과 장치'], ['absorb', '흡수하다, 열중시키다'], ['toxic', '유독한'], ['ray', '빛, 광선'],
+      ['compound', '화합물, 혼합복합, 합성물'], ['detach', '떼어 놓다, 분리하다'], ['turn A into B', 'A를 B로 바꾸다, 변하게 하다'], ['tell from', '~을 구별하다'], ['give off', '내다, 방출하다, 발산하다'],
+      ['temperature', '온도, 기온'], ['forecast', '예보, 예상하다, 예보하다'], ['climate', '기후'], ['rubber', '고무, 고무의'], ['severe', '극심한, 심각한, 기후한, 위험한'],
+      ['resource', '자원, 재원'], ['spark', '도화선이 되다, 불꽃을 튀기다, 불꽃'], ['Arctic', '북극 지방, 북극의'], ['depth', '심함, 깊이, 난해함'], ['shield', '보호하다, 방패, 보호'],
+      ['wildlife', '야생 생물'], ['disaster', '재난, 재해, 재앙'], ['occur', '발생하다, 일어나다'], ['Atlantic', '대서양, 대서양의'], ['canyon', '협곡'],
+      ['swamp', '늪, 늪에 빠져들다, 물에 잠기게 하다'], ['moisture', '수분, 습기'], ['reflect', '반사하다, 반영하다, 심사숙고하다'], ['Celsius', '섭씨'], ['thermometer', '온도계'],
+      ['destructive', '파괴적인, 해로운'], ['wreck', '난파, 잔해, 난파하다, 파괴하다'], ['peak', '정상, 봉우리, 절정, 최고의'], ['erupt', '폭발하다, 분출하다'], ['eject', '내뿜다, 배출하다, 쫓아내다, 추방하다'],
+      ['purify', '정화하다, 정제하다'], ['surround', '둘러싸다, 포위하다'], ['wash away', '~을 쓸어 가다, 유실되게 하다'], ['wipe out', '~을 완전히 파괴하다, 없애 버리다'], ['use up', '다 써 버리다, 소비하다, 소모하다']
+    ];
+
+    const hadongStage5Data = [
+      ['attack', '공격하다'], ['auditorium', '강당'], ['club', '동아리'], ['cooperate', '협력하다'], ['costume', '의상'],
+      ['direct', '연출하다'], ['drama', '연극'], ['except', '~를 제외하고'], ['go on', '계속되다'], ['go over', '~을 살펴보다, 점검하다'],
+      ['ignore', '못 본 척하다'], ['interrupt', '(말을) 가로막다'], ['line', '대사'], ['mayor', '시장'], ['naturally', '물론, 당연히'],
+      ['nod', '(고개를) 끄덕이다'], ['observe', '(의견을) 말하다, 발언하다'], ['part', '역할'], ['pirate', '해적'], ['play', '희곡, 연극'],
+      ['president', '회장'], ['pretend', '~인 척하다'], ['raise', '들어올리다'], ['save', '구하다'], ['script', '대본'],
+      ['serious', '심각한'], ['set', '(연극의) 무대장치'], ['theme', '주제'], ['townspeople', '마을 사람들'], ['worse', '더 나쁜']
+    ];
+
+    const koreaHolidayMap = {
+      '2026-03-01': '삼일절',
+      '2026-03-02': '삼일절 대체공휴일',
+      '2026-05-01': '근로자의 날',
+      '2026-05-05': '어린이날',
+      '2026-05-24': '부처님오신날',
+      '2026-05-25': '부처님오신날 대체공휴일'
+    };
+
+    const familyBirthdays = {
+      '2026-04-26': ['별하 생일'],
+      '2026-05-21': ['아빠생일'],
+      '2026-06-25': ['하동이 생일'],
+      '2026-10-12': ['축복이 생일'],
+      '2026-10-15': ['엄마생일']
+    };
+
+    const familySchedules = {
+      '2026-04-15': ['참여수업', '치과'],
+      '2026-05-02': ['군산 방문'],
+      '2026-05-03': ['군산 방문']
+    };
+
+    function pad2(num) {
+      return String(num).padStart(2, '0');
+    }
+
+    function monthLabel(year, month) {
+      return `${year}년 ${month}월`;
+    }
+
+    function getMonthOffset(year, month, offset) {
+      const base = new Date(year, month - 1 + offset, 1);
+      return { year: base.getFullYear(), month: base.getMonth() + 1 };
+    }
+
+    function isHolidayDate(year, month, day, dayOfWeek) {
+      const key = `${year}-${pad2(month)}-${pad2(day)}`;
+      return dayOfWeek === 0 || dayOfWeek === 6 || Boolean(koreaHolidayMap[key]);
+    }
+
+    function getDateKey(year, month, day) {
+      return `${year}-${pad2(month)}-${pad2(day)}`;
+    }
+
+    function getDateMeta(year, month, day) {
+      const key = getDateKey(year, month, day);
+      return {
+        key,
+        birthdays: familyBirthdays[key] || [],
+        schedules: familySchedules[key] || []
+      };
+    }
+
+    function formatDateKorean(key) {
+      const [year, month, day] = key.split('-');
+      return `${Number(year)}년 ${Number(month)}월 ${Number(day)}일`;
+    }
+
+    function showCalendarDetail(key) {
+      selectedCalendarDate = key;
+      const detail = document.getElementById('calendarDetailContent');
+      const meta = {
+        birthdays: familyBirthdays[key] || [],
+        schedules: familySchedules[key] || []
+      };
+      let html = `<div class="detail-item"><strong>${formatDateKorean(key)}</strong></div>`;
+
+      if (meta.birthdays.length === 0 && meta.schedules.length === 0) {
+        html += '<div class="detail-empty">등록된 가족 생일이나 일정이 없어요.</div>';
+      } else {
+        meta.birthdays.forEach(item => {
+          html += `<div class="detail-item detail-birthday">❤️ ${item}</div>`;
+        });
+        meta.schedules.forEach(item => {
+          html += `<div class="detail-item detail-schedule">⭐ ${item}</div>`;
+        });
+      }
+      detail.innerHTML = html;
+      renderFamilyCalendar();
+    }
+
+    function renderSingleMonth(year, month) {
+      const firstDay = new Date(year, month - 1, 1);
+      const startDay = firstDay.getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const prevMonthDays = new Date(year, month - 1, 0).getDate();
+      const today = { year: 2026, month: 4, day: 13 };
+      const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+      let html = `<div class="month-card"><div class="month-title">${monthLabel(year, month)}</div><table class="month-table"><thead><tr>`;
+
+      weekdays.forEach((name, idx) => {
+        html += `<th class="${idx === 0 || idx === 6 ? 'holiday-red' : ''}">${name}</th>`;
+      });
+      html += '</tr></thead><tbody>';
+
+      let dayCounter = 1;
+      let nextMonthDay = 1;
+      for (let week = 0; week < 6; week++) {
+        html += '<tr>';
+        for (let dow = 0; dow < 7; dow++) {
+          const cellIndex = week * 7 + dow;
+          if (cellIndex < startDay) {
+            const dayNum = prevMonthDays - startDay + cellIndex + 1;
+            html += `<td class="other-month">${dayNum}</td>`;
+          } else if (dayCounter <= daysInMonth) {
+            const holiday = isHolidayDate(year, month, dayCounter, dow);
+            const isToday = today.year === year && today.month === month && today.day === dayCounter;
+            const meta = getDateMeta(year, month, dayCounter);
+            const hasBirthday = meta.birthdays.length > 0;
+            const hasSchedule = meta.schedules.length > 0;
+            const isSelected = selectedCalendarDate === meta.key;
+            const dayContent = isToday
+              ? `<span class="today-mark">${dayCounter}</span>`
+              : `<span class="${holiday ? 'holiday-red' : ''}">${dayCounter}</span>`;
+            const iconHtml = `<div class="date-icons">${hasBirthday ? '<span class="birthday-icon">❤</span>' : ''}${hasSchedule ? '<span class="schedule-icon">★</span>' : ''}</div>`;
+            html += `<td class="${holiday || isSelected ? 'holiday-cell' : ''}" title="${koreaHolidayMap[meta.key] || ''}"><button class="calendar-day-btn" onclick="showCalendarDetail('${meta.key}')"><div class="date-wrap">${dayContent}${iconHtml}</div></button></td>`;
+            dayCounter += 1;
+          } else {
+            html += `<td class="other-month">${nextMonthDay}</td>`;
+            nextMonthDay += 1;
+          }
+        }
+        html += '</tr>';
+        if (dayCounter > daysInMonth && nextMonthDay > 7) break;
+      }
+
+      html += '</tbody></table></div>';
+      return html;
+    }
+
+    function renderFamilyCalendar() {
+      const grid = document.getElementById('calendarGrid');
+      const curr = getMonthOffset(calendarCenter.year, calendarCenter.month, 0);
+      const next = getMonthOffset(calendarCenter.year, calendarCenter.month, 1);
+      grid.innerHTML = renderSingleMonth(curr.year, curr.month) + renderSingleMonth(next.year, next.month);
+    }
+
+    function moveCalendar(step) {
+      calendarCenter = getMonthOffset(calendarCenter.year, calendarCenter.month, step);
+      renderFamilyCalendar();
+    }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function isThirdPerson(subject) {
+      return ['He', 'She', 'Minho', 'Jiyun', 'My brother', 'Our teacher'].includes(subject);
+    }
+
+    function generateGrammarQuestion() {
+      let pattern = '';
+      let subject = '';
+      let verb = null;
+      let place = '';
+      let uniqueKey = '';
+      let attempts = 0;
+
+      do {
+        pattern = grammarPatterns[Math.floor(Math.random() * grammarPatterns.length)];
+        subject = pronouns[Math.floor(Math.random() * pronouns.length)];
+        verb = verbs[Math.floor(Math.random() * verbs.length)];
+        place = places[Math.floor(Math.random() * places.length)];
+        uniqueKey = `${pattern}|${subject}|${verb.base}|${place}`;
+        attempts += 1;
+      } while (grammarUsedKeys.has(uniqueKey) && attempts < 300);
+
+      grammarUsedKeys.add(uniqueKey);
+
+      let sentence = '';
+      let answer = '';
+      let choices = [];
+
+      const subjectKrMap = {
+        'I': '나는', 'You': '너는', 'We': '우리는', 'They': '그들은', 'He': '그는', 'She': '그녀는',
+        'Minho': '민호는', 'Jiyun': '지윤이는', 'My brother': '내 남동생은', 'Our teacher': '우리 선생님은'
+      };
+      const placeKrMap = {
+        'at school': '학교에서', 'in the library': '도서관에서', 'at home': '집에서', 'in the park': '공원에서',
+        'every morning': '매일 아침', 'after dinner': '저녁 식사 후에', 'on weekends': '주말에', 'before class': '수업 전에'
+      };
+      const verbKrMap = {
+        play: '놀다', study: '공부하다', watch: '보다', make: '만들다', read: '읽다',
+        write: '쓰다', go: '가다', do: '하다', eat: '먹다', buy: '사다'
+      };
+
+      const subjectKr = subjectKrMap[subject] || `${subject}는`;
+      const placeKr = placeKrMap[place] || place;
+      const verbKr = verbKrMap[verb.base] || '하다';
+
+      switch (pattern) {
+        case 'present-be': {
+          const singular = isThirdPerson(subject) && subject !== 'You' && subject !== 'We' && subject !== 'They';
+          answer = subject === 'I' ? 'am' : singular ? 'is' : 'are';
+          sentence = `${subject} ____ happy ${place}.<br><small>happy : 행복한</small><br><small>문장 뜻: ${subjectKr} ${placeKr} 행복하다.</small>`;
+          choices = shuffle(['am', 'is', 'are', 'be']);
+          break;
+        }
+        case 'present-do': {
+          answer = isThirdPerson(subject) ? verb.s : verb.base;
+          sentence = `${subject} ____ ${place}.<br><small>${verb.base} : ${verbKr}</small><br><small>문장 뜻: ${subjectKr} ${placeKr} ${verbKr}.</small>`;
+          choices = shuffle([verb.base, verb.s, verb.ing, verb.ed]);
+          break;
+        }
+        case 'past': {
+          answer = verb.ed;
+          sentence = `${subject} ____ yesterday.<br><small>${verb.base} : ${verbKr}</small><br><small>yesterday : 어제</small><br><small>문장 뜻: ${subjectKr} 어제 ${verbKr}.</small>`;
+          choices = shuffle([verb.base, verb.s, verb.ed, 'will ' + verb.base]);
+          break;
+        }
+        case 'future': {
+          answer = 'will';
+          sentence = `${subject} ____ ${verb.base} tomorrow.<br><small>${verb.base} : ${verbKr}</small><br><small>tomorrow : 내일</small><br><small>문장 뜻: ${subjectKr} 내일 ${verbKr} 것이다.</small>`;
+          choices = shuffle(['will', 'did', 'does', 'was']);
+          break;
+        }
+        case 'progressive': {
+          const be = subject === 'I' ? 'am' : isThirdPerson(subject) ? 'is' : 'are';
+          answer = verb.ing;
+          sentence = `${subject} ${be} ____ now.<br><small>${verb.base} : ${verbKr}</small><br><small>now : 지금</small><br><small>문장 뜻: ${subjectKr} 지금 ${verbKr}고 있다.</small>`;
+          choices = shuffle([verb.ing, verb.base, verb.s, verb.ed]);
+          break;
+        }
+        case 'modal': {
+          answer = verb.base;
+          sentence = `${subject} can ____ very well.<br><small>${verb.base} : ${verbKr}</small><br><small>very well : 아주 잘</small><br><small>문장 뜻: ${subjectKr} ${verbKr}를 아주 잘 할 수 있다.</small>`;
+          choices = shuffle([verb.base, verb.s, verb.ing, verb.ed]);
+          break;
+        }
+        case 'preposition': {
+          answer = 'at';
+          sentence = `She is waiting ____ the bus stop.<br><small>wait : 기다리다</small><br><small>bus stop : 버스정류장</small><br><small>문장 뜻: 그녀는 버스정류장에서 기다리고 있다.</small>`;
+          choices = shuffle(['at', 'on', 'for', 'with']);
+          break;
+        }
+        case 'comparative': {
+          answer = 'faster';
+          sentence = `A train is ____ than a bike.<br><small>train : 기차</small><br><small>bike : 자전거</small><br><small>문장 뜻: 기차는 자전거보다 더 빠르다.</small>`;
+          choices = shuffle(['fast', 'faster', 'fastest', 'more fast']);
+          break;
+        }
+        case 'conjunction': {
+          answer = 'because';
+          sentence = `I stayed home ____ it was raining.<br><small>stay home : 집에 있다</small><br><small>rain : 비가 오다</small><br><small>문장 뜻: 비가 오고 있었기 때문에 나는 집에 있었다.</small>`;
+          choices = shuffle(['because', 'but', 'or', 'so']);
+          break;
+        }
+        case 'infinitive': {
+          answer = 'to';
+          sentence = `He wants ____ be a doctor.<br><small>want : 원하다</small><br><small>doctor : 의사</small><br><small>문장 뜻: 그는 의사가 되기를 원한다.</small>`;
+          choices = shuffle(['to', 'for', 'at', 'of']);
+          break;
+        }
+      }
+      return { sentence, answer, choices };
+    }
+
+    function buildShuffledOrder(length) {
+      return shuffle(Array.from({ length }, (_, i) => i));
+    }
+
+    function generateWordQuestion() {
+      if (wordOrder.length === 0) {
+        wordOrder = buildShuffledOrder(vocabData.length);
+      }
+      const item = vocabData[wordOrder.shift()];
+      const [word, meaning] = item;
+      const wrongs = shuffle(wrongMeaningPool.filter(m => m !== meaning)).slice(0, 3);
+      const choices = shuffle([meaning, ...wrongs]);
+      return {
+        sentence: `다음 영어 단어의 뜻은 무엇일까요?<br><br><strong>${word}</strong>`,
+        answer: meaning,
+        choices
+      };
+    }
+
+    function generateWeeklyVocabQuestion() {
+      if (weeklyWordOrder.length === 0) {
+        weeklyWordOrder = buildShuffledOrder(weeklyVocabData.length);
+      }
+      const item = weeklyVocabData[weeklyWordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
+    function generateHadongStage5Question() {
+      if (hadongWordOrder.length === 0) {
+        hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
+      }
+      const item = hadongStage5Data[hadongWordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
+    function updateQuizHud() {
+      let total = TOTAL_STAGES;
+      if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
+      if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
+      document.getElementById('stageBox').textContent = `Stage ${currentStage} / ${total}`;
+      document.getElementById('scoreBox').textContent = `점수: ${currentScore}`;
+      document.getElementById('correctBox').textContent = `맞춤: ${correctCount}`;
+      document.getElementById('wrongBox').textContent = `틀림: ${wrongCount}`;
+    }
+
+    function renderQuizQuestion() {
+      answered = false;
+      document.getElementById('quizMessage').textContent = '';
+      document.getElementById('nextBtn').disabled = true;
+      const typingPanel = document.getElementById('typingPanel');
+      const choicesBox = document.getElementById('choicesBox');
+      const answerInput = document.getElementById('answerInput');
+
+      if (currentQuizType === 'grammar') {
+        currentQuestion = generateGrammarQuestion();
+        typingPanel.classList.add('hidden');
+        choicesBox.classList.remove('hidden');
+      } else if (currentQuizType === 'word') {
+        currentQuestion = generateWordQuestion();
+        typingPanel.classList.add('hidden');
+        choicesBox.classList.remove('hidden');
+      } else if (currentQuizType === 'weekly-vocab') {
+        currentQuestion = generateWeeklyVocabQuestion();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else {
+        currentQuestion = generateHadongStage5Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      }
+
+      document.getElementById('questionBox').innerHTML = currentQuestion.sentence;
+      choicesBox.innerHTML = '';
+
+      if (currentQuizType === 'grammar' || currentQuizType === 'word') {
+        currentQuestion.choices.forEach(choice => {
+          const btn = document.createElement('button');
+          btn.className = 'choice-btn';
+          btn.textContent = choice;
+          btn.onclick = () => selectChoiceAnswer(btn, choice);
+          choicesBox.appendChild(btn);
+        });
+      }
+      updateQuizHud();
+    }
+
+    function selectChoiceAnswer(button, choice) {
+      if (answered) return;
+      answered = true;
+      const buttons = [...document.querySelectorAll('.choice-btn')];
+      const correct = choice === currentQuestion.answer;
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === currentQuestion.answer) btn.classList.add('correct');
+      });
+
+      if (correct) {
+        currentScore += 10;
+        correctCount += 1;
+        button.classList.add('correct');
+        document.getElementById('quizMessage').textContent = '정답입니다!';
+      } else {
+        wrongCount += 1;
+        button.classList.add('wrong');
+        document.getElementById('quizMessage').textContent = `오답입니다. 정답은 ${currentQuestion.answer}`;
+      }
+      updateQuizHud();
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function normalizeAnswer(text) {
+      return text.toLowerCase().replace(/\s+/g, ' ').trim();
+    }
+
+    function submitTypingAnswer() {
+      if (answered || !['weekly-vocab', 'hadong-stage5'].includes(currentQuizType)) return;
+      answered = true;
+      const input = document.getElementById('answerInput');
+      const userAnswer = normalizeAnswer(input.value);
+      const correctAnswer = normalizeAnswer(currentQuestion.answer);
+
+      if (userAnswer === correctAnswer) {
+        currentScore += 10;
+        correctCount += 1;
+        document.getElementById('quizMessage').textContent = '정답입니다!';
+      } else {
+        wrongCount += 1;
+        document.getElementById('quizMessage').textContent = `오답입니다. 정답은 ${currentQuestion.answer}`;
+      }
+
+      input.disabled = true;
+      updateQuizHud();
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuizStage() {
+      let total = TOTAL_STAGES;
+      if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
+      if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
+      if (currentStage < total) {
+        currentStage += 1;
+        renderQuizQuestion();
+      } else {
+        document.getElementById('quizMessage').textContent = `게임 완료! 최종 점수 ${currentScore}, 맞춤 ${correctCount}, 틀림 ${wrongCount}`;
+        document.getElementById('nextBtn').disabled = true;
+      }
+    }
+
+    function showScreen(id) {
+      document.getElementById('menuScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('arcadeScreen').classList.add('hidden');
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function startWeeklyVocabGame() {
+      currentQuizType = 'weekly-vocab';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      weeklyWordOrder = buildShuffledOrder(weeklyVocabData.length);
+      document.getElementById('quizTitle').textContent = '축복이 금주 27/28 영단어 시험';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startHadongStage5Game() {
+      currentQuizType = 'hadong-stage5';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
+      document.getElementById('quizTitle').textContent = '하동이의 금주 Stage 5 단어시험';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startGrammarGame() {
+      currentQuizType = 'grammar';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      grammarUsedKeys = new Set();
+      document.getElementById('quizTitle').textContent = '축복이와 하동이의 English 문법 Game';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startWordGame() {
+      currentQuizType = 'word';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      wordOrder = buildShuffledOrder(vocabData.length);
+      document.getElementById('quizTitle').textContent = '축복이와 하동이의 English 단어 Game';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function goMenu() {
+      stopArcadeLoop();
+      document.getElementById('answerInput').value = '';
+      document.getElementById('answerInput').disabled = false;
+      document.getElementById('typingPanel').classList.add('hidden');
+      document.getElementById('choicesBox').classList.remove('hidden');
+      renderFamilyCalendar();
+      showScreen('menuScreen');
+    }
+
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let animationId = null;
+    let activeArcade = '';
+    let arcadeScore = 0;
+    let bestScores = { car: 0, plane: 0 };
+    let keys = {};
+    let player, obstacles, stars, speed, gameOver, spawnTick, bgOffset;
+
+    document.addEventListener('keydown', e => {
+      keys[e.key] = true;
+      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) e.preventDefault();
+    });
+    document.addEventListener('keyup', e => { keys[e.key] = false; });
+
+    function bindControlButton(buttonId, keyName) {
+      const btn = document.getElementById(buttonId);
+      const press = (e) => {
+        if (e) e.preventDefault();
+        keys[keyName] = true;
+      };
+      const release = (e) => {
+        if (e) e.preventDefault();
+        keys[keyName] = false;
+      };
+      btn.addEventListener('mousedown', press);
+      btn.addEventListener('mouseup', release);
+      btn.addEventListener('mouseleave', release);
+      btn.addEventListener('touchstart', press, { passive: false });
+      btn.addEventListener('touchend', release, { passive: false });
+      btn.addEventListener('touchcancel', release, { passive: false });
+    }
+
+    bindControlButton('leftControlBtn', 'ArrowLeft');
+    bindControlButton('rightControlBtn', 'ArrowRight');
+
+    document.getElementById('answerInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && document.getElementById('nextBtn').disabled) {
+        submitTypingAnswer();
+      } else if (e.key === 'Enter') {
+        nextQuizStage();
+      }
+    });
+
+    function resetArcadeBase(type) {
+      activeArcade = type;
+      arcadeScore = 0;
+      obstacles = [];
+      stars = [];
+      speed = 4;
+      gameOver = false;
+      spawnTick = 0;
+      bgOffset = 0;
+      player = type === 'car'
+        ? { x: 430, y: 420, w: 40, h: 70, speed: 7 }
+        : { x: 430, y: 390, w: 56, h: 56, speed: 6 };
+      updateArcadeHud();
+    }
+
+    function updateArcadeHud() {
+      const best = bestScores[activeArcade] || 0;
+      document.getElementById('arcadeScore').textContent = `점수: ${arcadeScore}`;
+      document.getElementById('arcadeBest').textContent = `최고점수: ${best}`;
+      document.getElementById('arcadeStatus').textContent = gameOver ? '상태: 게임 오버' : '상태: 플레이 중';
+    }
+
+    function startCarGame() {
+      document.getElementById('arcadeTitle').textContent = '미니 자동차 피하기 Game';
+      document.getElementById('arcadeHelp').innerHTML = '← → 방향키로 자동차를 움직여 다른 차를 피하세요.';
+      showScreen('arcadeScreen');
+      resetArcadeBase('car');
+      runArcadeLoop();
+    }
+
+    function startPlaneGame() {
+      document.getElementById('arcadeTitle').textContent = '미니 비행기 Game';
+      document.getElementById('arcadeHelp').innerHTML = '← → ↑ ↓ 방향키로 비행기를 움직여 장애물을 피하세요.';
+      showScreen('arcadeScreen');
+      resetArcadeBase('plane');
+      runArcadeLoop();
+    }
+
+    function restartArcadeGame() {
+      if (!activeArcade) return;
+      resetArcadeBase(activeArcade);
+      runArcadeLoop();
+    }
+
+    function stopArcadeLoop() {
+      if (animationId) cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+
+    function drawCarPlayer() {
+      ctx.fillStyle = '#2563eb';
+      ctx.fillRect(player.x, player.y + 12, player.w, player.h - 12);
+      ctx.fillStyle = '#93c5fd';
+      ctx.fillRect(player.x + 8, player.y, 24, 20);
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(player.x + 4, player.y + 50, 8, 14);
+      ctx.fillRect(player.x + 28, player.y + 50, 8, 14);
+      ctx.fillRect(player.x + 4, player.y + 8, 8, 14);
+      ctx.fillRect(player.x + 28, player.y + 8, 8, 14);
+    }
+
+    function drawEnemyCar(obs) {
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(obs.x, obs.y + 12, obs.w, obs.h - 12);
+      ctx.fillStyle = '#fecaca';
+      ctx.fillRect(obs.x + 8, obs.y, 24, 20);
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(obs.x + 4, obs.y + 50, 8, 14);
+      ctx.fillRect(obs.x + 28, obs.y + 50, 8, 14);
+      ctx.fillRect(obs.x + 4, obs.y + 8, 8, 14);
+      ctx.fillRect(obs.x + 28, obs.y + 8, 8, 14);
+    }
+
+    function drawPlanePlayer() {
+      ctx.fillStyle = '#0ea5e9';
+      ctx.beginPath();
+      ctx.moveTo(player.x + 28, player.y);
+      ctx.lineTo(player.x + 56, player.y + 50);
+      ctx.lineTo(player.x + 36, player.y + 42);
+      ctx.lineTo(player.x + 28, player.y + 56);
+      ctx.lineTo(player.x + 20, player.y + 42);
+      ctx.lineTo(player.x, player.y + 50);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = '#bae6fd';
+      ctx.fillRect(player.x + 24, player.y + 12, 8, 16);
+    }
+
+    function drawObstacle(obs) {
+      if (activeArcade === 'car') {
+        drawEnemyCar(obs);
+      } else {
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(obs.x + obs.w / 2, obs.y + obs.h / 2, obs.w / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function drawCarBackground() {
+      ctx.fillStyle = '#4b5563';
+      ctx.fillRect(200, 0, 500, canvas.height);
+      ctx.fillStyle = '#16a34a';
+      ctx.fillRect(0, 0, 200, canvas.height);
+      ctx.fillRect(700, 0, 200, canvas.height);
+      ctx.fillStyle = 'white';
+      for (let i = -1; i < 10; i++) {
+        const y = (i * 70 + bgOffset) % (canvas.height + 70) - 70;
+        ctx.fillRect(445, y, 10, 40);
+      }
+    }
+
+    function drawPlaneBackground() {
+      ctx.fillStyle = '#dbeafe';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function spawnObstacle() {
+      if (activeArcade === 'car') {
+        const lanes = [220, 325, 430, 535, 640];
+        const x = lanes[Math.floor(Math.random() * lanes.length)];
+        obstacles.push({ x, y: -80, w: 40, h: 70 });
+      } else {
+        obstacles.push({
+          x: Math.random() * (canvas.width - 34),
+          y: -34,
+          w: 34,
+          h: 34,
+          vy: speed + Math.random() * 2,
+          vx: (Math.random() - 0.5) * 2
+        });
+      }
+    }
+
+    function updatePlayer() {
+      if (activeArcade === 'car') {
+        if (keys['ArrowLeft']) player.x -= player.speed;
+        if (keys['ArrowRight']) player.x += player.speed;
+        player.x = Math.max(220, Math.min(640, player.x));
+      } else {
+        if (keys['ArrowLeft']) player.x -= player.speed;
+        if (keys['ArrowRight']) player.x += player.speed;
+        if (keys['ArrowUp']) player.y -= player.speed;
+        if (keys['ArrowDown']) player.y += player.speed;
+        player.x = Math.max(0, Math.min(canvas.width - player.w, player.x));
+        player.y = Math.max(0, Math.min(canvas.height - player.h, player.y));
+      }
+    }
+
+    function isColliding(a, b) {
+      return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+    }
+
+    function updateArcade() {
+      if (gameOver) return;
+      spawnTick++;
+      bgOffset += speed;
+      if (activeArcade === 'car' && spawnTick % 28 === 0) spawnObstacle();
+      if (activeArcade === 'plane' && spawnTick % 24 === 0) spawnObstacle();
+
+      updatePlayer();
+
+      obstacles.forEach(obs => {
+        if (activeArcade === 'car') {
+          obs.y += speed;
+        } else {
+          obs.y += obs.vy;
+          obs.x += obs.vx;
+        }
+      });
+
+      obstacles = obstacles.filter(obs => {
+        const stillOn = obs.y < canvas.height + 80;
+        if (!stillOn) arcadeScore += 1;
+        return stillOn;
+      });
+
+      if (activeArcade === 'plane') {
+        stars.forEach(s => {
+          s.y += s.v;
+          if (s.y > canvas.height) {
+            s.y = -10;
+            s.x = Math.random() * canvas.width;
+          }
+        });
+      }
+
+      for (const obs of obstacles) {
+        if (isColliding(player, obs)) {
+          gameOver = true;
+          bestScores[activeArcade] = Math.max(bestScores[activeArcade], arcadeScore);
+          updateArcadeHud();
+          return;
+        }
+      }
+
+      if (spawnTick % 90 === 0) speed += 0.25;
+      updateArcadeHud();
+    }
+
+    function drawArcade() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (activeArcade === 'car') drawCarBackground();
+      else drawPlaneBackground();
+
+      obstacles.forEach(drawObstacle);
+
+      if (activeArcade === 'car') drawCarPlayer();
+      else drawPlanePlayer();
+
+      if (gameOver) {
+        ctx.fillStyle = 'rgba(0,0,0,0.55)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 42px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 10);
+        ctx.font = '24px Arial';
+        ctx.fillText(`점수: ${arcadeScore}`, canvas.width / 2, canvas.height / 2 + 35);
+      }
+    }
+
+    function arcadeFrame() {
+      updateArcade();
+      drawArcade();
+      animationId = requestAnimationFrame(arcadeFrame);
+    }
+
+    function runArcadeLoop() {
+      stopArcadeLoop();
+      if (activeArcade === 'plane') {
+        stars = Array.from({ length: 18 }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: 10 + Math.random() * 18,
+          v: 0.6 + Math.random() * 1.2
+        }));
+      }
+      arcadeFrame();
+    }
+
+    renderFamilyCalendar();
+    showScreen('menuScreen');
+  </script>
+</body>
+</html>
