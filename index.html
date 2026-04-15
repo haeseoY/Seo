@@ -111,14 +111,8 @@
       color: #111827;
       min-height: 68px;
     }
-    .choice-btn.correct {
-      background: #dcfce7;
-      border-color: #22c55e;
-    }
-    .choice-btn.wrong {
-      background: #fee2e2;
-      border-color: #ef4444;
-    }
+    .choice-btn.correct { background: #dcfce7; border-color: #22c55e; }
+    .choice-btn.wrong { background: #fee2e2; border-color: #ef4444; }
     .message {
       margin-top: 14px;
       font-weight: 700;
@@ -140,7 +134,10 @@
       border: 2px solid #cbd5e1;
       outline: none;
     }
-    .answer-input:focus {
+    .answer-input:focus,
+    .calendar-form input:focus,
+    .board-form input:focus,
+    .board-form textarea:focus {
       border-color: #60a5fa;
       box-shadow: 0 0 0 4px rgba(96,165,250,0.15);
     }
@@ -165,7 +162,8 @@
       margin-top: 20px;
       font-size: 0.95rem;
     }
-    .calendar-section {
+    .calendar-section,
+    .board-section {
       margin-top: 28px;
       background: white;
       border-radius: 20px;
@@ -173,7 +171,8 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
       border: 1px solid #e5e7eb;
     }
-    .calendar-header {
+    .calendar-header,
+    .section-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -181,24 +180,34 @@
       flex-wrap: wrap;
       margin-bottom: 18px;
     }
-    .calendar-title {
+    .calendar-title,
+    .section-title {
       font-size: 1.5rem;
       font-weight: 700;
       color: #111827;
     }
-    .calendar-nav {
-      display: flex;
-      gap: 10px;
+    .firebase-status {
+      font-size: 0.92rem;
+      color: #475569;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 8px 12px;
     }
-    .calendar-nav button {
+    .calendar-nav { display: flex; gap: 10px; }
+    .calendar-nav button,
+    .calendar-save-btn,
+    .board-save-btn {
       border: none;
-      background: #111827;
       color: white;
       border-radius: 12px;
       padding: 10px 14px;
       font-weight: 700;
       cursor: pointer;
     }
+    .calendar-nav button { background: #111827; }
+    .calendar-save-btn { background: #f59e0b; }
+    .board-save-btn { background: #2563eb; }
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -238,17 +247,9 @@
       font-weight: 700;
       color: #475569;
     }
-    .holiday-red {
-      color: #dc2626 !important;
-      font-weight: 700;
-    }
-    .holiday-cell {
-      background: #fef2f2;
-    }
-    .other-month {
-      color: #cbd5e1;
-      background: #fafafa;
-    }
+    .holiday-red { color: #dc2626 !important; font-weight: 700; }
+    .holiday-cell { background: #fef2f2; }
+    .other-month { color: #cbd5e1; background: #fafafa; }
     .today-mark {
       display: inline-flex;
       align-items: center;
@@ -277,12 +278,8 @@
       font-size: 0.8rem;
       line-height: 1;
     }
-    .birthday-icon {
-      color: #ef4444;
-    }
-    .schedule-icon {
-      color: #eab308;
-    }
+    .birthday-icon { color: #ef4444; }
+    .schedule-icon { color: #eab308; }
     .calendar-day-btn {
       width: 100%;
       height: 100%;
@@ -293,9 +290,7 @@
       font: inherit;
       color: inherit;
     }
-    .calendar-day-btn:hover {
-      background: rgba(59,130,246,0.06);
-    }
+    .calendar-day-btn:hover { background: rgba(59,130,246,0.06); }
     .detail-box {
       margin-top: 18px;
       border: 1px solid #e5e7eb;
@@ -303,37 +298,97 @@
       background: #f8fbff;
       padding: 18px;
     }
-    .detail-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #111827;
-    }
-    .detail-empty {
-      color: #6b7280;
-    }
-    .detail-item {
-      padding: 8px 10px;
+    .detail-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: #111827; }
+    .detail-empty { color: #6b7280; }
+    .detail-item,
+    .board-post {
+      padding: 10px 12px;
       border-radius: 10px;
       margin-bottom: 8px;
       background: white;
       border: 1px solid #e5e7eb;
     }
-    .detail-item:last-child {
-      margin-bottom: 0;
+    .detail-item:last-child,
+    .board-post:last-child { margin-bottom: 0; }
+    .detail-birthday { border-left: 5px solid #ef4444; }
+    .detail-schedule { border-left: 5px solid #eab308; }
+    .calendar-form,
+    .board-form {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      background: #ffffff;
     }
-    .detail-birthday {
-      border-left: 5px solid #ef4444;
+    .calendar-form-title,
+    .board-form-title {
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1e3a8a;
     }
-    .detail-schedule {
-      border-left: 5px solid #eab308;
+    .calendar-form-grid,
+    .board-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
     }
+    .calendar-form input,
+    .calendar-form textarea,
+    .board-form input,
+    .calendar-form textarea,
+    .board-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #dbeafe;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .board-form textarea {
+      min-height: 110px;
+      resize: vertical;
+      grid-column: 1 / -1;
+    }
+    .calendar-form-actions,
+    .board-form-actions,
     .mobile-controls {
       display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 16px;
+      gap: 10px;
       flex-wrap: wrap;
+    }
+    .calendar-mini-note,
+    .board-mini-note {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+    .board-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .board-time {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .board-author {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+    .board-content {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      color: #1f2937;
+    }
+    .mobile-controls {
+      justify-content: center;
+      margin-top: 16px;
     }
     .control-btn {
       border: none;
@@ -350,13 +405,9 @@
       -webkit-user-select: none;
       touch-action: manipulation;
     }
-    .control-btn:active {
-      transform: scale(0.97);
-    }
+    .control-btn:active { transform: scale(0.97); }
     @media (max-width: 900px) {
-      .calendar-grid {
-        grid-template-columns: 1fr;
-      }
+      .calendar-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -364,6 +415,7 @@
   <div id="menuScreen" class="screen">
     <div class="title">축복이와 하동이의 English Game</div>
     <div class="subtitle">문법, 단어, 자동차 피하기, 비행기 게임을 한 페이지에서 즐겨보세요.</div>
+
     <div class="menu-grid">
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocabGame()">1. 축복이 금주 27/28<br>영단어 시험</button></div>
       <div class="card"><button class="menu-btn" onclick="startHadongStage5Game()">2. 하동이의 금주<br>Stage 5 단어시험</button></div>
@@ -372,7 +424,9 @@
       <div class="card"><button class="menu-btn" onclick="startCarGame()">5. 미니 자동차 피하기 Game</button></div>
       <div class="card"><button class="menu-btn" onclick="startPlaneGame()">6. 미니 비행기 Game</button></div>
     </div>
+
     <div class="footer-note">퀴즈 게임은 맞춘 개수와 틀린 개수가 계속 누적됩니다.</div>
+
     <div class="calendar-section">
       <div class="calendar-header">
         <div class="calendar-title">우리 가족 달력</div>
@@ -385,6 +439,39 @@
       <div id="calendarDetailBox" class="detail-box">
         <div class="detail-title">상세</div>
         <div id="calendarDetailContent" class="detail-empty">날짜를 클릭하면 가족 생일과 일정을 볼 수 있어요.</div>
+        <div class="calendar-form">
+          <div class="calendar-form-title">선택한 날짜에 일정 추가</div>
+          <div class="calendar-form-grid">
+            <input id="calendarSelectedDateInput" type="text" placeholder="날짜" readonly />
+            <input id="calendarTimeInput" type="text" placeholder="시간 예: 14:00" />
+            <textarea id="calendarContentInput" placeholder="내용 예: 영어학원"></textarea>
+          </div>
+          <div class="calendar-form-actions">
+            <button class="calendar-save-btn" onclick="addUserCalendarSchedule()">일정 추가</button>
+          </div>
+          <div class="calendar-mini-note">날짜를 먼저 클릭한 뒤 시간과 내용을 입력해 저장하세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="board-section">
+      <div class="section-header">
+        <div class="section-title">우리 가족 게시판</div>
+        <div id="firebaseStatus" class="firebase-status">Firebase 연결 대기 중</div>
+      </div>
+      <div class="board-form">
+        <div class="board-form-title">게시글 작성</div>
+        <div class="board-form-grid">
+          <input id="boardAuthorInput" type="text" placeholder="작성인 예: 엄마" />
+          <textarea id="boardContentInput" placeholder="내용을 입력하세요"></textarea>
+        </div>
+        <div class="board-form-actions">
+          <button class="board-save-btn" onclick="addBoardPost()">게시글 등록</button>
+        </div>
+        <div class="board-mini-note">등록 시간은 자동으로 기록되고, 새 글이 위에 누적됩니다.</div>
+      </div>
+      <div id="boardList" class="board-list">
+        <div class="detail-empty">아직 등록된 게시글이 없어요.</div>
       </div>
     </div>
   </div>
@@ -429,10 +516,17 @@
     </div>
   </div>
 
-  <script>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+    import {
+      getFirestore, collection, addDoc, serverTimestamp,
+      query, orderBy, onSnapshot
+    } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+
     const TOTAL_STAGES = 1000;
     const WEEKLY_VOCAB_TOTAL = 60;
     const HADONG_STAGE5_TOTAL = 30;
+
     let currentQuizType = '';
     let currentStage = 1;
     let currentScore = 0;
@@ -446,6 +540,33 @@
     let weeklyWordOrder = [];
     let hadongWordOrder = [];
     let grammarUsedKeys = new Set();
+    let userCalendarSchedules = {};
+    let boardPosts = [];
+
+    const firebaseStatusEl = document.getElementById('firebaseStatus');
+    const firebaseConfig = {
+  apiKey: "AIzaSyBQbu_3l2vyg637e5slm7_RGmuYQU14emg",
+  authDomain: "seoy-a1ac1.firebaseapp.com",
+  projectId: "seoy-a1ac1",
+  storageBucket: "seoy-a1ac1.firebasestorage.app",
+  messagingSenderId: "926280445340",
+  appId: "1:926280445340:web:108101cd609724dddc2c59",
+  measurementId: "G-X525Y0M0S1"
+};
+
+    const hasFirebaseConfig = Object.values(firebaseConfig).every(v => v && !String(v).startsWith('YOUR_'));
+    let db = null;
+
+    if (hasFirebaseConfig) {
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      firebaseStatusEl.textContent = 'Firebase 연결됨';
+      firebaseStatusEl.style.color = '#166534';
+      firebaseStatusEl.style.background = '#dcfce7';
+      firebaseStatusEl.style.borderColor = '#bbf7d0';
+    } else {
+      firebaseStatusEl.textContent = 'Firebase 설정값을 넣으면 DB 저장이 활성화됩니다';
+    }
 
     const pronouns = ['I', 'You', 'We', 'They', 'He', 'She', 'Minho', 'Jiyun', 'My brother', 'Our teacher'];
     const verbs = [
@@ -525,6 +646,21 @@
       '2026-05-03': ['군산 방문']
     };
 
+    function formatDateTime(date) {
+      const y = date.getFullYear();
+      const m = pad2(date.getMonth() + 1);
+      const d = pad2(date.getDate());
+      const hh = pad2(date.getHours());
+      const mm = pad2(date.getMinutes());
+      return `${y}-${m}-${d} ${hh}:${mm}`;
+    }
+
+    function getCombinedSchedules(key) {
+      const base = familySchedules[key] || [];
+      const user = userCalendarSchedules[key] || [];
+      return [...base, ...user];
+    }
+
     function pad2(num) {
       return String(num).padStart(2, '0');
     }
@@ -552,7 +688,7 @@
       return {
         key,
         birthdays: familyBirthdays[key] || [],
-        schedules: familySchedules[key] || []
+        schedules: getCombinedSchedules(key)
       };
     }
 
@@ -561,12 +697,29 @@
       return `${Number(year)}년 ${Number(month)}월 ${Number(day)}일`;
     }
 
+    function renderBoardPosts() {
+      const boardList = document.getElementById('boardList');
+      if (boardPosts.length === 0) {
+        boardList.innerHTML = '<div class="detail-empty">아직 등록된 게시글이 없어요.</div>';
+        return;
+      }
+
+      boardList.innerHTML = boardPosts.map(post => `
+        <div class="board-post">
+          <div class="board-time">${post.createdAtText}</div>
+          <div class="board-author">작성인: ${post.author}</div>
+          <div class="board-content">${post.content}</div>
+        </div>
+      `).join('');
+    }
+
     function showCalendarDetail(key) {
       selectedCalendarDate = key;
+      document.getElementById('calendarSelectedDateInput').value = key;
       const detail = document.getElementById('calendarDetailContent');
       const meta = {
         birthdays: familyBirthdays[key] || [],
-        schedules: familySchedules[key] || []
+        schedules: getCombinedSchedules(key)
       };
       let html = `<div class="detail-item"><strong>${formatDateKorean(key)}</strong></div>`;
 
@@ -582,6 +735,111 @@
       }
       detail.innerHTML = html;
       renderFamilyCalendar();
+    }
+
+    async function addUserCalendarSchedule() {
+      if (!selectedCalendarDate) {
+        alert('먼저 달력에서 날짜를 선택해 주세요.');
+        return;
+      }
+      const timeInput = document.getElementById('calendarTimeInput');
+      const contentInput = document.getElementById('calendarContentInput');
+      const time = timeInput.value.trim();
+      const content = contentInput.value.trim();
+
+      if (!content) {
+        alert('일정 내용을 입력해 주세요.');
+        return;
+      }
+
+      const finalText = time ? `${time} ${content}` : content;
+
+      try {
+        if (db) {
+          await addDoc(collection(db, 'familyCalendarSchedules'), {
+            date: selectedCalendarDate,
+            time,
+            content,
+            finalText,
+            createdAt: serverTimestamp(),
+            createdAtText: formatDateTime(new Date())
+          });
+        } else {
+          if (!userCalendarSchedules[selectedCalendarDate]) userCalendarSchedules[selectedCalendarDate] = [];
+          userCalendarSchedules[selectedCalendarDate].push(finalText);
+          showCalendarDetail(selectedCalendarDate);
+        }
+
+        timeInput.value = '';
+        contentInput.value = '';
+      } catch (error) {
+        console.error('일정 저장 실패:', error);
+        alert('일정 저장 중 오류가 발생했습니다. Firebase 설정과 Firestore 권한을 확인해 주세요.');
+      }
+    }
+
+    async function addBoardPost() {
+      const authorInput = document.getElementById('boardAuthorInput');
+      const contentInput = document.getElementById('boardContentInput');
+      const author = authorInput.value.trim();
+      const content = contentInput.value.trim();
+
+      if (!author) {
+        alert('작성인을 입력해 주세요.');
+        return;
+      }
+      if (!content) {
+        alert('내용을 입력해 주세요.');
+        return;
+      }
+
+      if (db) {
+        await addDoc(collection(db, 'familyBoardPosts'), {
+          author,
+          content,
+          createdAt: serverTimestamp()
+        });
+      } else {
+        boardPosts.unshift({
+          author,
+          content,
+          createdAtText: formatDateTime(new Date())
+        });
+        renderBoardPosts();
+      }
+
+      authorInput.value = '';
+      contentInput.value = '';
+    }
+
+    function subscribeFirebaseData() {
+      if (!db) return;
+
+      const scheduleQuery = query(collection(db, 'familyCalendarSchedules'), orderBy('createdAt', 'asc'));
+      onSnapshot(scheduleQuery, (snapshot) => {
+        userCalendarSchedules = {};
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          if (!userCalendarSchedules[data.date]) userCalendarSchedules[data.date] = [];
+          userCalendarSchedules[data.date].push(data.finalText || (data.time ? `${data.time} ${data.content}` : data.content));
+        });
+        renderFamilyCalendar();
+        if (selectedCalendarDate) showCalendarDetail(selectedCalendarDate);
+      });
+
+      const boardQuery = query(collection(db, 'familyBoardPosts'), orderBy('createdAt', 'desc'));
+      onSnapshot(boardQuery, (snapshot) => {
+        boardPosts = snapshot.docs.map((docSnap) => {
+          const data = docSnap.data();
+          const created = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
+          return {
+            author: data.author,
+            content: data.content,
+            createdAtText: formatDateTime(created)
+          };
+        });
+        renderBoardPosts();
+      });
     }
 
     function renderSingleMonth(year, month) {
@@ -991,6 +1249,19 @@
       showScreen('menuScreen');
     }
 
+    document.getElementById('calendarTimeInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addUserCalendarSchedule();
+    });
+    document.getElementById('calendarContentInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) addUserCalendarSchedule();
+    });
+    document.getElementById('boardAuthorInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addBoardPost();
+    });
+    document.getElementById('boardContentInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) addBoardPost();
+    });
+
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     let animationId = null;
@@ -1001,21 +1272,19 @@
     let player, obstacles, stars, speed, gameOver, spawnTick, bgOffset;
 
     document.addEventListener('keydown', e => {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+      const isTypingField = tag === 'input' || tag === 'textarea' || e.target?.isContentEditable;
       keys[e.key] = true;
-      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) e.preventDefault();
+      if (!isTypingField && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) {
+        e.preventDefault();
+      }
     });
     document.addEventListener('keyup', e => { keys[e.key] = false; });
 
     function bindControlButton(buttonId, keyName) {
       const btn = document.getElementById(buttonId);
-      const press = (e) => {
-        if (e) e.preventDefault();
-        keys[keyName] = true;
-      };
-      const release = (e) => {
-        if (e) e.preventDefault();
-        keys[keyName] = false;
-      };
+      const press = (e) => { if (e) e.preventDefault(); keys[keyName] = true; };
+      const release = (e) => { if (e) e.preventDefault(); keys[keyName] = false; };
       btn.addEventListener('mousedown', press);
       btn.addEventListener('mouseup', release);
       btn.addEventListener('mouseleave', release);
@@ -1028,11 +1297,8 @@
     bindControlButton('rightControlBtn', 'ArrowRight');
 
     document.getElementById('answerInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && document.getElementById('nextBtn').disabled) {
-        submitTypingAnswer();
-      } else if (e.key === 'Enter') {
-        nextQuizStage();
-      }
+      if (e.key === 'Enter' && document.getElementById('nextBtn').disabled) submitTypingAnswer();
+      else if (e.key === 'Enter') nextQuizStage();
     });
 
     function resetArcadeBase(type) {
@@ -1059,7 +1325,7 @@
 
     function startCarGame() {
       document.getElementById('arcadeTitle').textContent = '미니 자동차 피하기 Game';
-      document.getElementById('arcadeHelp').innerHTML = '← → 방향키로 자동차를 움직여 다른 차를 피하세요.';
+      document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 자동차를 움직여 다른 차를 피하세요.';
       showScreen('arcadeScreen');
       resetArcadeBase('car');
       runArcadeLoop();
@@ -1067,7 +1333,7 @@
 
     function startPlaneGame() {
       document.getElementById('arcadeTitle').textContent = '미니 비행기 Game';
-      document.getElementById('arcadeHelp').innerHTML = '← → ↑ ↓ 방향키로 비행기를 움직여 장애물을 피하세요.';
+      document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 비행기를 움직여 장애물을 피하세요.';
       showScreen('arcadeScreen');
       resetArcadeBase('plane');
       runArcadeLoop();
@@ -1082,6 +1348,10 @@
     function stopArcadeLoop() {
       if (animationId) cancelAnimationFrame(animationId);
       animationId = null;
+      keys['ArrowLeft'] = false;
+      keys['ArrowRight'] = false;
+      keys['ArrowUp'] = false;
+      keys['ArrowDown'] = false;
     }
 
     function drawCarPlayer() {
@@ -1124,9 +1394,8 @@
     }
 
     function drawObstacle(obs) {
-      if (activeArcade === 'car') {
-        drawEnemyCar(obs);
-      } else {
+      if (activeArcade === 'car') drawEnemyCar(obs);
+      else {
         ctx.fillStyle = '#f59e0b';
         ctx.beginPath();
         ctx.arc(obs.x + obs.w / 2, obs.y + obs.h / 2, obs.w / 2, 0, Math.PI * 2);
@@ -1282,8 +1551,25 @@
       arcadeFrame();
     }
 
+    subscribeFirebaseData();
     renderFamilyCalendar();
+    renderBoardPosts();
     showScreen('menuScreen');
+
+    window.moveCalendar = moveCalendar;
+    window.showCalendarDetail = showCalendarDetail;
+    window.addUserCalendarSchedule = addUserCalendarSchedule;
+    window.addBoardPost = addBoardPost;
+    window.startWeeklyVocabGame = startWeeklyVocabGame;
+    window.startHadongStage5Game = startHadongStage5Game;
+    window.startGrammarGame = startGrammarGame;
+    window.startWordGame = startWordGame;
+    window.startCarGame = startCarGame;
+    window.startPlaneGame = startPlaneGame;
+    window.restartArcadeGame = restartArcadeGame;
+    window.nextQuizStage = nextQuizStage;
+    window.submitTypingAnswer = submitTypingAnswer;
+    window.goMenu = goMenu;
   </script>
 </body>
 </html>
