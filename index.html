@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>우리가족 미니홈피</title>
   <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #3b82f6;
+      --accent: #ef4444;
+      --bg: #f5f7ff;
+      --text: #1f2937;
+      --light-text: #64748b;
+      --card-bg: #ffffff;
+    }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #f5f7ff, #eef9ff);
-      color: #1f2937;
+      color: var(--text);
       min-height: 100vh;
     }
     .hidden { display: none !important; }
@@ -73,10 +82,7 @@
       min-width: 140px;
       padding: 12px 16px;
     }
-    .action-btn.secondary {
-      background: #e5e7eb;
-      color: #111827;
-    }
+    .action-btn.secondary { background: #e5e7eb; color: #111827; }
     .hud {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -197,7 +203,8 @@
     .calendar-nav { display: flex; gap: 10px; }
     .calendar-nav button,
     .calendar-save-btn,
-    .board-save-btn {
+    .board-save-btn,
+    .ebook-nav button {
       border: none;
       color: white;
       border-radius: 12px;
@@ -336,7 +343,6 @@
     .calendar-form input,
     .calendar-form textarea,
     .board-form input,
-    .calendar-form textarea,
     .board-form textarea {
       width: 100%;
       padding: 12px 14px;
@@ -345,6 +351,7 @@
       font-size: 0.95rem;
       outline: none;
     }
+    .calendar-form textarea,
     .board-form textarea {
       min-height: 110px;
       resize: vertical;
@@ -406,6 +413,228 @@
       touch-action: manipulation;
     }
     .control-btn:active { transform: scale(0.97); }
+
+    /* ebook */
+    .ebook-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .ebook-page {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      display: none;
+      animation: slideIn 0.3s ease-out;
+      min-height: 500px;
+    }
+    .ebook-page.active { display: block; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .ebook-wrap h1 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+    .ebook-wrap h2 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+      margin-top: 0;
+    }
+    .ebook-wrap h3 {
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      color: #334155;
+      background: #f1f5f9;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    .concept-item {
+      margin-bottom: 12px;
+      padding-left: 5px;
+    }
+    .concept-title {
+      font-weight: bold;
+      color: var(--secondary);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .concept-desc {
+      font-size: 0.9rem;
+      color: var(--light-text);
+      line-height: 1.5;
+    }
+    .ebook-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.85rem;
+      table-layout: fixed;
+    }
+    .ebook-table th, .ebook-table td {
+      border: 1px solid #e2e8f0;
+      padding: 10px;
+      vertical-align: top;
+      word-wrap: break-word;
+    }
+    .ebook-table th {
+      background-color: #f8fafc;
+      color: #475569;
+      font-weight: 600;
+    }
+    .q-box {
+      background: #fff7ed;
+      border: 1px solid #ffedd5;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .a-box {
+      background: #f0fdf4;
+      border: 1px solid #dcfce7;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .ebook-nav {
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      max-width: 700px;
+      margin: 16px auto 0;
+      background: transparent;
+      padding: 15px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .ebook-nav button {
+      background-color: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .ebook-nav button:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+    .page-num {
+      font-size: 0.875rem;
+      color: var(--light-text);
+      font-weight: 500;
+    }
+    .highlight { color: var(--accent); font-weight: bold; }
+    .summary-table th { background: var(--primary); color: white; }
+
+        .master-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .master-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .master-header h1 {
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .master-header p {
+      color: var(--light-text);
+      font-weight: 700;
+    }
+    .master-controls {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(6px);
+      padding: 14px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      border: 1px solid #e5e7eb;
+    }
+    .master-controls button {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .master-btn-word { background: #4f46e5; }
+    .master-btn-meaning { background: #f43f5e; }
+    .master-btn-reset { background: #9ca3af; color: #111827 !important; }
+    .master-section {
+      margin-bottom: 28px;
+    }
+    .master-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .master-label.indigo {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+    .master-table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e5e7eb;
+      background: white;
+    }
+    .master-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    .master-table th,
+    .master-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: left;
+      vertical-align: top;
+    }
+    .master-table th {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: #f8fafc;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+    .master-row:hover { background: #f9fafb; }
+    .master-word-cell {
+      color: #4338ca;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .master-meaning-cell {
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .master-hidden {
+      color: transparent !important;
+      background-color: #f3f4f6 !important;
+      user-select: none;
+    }
     @media (max-width: 900px) {
       .calendar-grid { grid-template-columns: 1fr; }
     }
@@ -417,12 +646,18 @@
     <div class="subtitle">사랑하는 우리가족 화이팅!</div>
 
     <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab2930Game()">0. 축복이 금주 29/30<br>영단어 시험</button></div>
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocabGame()">1. 축복이 금주 27/28<br>영단어 시험</button></div>
       <div class="card"><button class="menu-btn" onclick="startHadongStage5Game()">2. 하동이의 금주<br>Stage 5 단어시험</button></div>
       <div class="card"><button class="menu-btn" onclick="startGrammarGame()">3. 축복이와 하동이의<br>English 문법 Game</button></div>
       <div class="card"><button class="menu-btn" onclick="startWordGame()">4. 축복이와 하동이의<br>English 단어 Game</button></div>
       <div class="card"><button class="menu-btn" onclick="startCarGame()">5. 미니 자동차 피하기 Game</button></div>
       <div class="card"><button class="menu-btn" onclick="startPlaneGame()">6. 미니 비행기 Game</button></div>
+      <div class="card"><button class="menu-btn" onclick="startMathConceptBook()">7. 중1 1학기 수학<br>핵심 개념 정리</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster2930()">8. 축복이 금주 29/30<br>영단어 시험</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster2930Study()">9. 29/30 영단어<br>암기 마스터</button></div>
+      <div class="card"><button class="menu-btn" onclick="startHadongStage6Game()">10. 하동이 금주<br>Stage 6 단어시험</button></div>
+      <div class="card"><button class="menu-btn" onclick="startStage6Master()">11. Stage6 영단어<br>암기 마스터</button></div>
     </div>
 
     <div class="footer-note">5월은 가정의날 군산 일정 참고!</div>
@@ -516,6 +751,157 @@
     </div>
   </div>
 
+  <div id="master2930Screen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Day 29 (과학/기술) &amp; Day 30 (컴퓨터/통신)</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllMaster2930('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllMaster2930('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetMaster2930()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 29 · Science &amp; Technology</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th style="width:90px;text-align:center;">Part</th><th>Meaning</th></tr></thead>
+            <tbody id="master2930Table29"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 30 · Computer &amp; Communication</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th style="width:90px;text-align:center;">Part</th><th>Meaning</th></tr></thead>
+            <tbody id="master2930Table30"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="stage6MasterScreen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Lesson 6 Vocabulary</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllStage6Master('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllStage6Master('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetStage6Master()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Lesson 6 · Vocabulary List</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="stage6MasterTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mathBookScreen" class="screen hidden">
+    <div class="title">중1 1학기 수학 핵심 개념 정리</div>
+    <div class="ebook-wrap">
+      <div class="ebook-page active" id="mp1">
+        <div style="text-align: center; margin-top: 60px;">
+          <div style="font-size: 4rem; margin-bottom: 20px;">📐</div>
+          <h1>중등수학 1학년 1학기<br>핵심정리 완벽 가이드</h1>
+          <p style="color: var(--light-text);">기초부터 심화까지,<br>한 권으로 끝내는 1학기 수학</p>
+          <div style="margin-top: 40px; padding: 20px; border-radius: 15px; border: 1px dashed var(--primary);">
+            <p style="font-size: 0.9rem;">아래 '다음' 버튼을 눌러서<br>단원별 요점을 확인하세요.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ebook-page" id="mp2">
+        <h2>1. 소인수분해</h2>
+        <h3>상세 개념</h3>
+        <div class="concept-item"><span class="concept-title">● 소수와 합성수</span><span class="concept-desc">1은 소수도 합성수도 아님. 2는 유일한 짝수인 소수.</span></div>
+        <div class="concept-item"><span class="concept-title">● 소인수분해와 약수</span><span class="concept-desc">약수의 개수는 각 소인수의 지수에 1을 더해 모두 곱함.</span></div>
+        <div class="concept-item"><span class="concept-title">● 최대공약수/최소공배수</span><span class="concept-desc">GCD: 나누어 주는 상황. LCM: 동시에 다시 만나는 상황.</span></div>
+        <h3>실전 문제</h3>
+        <div class="q-box"><b>기초:</b> 12와 18의 최대공약수는?</div>
+        <div class="a-box"><b>정답: 6</b><br>공통 소인수 중 낮은 지수들의 곱 (2 × 3)</div>
+        <div class="q-box"><b>심화:</b> 18 × x 가 어떤 자연수의 제곱이 되는 가장 작은 x?</div>
+        <div class="a-box"><b>정답: 2</b><br>18 = 2 × 3² 이므로, 지수가 홀수인 2를 보충해야 함.</div>
+      </div>
+
+      <div class="ebook-page" id="mp3">
+        <h2>2. 정수와 유리수</h2>
+        <h3>상세 개념</h3>
+        <div class="concept-item"><span class="concept-title">● 수의 분류</span><span class="concept-desc">유리수 = 정수(양의 정수, 0, 음의 정수) + 정수가 아닌 유리수</span></div>
+        <div class="concept-item"><span class="concept-title">● 절댓값</span><span class="concept-desc">0과의 거리. 원점에서 멀수록 크며 부호를 제외한 값.</span></div>
+        <div class="concept-item"><span class="concept-title">● 사칙연산 규칙</span><span class="concept-desc">음수(-)가 홀수개면 결과는 (-), 짝수개면 (+).</span></div>
+        <h3>실전 문제</h3>
+        <div class="q-box"><b>기초:</b> 절댓값이 4인 두 수의 합은?</div>
+        <div class="a-box"><b>정답: 0</b><br>|+4|=4, |-4|=4 이므로 4 + (-4) = 0</div>
+        <div class="q-box"><b>심화:</b> (-2)³ ÷ (4/5) - (-6) 계산</div>
+        <div class="a-box"><b>정답: -4</b><br>-8 × (5/4) + 6 = -10 + 6 = -4</div>
+      </div>
+
+      <div class="ebook-page" id="mp4">
+        <h2>3. 문자와 식</h2>
+        <h3>상세 개념</h3>
+        <div class="concept-item"><span class="concept-title">● 문자의 사용</span><span class="concept-desc">곱셈기호 생략, 숫자를 문자 앞에 배치, 1은 생략.</span></div>
+        <div class="concept-item"><span class="concept-title">● 일차식의 계산</span><span class="concept-desc">동류항(문자와 차수가 동일)끼리만 덧셈, 뺄셈 가능.</span></div>
+        <div class="concept-item"><span class="concept-title">● 일차방정식</span><span class="concept-desc">등식의 성질 활용. x항은 좌변, 상수항은 우변으로 이항.</span></div>
+        <h3>실전 문제</h3>
+        <div class="q-box"><b>기초:</b> 3x + 5 = 11 의 해는?</div>
+        <div class="a-box"><b>정답: x = 2</b><br>3x = 6 이므로 x = 2</div>
+        <div class="q-box"><b>심화:</b> 연속하는 세 정수의 합이 45일 때 가장 큰 수?</div>
+        <div class="a-box"><b>정답: 16</b><br>(x-1) + x + (x+1) = 45 → 3x = 45, x = 15. 따라서 큰 수는 16</div>
+      </div>
+
+      <div class="ebook-page" id="mp5">
+        <h2>4. 좌표평면과 그래프</h2>
+        <h3>상세 개념</h3>
+        <div class="concept-item"><span class="concept-title">● 좌표와 사분면</span><span class="concept-desc">제1(+,+), 제2(-,+), 제3(-,-), 제4(+,-). 축 위는 제외.</span></div>
+        <div class="concept-item"><span class="concept-title">● 정비례 (y = ax)</span><span class="concept-desc">원점을 지나는 직선. x가 2배, 3배 되면 y도 2배, 3배 됨.</span></div>
+        <div class="concept-item"><span class="concept-title">● 반비례 (y = a/x)</span><span class="concept-desc">한 쌍의 매끄러운 곡선. xy = a (일정)의 관계 성립.</span></div>
+        <h3>실전 문제</h3>
+        <div class="q-box"><b>기초:</b> 점 (-2, 3)은 몇 사분면인가?</div>
+        <div class="a-box"><b>정답: 제2사분면</b><br>x가 음수, y가 양수인 영역.</div>
+        <div class="q-box"><b>심화:</b> 반비례 y = 12/x 그래프 위의 점 중 x, y 좌표가 모두 정수인 점은?</div>
+        <div class="a-box"><b>정답: 12개</b><br>12의 약수 6개에 각각 ± 부호를 고려함.</div>
+      </div>
+
+      <div class="ebook-page" id="mp6">
+        <h2>📊 1학기 핵심 통합표</h2>
+        <table class="ebook-table summary-table">
+          <tr><th>단원</th><th>핵심 요점</th><th>주의 사항</th></tr>
+          <tr><td>소인수</td><td>지수에 1 더해 곱하기</td><td>1은 소수 아님</td></tr>
+          <tr><td>유리수</td><td>사칙연산 부호 결정</td><td>거듭제곱 괄호 확인</td></tr>
+          <tr><td>문자식</td><td>이항과 해 구하기</td><td>분배법칙 부호 주의</td></tr>
+          <tr><td>그래프</td><td>정/반비례 관계식</td><td>좌표축 부호 확인</td></tr>
+        </table>
+        <div style="text-align: center; margin-top: 30px;">
+          <p class="highlight">수고하셨습니다!</p>
+          <p style="font-size: 0.9rem;">이 요약본을 반복해서 읽어보세요.<br>수학의 기초가 탄탄해집니다.</p>
+          <button class="action-btn" onclick="resetMathBook()">처음으로 돌아가기</button>
+        </div>
+      </div>
+
+      <div class="ebook-nav">
+        <button id="mathPrevBtn" onclick="moveMathPage(-1)" disabled>이전</button>
+        <span class="page-num" id="mathPageIndicator">1 / 6</span>
+        <button id="mathNextBtn" onclick="moveMathPage(1)">다음</button>
+      </div>
+
+      <div class="action-row" style="justify-content:center; margin-top:16px;">
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+    </div>
+  </div>
+
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
     import {
@@ -525,7 +911,9 @@
 
     const TOTAL_STAGES = 1000;
     const WEEKLY_VOCAB_TOTAL = 60;
+    const WEEKLY_VOCAB_2930_TOTAL = 60;
     const HADONG_STAGE5_TOTAL = 30;
+    const HADONG_STAGE6_TOTAL = 30;
 
     let currentQuizType = '';
     let currentStage = 1;
@@ -538,32 +926,40 @@
     let selectedCalendarDate = null;
     let wordOrder = [];
     let weeklyWordOrder = [];
+    let weekly2930WordOrder = [];
     let hadongWordOrder = [];
+    let hadongStage6WordOrder = [];
     let grammarUsedKeys = new Set();
     let userCalendarSchedules = {};
     let boardPosts = [];
+    let mathCurrentIdx = 1;
+    const mathTotalPages = 6;
 
     const firebaseStatusEl = document.getElementById('firebaseStatus');
     const firebaseConfig = {
-  apiKey: "AIzaSyBQbu_3l2vyg637e5slm7_RGmuYQU14emg",
-  authDomain: "seoy-a1ac1.firebaseapp.com",
-  projectId: "seoy-a1ac1",
-  storageBucket: "seoy-a1ac1.firebasestorage.app",
-  messagingSenderId: "926280445340",
-  appId: "1:926280445340:web:108101cd609724dddc2c59",
-  measurementId: "G-X525Y0M0S1"
-};
+      apiKey: 'AIzaSyBQbu_3l2vyg637e5slm7_RGmuYQU14emg',
+      authDomain: 'seoy-a1ac1.firebaseapp.com',
+      projectId: 'seoy-a1ac1',
+      storageBucket: 'seoy-a1ac1.firebasestorage.app',
+      messagingSenderId: '926280445340',
+      appId: '1:926280445340:web:108101cd609724dddc2c59',
+      measurementId: 'G-X525Y0M0S1'
+    };
 
     const hasFirebaseConfig = Object.values(firebaseConfig).every(v => v && !String(v).startsWith('YOUR_'));
     let db = null;
-
     if (hasFirebaseConfig) {
-      const app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-      firebaseStatusEl.textContent = 'Firebase 연결됨';
-      firebaseStatusEl.style.color = '#166534';
-      firebaseStatusEl.style.background = '#dcfce7';
-      firebaseStatusEl.style.borderColor = '#bbf7d0';
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        firebaseStatusEl.textContent = 'Firebase 연결됨';
+        firebaseStatusEl.style.color = '#166534';
+        firebaseStatusEl.style.background = '#dcfce7';
+        firebaseStatusEl.style.borderColor = '#bbf7d0';
+      } catch (error) {
+        console.error('Firebase 초기화 실패:', error);
+        firebaseStatusEl.textContent = 'Firebase 연결 실패 - 로컬 저장 모드';
+      }
     } else {
       firebaseStatusEl.textContent = 'Firebase 설정값을 넣으면 DB 저장이 활성화됩니다';
     }
@@ -614,6 +1010,21 @@
       ['purify', '정화하다, 정제하다'], ['surround', '둘러싸다, 포위하다'], ['wash away', '~을 쓸어 가다, 유실되게 하다'], ['wipe out', '~을 완전히 파괴하다, 없애 버리다'], ['use up', '다 써 버리다, 소비하다, 소모하다']
     ];
 
+    const weeklyVocab2930Data = [
+      ['astronaut', '우주 비행사'], ['solar', '태양의'], ['remote', '1. 먼 2. 외진'], ['benefit', '이익'], ['efficiency', '효율, 능률'],
+      ['enable', '할 수 있게 하다, 가능하게 하다'], ['discover', '발견하다'], ['observe', '1. 관찰하다 2. (규칙 등을) 따르다, 준수하다'], ['digital', '디지털의'], ['shuttle', '(n) 우주 왕복선 (v) 왕복하다'],
+      ['astronomer', '천문학자'], ['orbit', '궤도'], ['galaxy', '은하, 은하계'], ['rotate', '1. 회전하다[시키다] 2. 교대하다'], ['satellite', '위성, 인공위성'],
+      ['launch', '1. 발사하다, 쏘아 올리다 2. 출시하다'], ['lunar', '달의'], ['electronic', '전자의'], ['eclipse', '(n) (해·달의) 식 (v) 무색하게 하다[빛을 잃게 하다]'], ['gravity', '중력'],
+      ['automatic', '자동의'], ['device', '도구, 장치'], ['manual', '(a) 손의, 수동의 (n) 안내서'], ['accurate', '정확한'], ['analyze', '분석하다, 분해하다'],
+      ['adjust', '1. 조절하다, 조정하다 2. 적응하다'], ['accelerate', '가속하다'], ['bring about', '~을 불러일으키다[초래하다]'], ['sort out', '~을 분류하다[선별하다]'], ['substitute for', '~을 대신하다, 대리하다'],
+      ['online', '(a) 온라인의, 인터넷의 (ad) 온라인으로'], ['database', '데이터베이스(관련 데이터를 축적하여 이용할 수 있게 한 것)'], ['capture', '(이미지 등을) 포착하다, 붙잡다'], ['tool', '1. (컴퓨터) 도구, 툴 2. 도구, 연장'], ['junk', '폐물, 고물'],
+      ['delete', '삭제하다'], ['communicate', '의사소통하다, 통신하다'], ['browse', '검색하다, 열람하다'], ['link', '(n) 링크, 연결 (v) 연결하다'], ['oral', '구두의, 구술의'],
+      ['edit', '1. 편집하다 2. 교정하다'], ['warn', '경고하다, 주의를 주다'], ['dot', '(인터넷의) 닷, 점(웹사이트와 이메일 주소 사이에 찍는 점)'], ['visual', '시각의, 눈에 보이는'], ['profile', '프로필, 인물 소개'],
+      ['access', '(n) 접근, 접근 방법 (v) 1. 접근하다 2. 입수하다, 이용하다'], ['circulate', '보급시키다, 유포하다'], ['activate', '활성화하다'], ['surf', '1. (인터넷상의) 정보를 찾아다니다 2. 파도타기를 하다'], ['request', '(n) 요청, 요구 (v) 요청하다'],
+      ['interrupt', '방해하다, 중단하다'], ['pause', '(n) 중단 (v) 잠시 멈추다'], ['response', '응답, 반응'], ['debate', '(n) 토론, 토의 (v) 토론하다'], ['illogical', '비논리적인, 불합리한'],
+      ['hesitate', '주저하다, 망설이다'], ['suppose', '1. 가정하다, 상상하다 2. ~라고 생각하다'], ['combine', '결합시키다'], ['keep in touch with', '1. ~와 접촉[연락]을 유지하다 2. 계속 접촉[대응]하다'], ['cut in', '남의 대화에 끼어들다, 남의 말을 자르다']
+    ];
+
     const hadongStage5Data = [
       ['attack', '공격하다'], ['auditorium', '강당'], ['club', '동아리'], ['cooperate', '협력하다'], ['costume', '의상'],
       ['direct', '연출하다'], ['drama', '연극'], ['except', '~를 제외하고'], ['go on', '계속되다'], ['go over', '~을 살펴보다, 점검하다'],
@@ -621,6 +1032,42 @@
       ['nod', '(고개를) 끄덕이다'], ['observe', '(의견을) 말하다, 발언하다'], ['part', '역할'], ['pirate', '해적'], ['play', '희곡, 연극'],
       ['president', '회장'], ['pretend', '~인 척하다'], ['raise', '들어올리다'], ['save', '구하다'], ['script', '대본'],
       ['serious', '심각한'], ['set', '(연극의) 무대장치'], ['theme', '주제'], ['townspeople', '마을 사람들'], ['worse', '더 나쁜']
+    ];
+
+    const hadongStage6Data = [
+      ['agree', '합의하다, 동의하다'], ['alone', '혼자'], ['arise', '(문제가) 발생하다'], ['between', '사이에'], ['bring ~ together', '~를 한데 불러 모으다'],
+      ['called', '~라고 불리는'], ['country', '국가'], ['decide', '결정하다'], ['delegate', '대표자'], ['difficult', '어려운'],
+      ['earthquake', '지진'], ['example', '예, 사례'], ['fight [fought]', '싸우다'], ['help', '돕다'], ['hurt', '다친'],
+      ['international', '국제적인'], ['member country', '회원국'], ['natural disaster', '자연 재해'], ['organization', '기구, 기관'], ['over', '~을 두고, ~ 때문에'],
+      ['problem', '문제'], ['region', '지역'], ['represent', '대표하다'], ['send [sent]', '보내다'], ['solve', '(문제를) 해결하다'],
+      ['stop', '끝내다, 멈추다'], ['strike [struck]', '(재난이) 덮치다'], ['thanks to', '~ 덕분에'], ['volunteer', '자원하다, 자원봉사자'], ['war', '전쟁']
+    ];
+
+    const master2930Day29Data = [
+      [841, 'astronaut', 'n', '우주 비행사'], [842, 'solar', 'a', '태양의'], [843, 'remote', 'a', '1. 먼 2. 외진'], [844, 'benefit', 'n', '이익'], [845, 'efficiency', 'n', '효율, 능률'],
+      [846, 'enable', 'v', '할 수 있게 하다, 가능하게 하다'], [847, 'discover', 'v', '발견하다'], [848, 'observe', 'v', '1. 관찰하다 2. 준수하다'], [849, 'digital', 'a', '디지털의'], [850, 'shuttle', 'n/v', '우주 왕복선 / 왕복하다'],
+      [851, 'astronomer', 'n', '천문학자'], [852, 'orbit', 'n', '궤도'], [853, 'galaxy', 'n', '은하, 은하계'], [854, 'rotate', 'v', '1. 회전하다 2. 교대하다'], [855, 'satellite', 'n', '위성, 인공위성'],
+      [856, 'launch', 'v', '1. 발사하다 2. 출시하다'], [857, 'lunar', 'a', '달의'], [858, 'electronic', 'a', '전자의'], [859, 'eclipse', 'n/v', '(해·달의) 식 / 무색하게 하다'], [860, 'gravity', 'n', '중력'],
+      [861, 'automatic', 'a', '자동의'], [862, 'device', 'n', '도구, 장치'], [863, 'manual', 'a/n', '수동의 / 안내서'], [864, 'accurate', 'a', '정확한'], [865, 'analyze', 'v', '분석하다, 분해하다'],
+      [866, 'adjust', 'v', '1. 조절하다 2. 적응하다'], [867, 'accelerate', 'v', '가속하다'], [868, 'bring about', 'v', '불러일으키다'], [869, 'sort out', 'v', '분류하다[선별하다]'], [870, 'substitute for', 'v', '대신하다, 대리하다']
+    ];
+
+    const master2930Day30Data = [
+      [871, 'online', 'a/ad', '온라인의 / 온라인으로'], [872, 'database', 'n', '데이터베이스'], [873, 'capture', 'v', '포착하다, 붙잡다'], [874, 'tool', 'n', '도구, 툴'], [875, 'junk', 'n', '폐물, 고물'],
+      [876, 'delete', 'v', '삭제하다'], [877, 'communicate', 'v', '의사소통하다, 통신하다'], [878, 'browse', 'v', '검색하다, 열람하다'], [879, 'link', 'n/v', '링크 / 연결하다'], [880, 'oral', 'a', '구두의, 구술의'],
+      [881, 'edit', 'v', '편집하다, 교정하다'], [882, 'warn', 'v', '경고하다, 주의를 주다'], [883, 'dot', 'n', '점(.), 닷'], [884, 'visual', 'a', '시각의, 눈에 보이는'], [885, 'profile', 'n', '프로필, 인물 소개'],
+      [886, 'access', 'n/v', '접근 / 이용하다'], [887, 'circulate', 'v', '보급시키다, 유포하다'], [888, 'activate', 'v', '활성화하다'], [889, 'surf', 'v', '정보를 찾아다니다'], [890, 'request', 'n/v', '요청 / 요구하다'],
+      [891, 'interrupt', 'v', '방해하다, 중단하다'], [892, 'pause', 'n/v', '중단 / 잠시 멈추다'], [893, 'response', 'n', '응답, 반응'], [894, 'debate', 'n/v', '토론 / 토론하다'], [895, 'illogical', 'a', '비논리적인'],
+      [896, 'hesitate', 'v', '주저하다, 망설이다'], [897, 'suppose', 'v', '가정하다 / 생각하다'], [898, 'combine', 'v', '결합시키다'], [899, 'keep in touch with', 'v', '연락을 유지하다'], [900, 'cut in', 'v', '대화에 끼어들다']
+    ];
+
+    const stage6MasterData = [
+      ['1', 'agree', '합의하다, 동의하다'], ['2', 'alone', '혼자'], ['3', 'arise', '(문제가) 발생하다'], ['4', 'between', '사이에'], ['5', 'bring ~ together', '~를 한데 불러 모으다'],
+      ['6', 'called', '~라고 불리는'], ['7', 'country', '국가'], ['8', 'decide', '결정하다'], ['9', 'delegate', '대표자'], ['10', 'difficult', '어려운'],
+      ['11', 'earthquake', '지진'], ['12', 'example', '예, 사례'], ['13', 'fight [fought]', '싸우다'], ['14', 'help', '돕다'], ['15', 'hurt', '다친'],
+      ['16', 'international', '국제적인'], ['17', 'member country', '회원국'], ['18', 'natural disaster', '자연 재해'], ['19', 'organization', '기구, 기관'], ['20', 'over', '~을 두고, ~ 때문에'],
+      ['21', 'problem', '문제'], ['22', 'region', '지역'], ['23', 'represent', '대표하다'], ['24', 'send [sent]', '보내다'], ['25', 'solve', '(문제를) 해결하다'],
+      ['26', 'stop', '끝내다, 멈추다'], ['27', 'strike [struck]', '(재난이) 덮치다'], ['28', 'thanks to', '~ 덕분에'], ['29', 'volunteer', '자원하다, 자원봉사자'], ['30', 'war', '전쟁']
     ];
 
     const koreaHolidayMap = {
@@ -703,7 +1150,6 @@
         boardList.innerHTML = '<div class="detail-empty">아직 등록된 게시글이 없어요.</div>';
         return;
       }
-
       boardList.innerHTML = boardPosts.map(post => `
         <div class="board-post">
           <div class="board-time">${post.createdAtText}</div>
@@ -722,7 +1168,6 @@
         schedules: getCombinedSchedules(key)
       };
       let html = `<div class="detail-item"><strong>${formatDateKorean(key)}</strong></div>`;
-
       if (meta.birthdays.length === 0 && meta.schedules.length === 0) {
         html += '<div class="detail-empty">등록된 가족 생일이나 일정이 없어요.</div>';
       } else {
@@ -746,14 +1191,11 @@
       const contentInput = document.getElementById('calendarContentInput');
       const time = timeInput.value.trim();
       const content = contentInput.value.trim();
-
       if (!content) {
         alert('일정 내용을 입력해 주세요.');
         return;
       }
-
       const finalText = time ? `${time} ${content}` : content;
-
       try {
         if (db) {
           await addDoc(collection(db, 'familyCalendarSchedules'), {
@@ -769,7 +1211,6 @@
           userCalendarSchedules[selectedCalendarDate].push(finalText);
           showCalendarDetail(selectedCalendarDate);
         }
-
         timeInput.value = '';
         contentInput.value = '';
       } catch (error) {
@@ -783,7 +1224,6 @@
       const contentInput = document.getElementById('boardContentInput');
       const author = authorInput.value.trim();
       const content = contentInput.value.trim();
-
       if (!author) {
         alert('작성인을 입력해 주세요.');
         return;
@@ -792,7 +1232,6 @@
         alert('내용을 입력해 주세요.');
         return;
       }
-
       if (db) {
         await addDoc(collection(db, 'familyBoardPosts'), {
           author,
@@ -807,19 +1246,18 @@
         });
         renderBoardPosts();
       }
-
       authorInput.value = '';
       contentInput.value = '';
     }
 
     function subscribeFirebaseData() {
       if (!db) return;
-
       const scheduleQuery = query(collection(db, 'familyCalendarSchedules'), orderBy('createdAt', 'asc'));
-      onSnapshot(scheduleQuery, (snapshot) => {
+      onSnapshot(scheduleQuery, snapshot => {
         userCalendarSchedules = {};
-        snapshot.forEach((docSnap) => {
+        snapshot.forEach(docSnap => {
           const data = docSnap.data();
+          if (!data || !data.date) return;
           if (!userCalendarSchedules[data.date]) userCalendarSchedules[data.date] = [];
           userCalendarSchedules[data.date].push(data.finalText || (data.time ? `${data.time} ${data.content}` : data.content));
         });
@@ -828,13 +1266,13 @@
       });
 
       const boardQuery = query(collection(db, 'familyBoardPosts'), orderBy('createdAt', 'desc'));
-      onSnapshot(boardQuery, (snapshot) => {
-        boardPosts = snapshot.docs.map((docSnap) => {
+      onSnapshot(boardQuery, snapshot => {
+        boardPosts = snapshot.docs.map(docSnap => {
           const data = docSnap.data();
           const created = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
           return {
-            author: data.author,
-            content: data.content,
+            author: data.author || '',
+            content: data.content || '',
             createdAtText: formatDateTime(created)
           };
         });
@@ -848,19 +1286,13 @@
       const daysInMonth = new Date(year, month, 0).getDate();
       const prevMonthDays = new Date(year, month - 1, 0).getDate();
       const now = new Date();
-      const today = {
-        year: now.getFullYear(),
-        month: now.getMonth() + 1,
-        day: now.getDate()
-      };
+      const today = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() };
       const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
       let html = `<div class="month-card"><div class="month-title">${monthLabel(year, month)}</div><table class="month-table"><thead><tr>`;
-
       weekdays.forEach((name, idx) => {
         html += `<th class="${idx === 0 || idx === 6 ? 'holiday-red' : ''}">${name}</th>`;
       });
       html += '</tr></thead><tbody>';
-
       let dayCounter = 1;
       let nextMonthDay = 1;
       for (let week = 0; week < 6; week++) {
@@ -877,9 +1309,7 @@
             const hasBirthday = meta.birthdays.length > 0;
             const hasSchedule = meta.schedules.length > 0;
             const isSelected = selectedCalendarDate === meta.key;
-            const dayContent = isToday
-              ? `<span class="today-mark">${dayCounter}</span>`
-              : `<span class="${holiday ? 'holiday-red' : ''}">${dayCounter}</span>`;
+            const dayContent = isToday ? `<span class="today-mark">${dayCounter}</span>` : `<span class="${holiday ? 'holiday-red' : ''}">${dayCounter}</span>`;
             const iconHtml = `<div class="date-icons">${hasBirthday ? '<span class="birthday-icon">❤</span>' : ''}${hasSchedule ? '<span class="schedule-icon">★</span>' : ''}</div>`;
             html += `<td class="${holiday || isSelected ? 'holiday-cell' : ''}" title="${koreaHolidayMap[meta.key] || ''}"><button class="calendar-day-btn" onclick="showCalendarDetail('${meta.key}')"><div class="date-wrap">${dayContent}${iconHtml}</div></button></td>`;
             dayCounter += 1;
@@ -891,7 +1321,6 @@
         html += '</tr>';
         if (dayCounter > daysInMonth && nextMonthDay > 7) break;
       }
-
       html += '</tbody></table></div>';
       return html;
     }
@@ -928,7 +1357,6 @@
       let place = '';
       let uniqueKey = '';
       let attempts = 0;
-
       do {
         pattern = grammarPatterns[Math.floor(Math.random() * grammarPatterns.length)];
         subject = pronouns[Math.floor(Math.random() * pronouns.length)];
@@ -937,13 +1365,11 @@
         uniqueKey = `${pattern}|${subject}|${verb.base}|${place}`;
         attempts += 1;
       } while (grammarUsedKeys.has(uniqueKey) && attempts < 300);
-
       grammarUsedKeys.add(uniqueKey);
 
       let sentence = '';
       let answer = '';
       let choices = [];
-
       const subjectKrMap = {
         'I': '나는', 'You': '너는', 'We': '우리는', 'They': '그들은', 'He': '그는', 'She': '그녀는',
         'Minho': '민호는', 'Jiyun': '지윤이는', 'My brother': '내 남동생은', 'Our teacher': '우리 선생님은'
@@ -956,7 +1382,6 @@
         play: '놀다', study: '공부하다', watch: '보다', make: '만들다', read: '읽다',
         write: '쓰다', go: '가다', do: '하다', eat: '먹다', buy: '사다'
       };
-
       const subjectKr = subjectKrMap[subject] || `${subject}는`;
       const placeKr = placeKrMap[place] || place;
       const verbKr = verbKrMap[verb.base] || '하다';
@@ -978,7 +1403,7 @@
         case 'past': {
           answer = verb.ed;
           sentence = `${subject} ____ yesterday.<br><small>${verb.base} : ${verbKr}</small><br><small>yesterday : 어제</small><br><small>문장 뜻: ${subjectKr} 어제 ${verbKr}.</small>`;
-          choices = shuffle([verb.base, verb.s, verb.ed, 'will ' + verb.base]);
+          choices = shuffle([verb.base, verb.s, verb.ed, `will ${verb.base}`]);
           break;
         }
         case 'future': {
@@ -1018,11 +1443,10 @@
           choices = shuffle(['because', 'but', 'or', 'so']);
           break;
         }
-        case 'infinitive': {
+        default: {
           answer = 'to';
           sentence = `He wants ____ be a doctor.<br><small>want : 원하다</small><br><small>doctor : 의사</small><br><small>문장 뜻: 그는 의사가 되기를 원한다.</small>`;
           choices = shuffle(['to', 'for', 'at', 'of']);
-          break;
         }
       }
       return { sentence, answer, choices };
@@ -1033,11 +1457,8 @@
     }
 
     function generateWordQuestion() {
-      if (wordOrder.length === 0) {
-        wordOrder = buildShuffledOrder(vocabData.length);
-      }
-      const item = vocabData[wordOrder.shift()];
-      const [word, meaning] = item;
+      if (wordOrder.length === 0) wordOrder = buildShuffledOrder(vocabData.length);
+      const [word, meaning] = vocabData[wordOrder.shift()];
       const wrongs = shuffle(wrongMeaningPool.filter(m => m !== meaning)).slice(0, 3);
       const choices = shuffle([meaning, ...wrongs]);
       return {
@@ -1048,9 +1469,7 @@
     }
 
     function generateWeeklyVocabQuestion() {
-      if (weeklyWordOrder.length === 0) {
-        weeklyWordOrder = buildShuffledOrder(weeklyVocabData.length);
-      }
+      if (weeklyWordOrder.length === 0) weeklyWordOrder = buildShuffledOrder(weeklyVocabData.length);
       const item = weeklyVocabData[weeklyWordOrder.shift()];
       return {
         sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
@@ -1058,11 +1477,27 @@
       };
     }
 
+    function generateWeeklyVocab2930Question() {
+      if (weekly2930WordOrder.length === 0) weekly2930WordOrder = buildShuffledOrder(weeklyVocab2930Data.length);
+      const item = weeklyVocab2930Data[weekly2930WordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
     function generateHadongStage5Question() {
-      if (hadongWordOrder.length === 0) {
-        hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
-      }
+      if (hadongWordOrder.length === 0) hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
       const item = hadongStage5Data[hadongWordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
+    function generateHadongStage6Question() {
+      if (hadongStage6WordOrder.length === 0) hadongStage6WordOrder = buildShuffledOrder(hadongStage6Data.length);
+      const item = hadongStage6Data[hadongStage6WordOrder.shift()];
       return {
         sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
         answer: item[0]
@@ -1072,7 +1507,9 @@
     function updateQuizHud() {
       let total = TOTAL_STAGES;
       if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
+      if (currentQuizType === 'weekly-vocab-2930') total = WEEKLY_VOCAB_2930_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
+      if (currentQuizType === 'hadong-stage6') total = HADONG_STAGE6_TOTAL;
       document.getElementById('stageBox').textContent = `Stage ${currentStage} / ${total}`;
       document.getElementById('scoreBox').textContent = `점수: ${currentScore}`;
       document.getElementById('correctBox').textContent = `맞춤: ${correctCount}`;
@@ -1095,6 +1532,13 @@
         currentQuestion = generateWordQuestion();
         typingPanel.classList.add('hidden');
         choicesBox.classList.remove('hidden');
+      } else if (currentQuizType === 'weekly-vocab-2930') {
+        currentQuestion = generateWeeklyVocab2930Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
       } else if (currentQuizType === 'weekly-vocab') {
         currentQuestion = generateWeeklyVocabQuestion();
         typingPanel.classList.remove('hidden');
@@ -1102,8 +1546,15 @@
         answerInput.value = '';
         answerInput.disabled = false;
         setTimeout(() => answerInput.focus(), 50);
-      } else {
+      } else if (currentQuizType === 'hadong-stage5') {
         currentQuestion = generateHadongStage5Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else {
+        currentQuestion = generateHadongStage6Question();
         typingPanel.classList.remove('hidden');
         choicesBox.classList.add('hidden');
         answerInput.value = '';
@@ -1113,7 +1564,6 @@
 
       document.getElementById('questionBox').innerHTML = currentQuestion.sentence;
       choicesBox.innerHTML = '';
-
       if (currentQuizType === 'grammar' || currentQuizType === 'word') {
         currentQuestion.choices.forEach(choice => {
           const btn = document.createElement('button');
@@ -1131,12 +1581,10 @@
       answered = true;
       const buttons = [...document.querySelectorAll('.choice-btn')];
       const correct = choice === currentQuestion.answer;
-
       buttons.forEach(btn => {
         btn.disabled = true;
         if (btn.textContent === currentQuestion.answer) btn.classList.add('correct');
       });
-
       if (correct) {
         currentScore += 10;
         correctCount += 1;
@@ -1156,12 +1604,11 @@
     }
 
     function submitTypingAnswer() {
-      if (answered || !['weekly-vocab', 'hadong-stage5'].includes(currentQuizType)) return;
+      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'hadong-stage5', 'hadong-stage6'].includes(currentQuizType)) return;
       answered = true;
       const input = document.getElementById('answerInput');
       const userAnswer = normalizeAnswer(input.value);
       const correctAnswer = normalizeAnswer(currentQuestion.answer);
-
       if (userAnswer === correctAnswer) {
         currentScore += 10;
         correctCount += 1;
@@ -1170,7 +1617,6 @@
         wrongCount += 1;
         document.getElementById('quizMessage').textContent = `오답입니다. 정답은 ${currentQuestion.answer}`;
       }
-
       input.disabled = true;
       updateQuizHud();
       document.getElementById('nextBtn').disabled = false;
@@ -1179,6 +1625,7 @@
     function nextQuizStage() {
       let total = TOTAL_STAGES;
       if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
+      if (currentQuizType === 'weekly-vocab-2930') total = WEEKLY_VOCAB_2930_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentStage < total) {
         currentStage += 1;
@@ -1193,7 +1640,106 @@
       document.getElementById('menuScreen').classList.add('hidden');
       document.getElementById('quizScreen').classList.add('hidden');
       document.getElementById('arcadeScreen').classList.add('hidden');
+      document.getElementById('mathBookScreen').classList.add('hidden');
+      document.getElementById('master2930Screen').classList.add('hidden');
+      document.getElementById('stage6MasterScreen').classList.add('hidden');
       document.getElementById(id).classList.remove('hidden');
+    }
+
+    function renderMaster2930Tables() {
+      const body29 = document.getElementById('master2930Table29');
+      const body30 = document.getElementById('master2930Table30');
+      if (body29 && !body29.dataset.loaded) {
+        body29.innerHTML = master2930Day29Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master2930-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td style="text-align:center;"><span style="display:inline-block;background:#f3f4f6;color:#6b7280;padding:2px 8px;border-radius:999px;font-weight:700;font-size:0.78rem;">${item[2]}</span></td>
+            <td class="master-meaning-cell master2930-meaning" onclick="toggleMasterCell(this)">${item[3]}</td>
+          </tr>
+        `).join('');
+        body29.dataset.loaded = 'true';
+      }
+      if (body30 && !body30.dataset.loaded) {
+        body30.innerHTML = master2930Day30Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master2930-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td style="text-align:center;"><span style="display:inline-block;background:#f3f4f6;color:#6b7280;padding:2px 8px;border-radius:999px;font-weight:700;font-size:0.78rem;">${item[2]}</span></td>
+            <td class="master-meaning-cell master2930-meaning" onclick="toggleMasterCell(this)">${item[3]}</td>
+          </tr>
+        `).join('');
+        body30.dataset.loaded = 'true';
+      }
+    }
+
+    function renderStage6MasterTable() {
+      const body = document.getElementById('stage6MasterTable');
+      if (body && !body.dataset.loaded) {
+        body.innerHTML = stage6MasterData.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell stage6-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell stage6-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body.dataset.loaded = 'true';
+      }
+    }
+
+    function toggleMasterCell(el) {
+      el.classList.toggle('master-hidden');
+    }
+
+    function toggleMasterGroup(selector) {
+      const items = Array.from(document.querySelectorAll(selector));
+      const isAnyHidden = items.some(item => item.classList.contains('master-hidden'));
+      items.forEach(item => {
+        if (isAnyHidden) item.classList.remove('master-hidden');
+        else item.classList.add('master-hidden');
+      });
+    }
+
+    function toggleAllMaster2930(type) {
+      toggleMasterGroup(type === 'word' ? '.master2930-word' : '.master2930-meaning');
+    }
+
+    function resetMaster2930() {
+      document.querySelectorAll('.master2930-word.master-hidden, .master2930-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
+    function toggleAllStage6Master(type) {
+      toggleMasterGroup(type === 'word' ? '.stage6-word' : '.stage6-meaning');
+    }
+
+    function resetStage6Master() {
+      document.querySelectorAll('.stage6-word.master-hidden, .stage6-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
+    function startWordMaster2930Study() {
+      renderMaster2930Tables();
+      resetMaster2930();
+      showScreen('master2930Screen');
+      window.scrollTo(0, 0);
+    }
+
+    function startStage6Master() {
+      renderStage6MasterTable();
+      resetStage6Master();
+      showScreen('stage6MasterScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function startWeeklyVocab2930Game() {
+      currentQuizType = 'weekly-vocab-2930';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      weekly2930WordOrder = buildShuffledOrder(weeklyVocab2930Data.length);
+      document.getElementById('quizTitle').textContent = '축복이 금주 29/30 영단어 시험';
+      showScreen('quizScreen');
+      renderQuizQuestion();
     }
 
     function startWeeklyVocabGame() {
@@ -1216,6 +1762,18 @@
       wrongCount = 0;
       hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
       document.getElementById('quizTitle').textContent = '하동이의 금주 Stage 5 단어시험';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startHadongStage6Game() {
+      currentQuizType = 'hadong-stage6';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      hadongStage6WordOrder = buildShuffledOrder(hadongStage6Data.length);
+      document.getElementById('quizTitle').textContent = '하동이 금주 Stage 6 단어시험';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1244,6 +1802,11 @@
       renderQuizQuestion();
     }
 
+    function startMathConceptBook() {
+      resetMathBook();
+      showScreen('mathBookScreen');
+    }
+
     function goMenu() {
       stopArcadeLoop();
       document.getElementById('answerInput').value = '';
@@ -1252,6 +1815,29 @@
       document.getElementById('choicesBox').classList.remove('hidden');
       renderFamilyCalendar();
       showScreen('menuScreen');
+    }
+
+    function moveMathPage(step) {
+      const nextIdx = mathCurrentIdx + step;
+      if (nextIdx < 1 || nextIdx > mathTotalPages) return;
+      document.getElementById(`mp${mathCurrentIdx}`).classList.remove('active');
+      mathCurrentIdx = nextIdx;
+      document.getElementById(`mp${mathCurrentIdx}`).classList.add('active');
+      document.getElementById('mathPrevBtn').disabled = (mathCurrentIdx === 1);
+      document.getElementById('mathNextBtn').disabled = (mathCurrentIdx === mathTotalPages);
+      document.getElementById('mathPageIndicator').innerText = `${mathCurrentIdx} / ${mathTotalPages}`;
+      window.scrollTo(0, 0);
+    }
+
+    function resetMathBook() {
+      for (let i = 1; i <= mathTotalPages; i++) {
+        document.getElementById(`mp${i}`).classList.toggle('active', i === 1);
+      }
+      mathCurrentIdx = 1;
+      document.getElementById('mathPrevBtn').disabled = true;
+      document.getElementById('mathNextBtn').disabled = false;
+      document.getElementById('mathPageIndicator').innerText = `1 / ${mathTotalPages}`;
+      window.scrollTo(0, 0);
     }
 
     document.getElementById('calendarTimeInput').addEventListener('keydown', (e) => {
@@ -1315,9 +1901,7 @@
       gameOver = false;
       spawnTick = 0;
       bgOffset = 0;
-      player = type === 'car'
-        ? { x: 430, y: 420, w: 40, h: 70, speed: 7 }
-        : { x: 430, y: 390, w: 56, h: 56, speed: 6 };
+      player = type === 'car' ? { x: 430, y: 420, w: 40, h: 70, speed: 7 } : { x: 430, y: 390, w: 56, h: 56, speed: 6 };
       updateArcadeHud();
     }
 
@@ -1474,9 +2058,7 @@
       bgOffset += speed;
       if (activeArcade === 'car' && spawnTick % 28 === 0) spawnObstacle();
       if (activeArcade === 'plane' && spawnTick % 24 === 0) spawnObstacle();
-
       updatePlayer();
-
       obstacles.forEach(obs => {
         if (activeArcade === 'car') {
           obs.y += speed;
@@ -1485,13 +2067,11 @@
           obs.x += obs.vx;
         }
       });
-
       obstacles = obstacles.filter(obs => {
         const stillOn = obs.y < canvas.height + 80;
         if (!stillOn) arcadeScore += 1;
         return stillOn;
       });
-
       if (activeArcade === 'plane') {
         stars.forEach(s => {
           s.y += s.v;
@@ -1501,7 +2081,6 @@
           }
         });
       }
-
       for (const obs of obstacles) {
         if (isColliding(player, obs)) {
           gameOver = true;
@@ -1510,7 +2089,6 @@
           return;
         }
       }
-
       if (spawnTick % 90 === 0) speed += 0.25;
       updateArcadeHud();
     }
@@ -1519,12 +2097,9 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       if (activeArcade === 'car') drawCarBackground();
       else drawPlaneBackground();
-
       obstacles.forEach(drawObstacle);
-
       if (activeArcade === 'car') drawCarPlayer();
       else drawPlanePlayer();
-
       if (gameOver) {
         ctx.fillStyle = 'rgba(0,0,0,0.55)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1559,14 +2134,17 @@
     subscribeFirebaseData();
     renderFamilyCalendar();
     renderBoardPosts();
+    resetMathBook();
     showScreen('menuScreen');
 
     window.moveCalendar = moveCalendar;
     window.showCalendarDetail = showCalendarDetail;
     window.addUserCalendarSchedule = addUserCalendarSchedule;
     window.addBoardPost = addBoardPost;
+    window.startWeeklyVocab2930Game = startWeeklyVocab2930Game;
     window.startWeeklyVocabGame = startWeeklyVocabGame;
     window.startHadongStage5Game = startHadongStage5Game;
+    window.startHadongStage6Game = startHadongStage6Game;
     window.startGrammarGame = startGrammarGame;
     window.startWordGame = startWordGame;
     window.startCarGame = startCarGame;
@@ -1575,6 +2153,23 @@
     window.nextQuizStage = nextQuizStage;
     window.submitTypingAnswer = submitTypingAnswer;
     window.goMenu = goMenu;
+    window.startMathConceptBook = startMathConceptBook;
+    window.moveMathPage = moveMathPage;
+    window.resetMathBook = resetMathBook;
+    window.startWordMaster2930Study = startWordMaster2930Study;
+    window.startStage6Master = startStage6Master;
+    window.toggleMasterCell = toggleMasterCell;
+    window.toggleAllMaster2930 = toggleAllMaster2930;
+    window.resetMaster2930 = resetMaster2930;
+    window.toggleAllStage6Master = toggleAllStage6Master;
+    window.resetStage6Master = resetStage6Master;
+
+    console.assert(typeof startMathConceptBook === 'function', 'startMathConceptBook should exist');
+    console.assert(typeof moveMathPage === 'function', 'moveMathPage should exist');
+    console.assert(getMonthOffset(2026, 4, 1).month === 5, 'getMonthOffset should work');
+    console.assert(['weekly-vocab', 'weekly-vocab-2930', 'hadong-stage5', 'hadong-stage6'].includes('weekly-vocab-2930'), 'weekly-vocab-2930 should be typing quiz');
+    console.assert(typeof startStage6Master === 'function', 'startStage6Master should exist');
+    console.assert(stage6MasterData.length === 30, 'stage6MasterData should contain 30 rows');
   </script>
 </body>
 </html>
