@@ -39,6 +39,231 @@
       color: #4b5563;
       margin-bottom: 28px;
     }
+    .home-hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff7fb, #fefce8 45%, #eef9ff);
+      border: 1px solid #fde2f1;
+      border-radius: 28px;
+      padding: 34px 22px 26px;
+      box-shadow: 0 18px 35px rgba(244, 114, 182, 0.14);
+      margin-bottom: 22px;
+    }
+    .home-hero::before,
+    .home-hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(8px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .home-hero::before {
+      width: 180px;
+      height: 180px;
+      background: rgba(253, 186, 116, 0.22);
+      top: -55px;
+      left: -35px;
+      animation: floatBlob 7s ease-in-out infinite;
+    }
+    .home-hero::after {
+      width: 220px;
+      height: 220px;
+      background: rgba(191, 219, 254, 0.28);
+      right: -65px;
+      bottom: -90px;
+      animation: floatBlob 8.5s ease-in-out infinite reverse;
+    }
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .sparkle {
+      position: absolute;
+      font-size: 1.1rem;
+      animation: twinkle 2.6s ease-in-out infinite;
+      opacity: 0.9;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      color: #db2777;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.14);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-main-title {
+      text-align: center;
+      font-size: 2.35rem;
+      font-weight: 800;
+      margin: 4px 0 8px;
+      color: #be185d;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-main-title .accent-heart {
+      display: inline-block;
+      animation: heartbeat 1.6s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .hero-subtitle {
+      text-align: center;
+      color: #6b7280;
+      font-size: 1.02rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .animal-parade {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin: 18px 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .animal-card {
+      width: 108px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid #fde2f1;
+      border-radius: 22px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(244, 114, 182, 0.12);
+      animation: floatCard 3.8s ease-in-out infinite;
+    }
+    .animal-card:nth-child(2) { animation-delay: 0.4s; }
+    .animal-card:nth-child(3) { animation-delay: 0.8s; }
+    .animal-face {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+    .animal-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #7c3aed;
+    }
+    .love-message {
+      text-align: center;
+      margin-top: 14px;
+      font-weight: 700;
+      color: #ec4899;
+      position: relative;
+      z-index: 1;
+      animation: gentleBounce 2.8s ease-in-out infinite;
+    }
+    .cute-menu {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 4px 12px;
+      scrollbar-width: thin;
+    }
+    .cute-menu .card {
+      min-width: 170px;
+      padding: 14px;
+      background: linear-gradient(180deg, #ffffff, #fff9fd);
+      border: 1px solid #fde2f1;
+      box-shadow: 0 14px 28px rgba(244, 114, 182, 0.14);
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 170px;
+    }
+    .cute-menu .card::before {
+      content: '';
+      position: absolute;
+      inset: auto -18px -24px auto;
+      width: 76px;
+      height: 76px;
+      background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+    .cute-menu .card {
+      background: linear-gradient(180deg, #ffffff, #fff9fd);
+      border: 1px solid #fde2f1;
+      box-shadow: 0 12px 24px rgba(244, 114, 182, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .cute-menu .card::after {
+      content: '❤';
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      color: rgba(244, 114, 182, 0.18);
+      font-size: 1.1rem;
+    }
+    .cute-menu .menu-btn {
+      background: linear-gradient(135deg, #ffd9ec, #e0f2fe 52%, #fef3c7);
+      color: #9d174d;
+      box-shadow: 0 12px 22px rgba(236, 72, 153, 0.14);
+      animation: softPulse 3.2s ease-in-out infinite;
+      min-height: 86px;
+      border-radius: 20px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      position: relative;
+      overflow: hidden;
+    }
+    .cute-menu .menu-btn::before {
+      content: '✨';
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+    .cute-menu .menu-btn::after {
+      content: '❤';
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      font-size: 0.9rem;
+      opacity: 0.55;
+    }
+    .cute-menu .menu-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 28px rgba(236, 72, 153, 0.18);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.25; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      20% { transform: scale(1.1); }
+      40% { transform: scale(0.96); }
+      60% { transform: scale(1.12); }
+    }
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(10px) translateX(8px); }
+    }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes softPulse {
+      0%, 100% { box-shadow: 0 10px 20px rgba(236, 72, 153, 0.12); }
+      50% { box-shadow: 0 14px 26px rgba(59, 130, 246, 0.18); }
+    }
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -394,8 +619,35 @@
       color: #1f2937;
     }
     .mobile-controls {
-      justify-content: center;
+      justify-content: flex-start;
       margin-top: 16px;
+    }
+    .mobile-controls.standard-layout {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .tetris-controls-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .tetris-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tetris-controls.left-group {
+      justify-content: flex-start;
+    }
+    .tetris-controls.right-group {
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+    .tetris-controls .control-btn {
+      min-width: 150px;
     }
     .control-btn {
       border: none;
@@ -413,6 +665,165 @@
       touch-action: manipulation;
     }
     .control-btn:active { transform: scale(0.97); }
+    .ranking-section {
+      margin-top: 20px;
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .ranking-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .ranking-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ranking-item {
+      display: grid;
+      grid-template-columns: 64px 1fr 90px;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+    .ranking-rank {
+      font-weight: 700;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ranking-medal {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .ranking-name { font-weight: 700; }
+    .ranking-meta {
+      font-size: 0.82rem;
+      color: #64748b;
+      margin-top: 3px;
+    }
+    .ranking-score { text-align: right; font-weight: 700; }
+    .ranking-empty { color: #6b7280; }
+    .ranking-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+    .ranking-modal-card {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+      border: 1px solid #e5e7eb;
+    }
+    .ranking-modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .ranking-modal-desc {
+      color: #64748b;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .ranking-modal-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #dbeafe;
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 14px;
+    }
+    .ranking-modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .mini-ranking-board {
+      margin-top: 24px;
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .mini-ranking-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #111827;
+      text-align: center;
+    }
+    .mini-ranking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .mini-ranking-card {
+      border-radius: 16px;
+      border: 1px solid #dbeafe;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      padding: 16px;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.08);
+    }
+    .mini-ranking-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: #1e3a8a;
+    }
+    .mini-ranking-row {
+      display: grid;
+      grid-template-columns: 62px 1fr 60px;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 8px;
+    }
+    .mini-ranking-row:last-child { margin-bottom: 0; }
+    .mini-rank-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 700;
+      color: #1d4ed8;
+      animation: popBadge 1.8s ease-in-out infinite;
+    }
+    .mini-rank-name { font-weight: 700; color: #111827; }
+    .mini-rank-score { text-align: right; font-weight: 700; color: #0f172a; }
+    .mini-rank-time {
+      margin-top: 3px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .mini-ranking-empty {
+      color: #6b7280;
+      font-size: 0.92rem;
+      padding: 8px 2px;
+    }
+    @keyframes popBadge {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-2px) scale(1.05); }
+    }
 
     /* ebook */
     .ebook-wrap {
@@ -642,22 +1053,44 @@
 </head>
 <body>
   <div id="menuScreen" class="screen">
-    <div class="title">우리가족 미니홈피</div>
-    <div class="subtitle">사랑하는 우리가족 화이팅!</div>
+    <div class="home-hero">
+      <div class="sparkles">
+        <span class="sparkle" style="top:16px; left:22px;">✨</span>
+        <span class="sparkle" style="top:24px; right:40px; animation-delay:0.6s;">⭐</span>
+        <span class="sparkle" style="top:72px; left:16%; animation-delay:1s;">💖</span>
+        <span class="sparkle" style="top:84px; right:18%; animation-delay:1.4s;">✨</span>
+        <span class="sparkle" style="bottom:24px; left:12%; animation-delay:1.8s;">💗</span>
+        <span class="sparkle" style="bottom:32px; right:14%; animation-delay:0.9s;">⭐</span>
+      </div>
+      <div style="text-align:center;">
+        <div class="hero-badge">🐾 사랑이 가득한 우리집 🐾</div>
+        <div class="hero-main-title">우리가족 미니홈피 <span class="accent-heart">💖</span></div>
+        <div class="hero-subtitle">귀엽고 반짝이는 우리 가족만의 특별한 공간이에요</div>
+      </div>
+      <div class="animal-parade">
+        <div class="animal-card">
+          <div class="animal-face">🐶</div>
+          <div class="animal-name">강아지 친구</div>
+        </div>
+        <div class="animal-card">
+          <div class="animal-face">🐰</div>
+          <div class="animal-name">토끼 친구</div>
+        </div>
+        <div class="animal-card">
+          <div class="animal-face">🐱</div>
+          <div class="animal-name">고양이 친구</div>
+        </div>
+      </div>
+      <div class="love-message">오늘도 사랑 가득, 웃음 가득한 하루 보내요 🌷</div>
+    </div>
 
-    <div class="menu-grid">
-      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab2930Game()">0. 축복이 금주 29/30<br>영단어 시험</button></div>
-      <div class="card"><button class="menu-btn" onclick="startWeeklyVocabGame()">1. 축복이 금주 27/28<br>영단어 시험</button></div>
-      <div class="card"><button class="menu-btn" onclick="startHadongStage5Game()">2. 하동이의 금주<br>Stage 5 단어시험</button></div>
-      <div class="card"><button class="menu-btn" onclick="startGrammarGame()">3. 축복이와 하동이의<br>English 문법 Game</button></div>
-      <div class="card"><button class="menu-btn" onclick="startWordGame()">4. 축복이와 하동이의<br>English 단어 Game</button></div>
-      <div class="card"><button class="menu-btn" onclick="startCarGame()">5. 미니 자동차 피하기 Game</button></div>
-      <div class="card"><button class="menu-btn" onclick="startPlaneGame()">6. 미니 비행기 Game</button></div>
-      <div class="card"><button class="menu-btn" onclick="startMathConceptBook()">7. 중1 1학기 수학<br>핵심 개념 정리</button></div>
-      <div class="card"><button class="menu-btn" onclick="startWordMaster2930()">8. 축복이 금주 29/30<br>영단어 시험</button></div>
-      <div class="card"><button class="menu-btn" onclick="startWordMaster2930Study()">9. 29/30 영단어<br>암기 마스터</button></div>
-      <div class="card"><button class="menu-btn" onclick="startHadongStage6Game()">10. 하동이 금주<br>Stage 6 단어시험</button></div>
-      <div class="card"><button class="menu-btn" onclick="startStage6Master()">11. Stage6 영단어<br>암기 마스터</button></div>
+    <div class="menu-grid cute-menu">
+      <div class="card"><button class="menu-btn" onclick="goChukbokMenu()">축복이</button></div>
+      <div class="card"><button class="menu-btn" onclick="goHadongMenu()">하동이</button></div>
+      <div class="card"><button class="menu-btn" onclick="goEnglishMenu()">English</button></div>
+      <div class="card"><button class="menu-btn" onclick="goMathMenu()">Math</button></div>
+      <div class="card"><button class="menu-btn" onclick="goMiniGameMenu()">미니게임</button></div>
+                  
     </div>
 
     <div class="footer-note">5월은 가정의날 군산 일정 참고!</div>
@@ -711,6 +1144,68 @@
     </div>
   </div>
 
+  <div id="hadongMenuScreen" class="screen hidden">
+    <div class="title">하동이 페이지</div>
+    <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startHadongStage5Game()">영단어 확인(Stage5)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startHadongStage6Game()">영단어 확인(Stage6)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startStage6Master()">영단어 암기(Stage6)</button></div>
+    </div>
+    <div class="action-row" style="justify-content:center;">
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
+  <div id="chukbokMenuScreen" class="screen hidden">
+    <div class="title">축복이 페이지</div>
+    <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab2930Game()">영단어 확인(29/30)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocabGame()">영단어 확인(27/28)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster2930Study()">영단어 암기(29/30)</button></div>
+    </div>
+    <div class="action-row" style="justify-content:center;">
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
+  <div id="miniGameMenuScreen" class="screen hidden">
+    <div class="title">미니게임 페이지</div>
+    <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startCarGame()">자동차 피하기</button></div>
+      <div class="card"><button class="menu-btn" onclick="startPlaneGame()">비행기</button></div>
+      <div class="card"><button class="menu-btn" onclick="startTetrisGame()">테트리스</button></div>
+      <div class="card"><button class="menu-btn" onclick="startBrickGame()">벽돌깨기</button></div>
+    </div>
+    <div class="mini-ranking-board">
+      <div class="mini-ranking-title">🎮 미니게임 랭킹 게시판</div>
+      <div class="mini-ranking-grid" id="miniGameRankingBoard"></div>
+    </div>
+    <div class="action-row" style="justify-content:center;">
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
+  <div id="mathMenuScreen" class="screen hidden">
+    <div class="title">Math 페이지</div>
+    <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startMathConceptBook()">중등 1학년 1학기 수학 노트</button></div>
+    </div>
+    <div class="action-row" style="justify-content:center;">
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
+  <div id="englishMenuScreen" class="screen hidden">
+    <div class="title">English 페이지</div>
+    <div class="menu-grid">
+      <div class="card"><button class="menu-btn" onclick="startGrammarGame()">영문법 확인</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordGame()">영단어 확인</button></div>
+    </div>
+    <div class="action-row" style="justify-content:center;">
+      <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+  </div>
+
   <div id="quizScreen" class="screen hidden">
     <div class="title" id="quizTitle"></div>
     <div class="hud">
@@ -741,13 +1236,36 @@
       <div class="hud-box" id="arcadeStatus">상태: 준비</div>
     </div>
     <canvas id="gameCanvas" width="900" height="500"></canvas>
-    <div class="mobile-controls">
-      <button class="control-btn" id="leftControlBtn">◀ 왼쪽</button>
-      <button class="control-btn" id="rightControlBtn">오른쪽 ▶</button>
+    <div class="tetris-controls-wrap">
+      <div class="mobile-controls">
+        <button class="control-btn" id="leftControlBtn">◀ 왼쪽</button>
+        <button class="control-btn" id="rightControlBtn">오른쪽 ▶</button>
+      </div>
+      <div class="tetris-controls right-group hidden" id="tetrisControlsRow">
+        <button class="control-btn" id="dropControlBtn">⤓ 빠르게 내리기</button>
+        <button class="control-btn" id="rotateControlBtn">↻ 회전</button>
+      </div>
     </div>
     <div class="action-row">
       <button class="action-btn" onclick="restartArcadeGame()">다시 시작</button>
       <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+    </div>
+    <div id="rankingModal" class="ranking-modal hidden">
+      <div class="ranking-modal-card">
+        <div class="ranking-modal-title">랭킹 저장</div>
+        <div class="ranking-modal-desc" id="rankingModalDesc">이름을 입력하면 점수가 저장됩니다.</div>
+        <input id="rankingNameInput" class="ranking-modal-input" type="text" maxlength="20" placeholder="이름을 입력하세요" />
+        <div class="ranking-modal-actions">
+          <button class="action-btn secondary" onclick="closeRankingModal()">취소</button>
+          <button class="action-btn" onclick="submitRankingModal()">저장</button>
+        </div>
+      </div>
+    </div>
+    <div class="ranking-section">
+      <div class="ranking-title" id="rankingTitle">게임 랭킹</div>
+      <div id="rankingList" class="ranking-list">
+        <div class="ranking-empty">아직 등록된 점수가 없어요.</div>
+      </div>
     </div>
   </div>
 
@@ -809,7 +1327,7 @@
   </div>
 
   <div id="mathBookScreen" class="screen hidden">
-    <div class="title">중1 1학기 수학 핵심 개념 정리</div>
+    <div class="title">중등 1학년 1학기 수학 노트</div>
     <div class="ebook-wrap">
       <div class="ebook-page active" id="mp1">
         <div style="text-align: center; margin-top: 60px;">
@@ -1278,6 +1796,24 @@
         });
         renderBoardPosts();
       });
+
+      const rankingQuery = query(collection(db, 'arcadeRankings'), orderBy('score', 'desc'));
+      onSnapshot(rankingQuery, snapshot => {
+        arcadeRankings = snapshot.docs.map(docSnap => {
+          const data = docSnap.data();
+          return {
+            game: data.game || 'car',
+            name: data.name || '이름없음',
+            score: Number(data.score || 0),
+            createdAtMs: Number(data.createdAtMs || 0),
+            createdAtText: data.createdAtText || ''
+          };
+        });
+        renderRankingList();
+        renderMiniGameRankingBoard();
+      }, error => {
+        console.error('랭킹 읽기 실패:', error);
+      });
     }
 
     function renderSingleMonth(year, month) {
@@ -1638,6 +2174,11 @@
 
     function showScreen(id) {
       document.getElementById('menuScreen').classList.add('hidden');
+      document.getElementById('chukbokMenuScreen').classList.add('hidden');
+      document.getElementById('hadongMenuScreen').classList.add('hidden');
+      document.getElementById('englishMenuScreen').classList.add('hidden');
+      document.getElementById('mathMenuScreen').classList.add('hidden');
+      document.getElementById('miniGameMenuScreen').classList.add('hidden');
       document.getElementById('quizScreen').classList.add('hidden');
       document.getElementById('arcadeScreen').classList.add('hidden');
       document.getElementById('mathBookScreen').classList.add('hidden');
@@ -1716,6 +2257,31 @@
       document.querySelectorAll('.stage6-word.master-hidden, .stage6-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
     }
 
+    function goHadongMenu() {
+      showScreen('hadongMenuScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function goMiniGameMenu() {
+      showScreen('miniGameMenuScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function goMathMenu() {
+      showScreen('mathMenuScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function goEnglishMenu() {
+      showScreen('englishMenuScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function goChukbokMenu() {
+      showScreen('chukbokMenuScreen');
+      window.scrollTo(0, 0);
+    }
+
     function startWordMaster2930Study() {
       renderMaster2930Tables();
       resetMaster2930();
@@ -1737,7 +2303,7 @@
       correctCount = 0;
       wrongCount = 0;
       weekly2930WordOrder = buildShuffledOrder(weeklyVocab2930Data.length);
-      document.getElementById('quizTitle').textContent = '축복이 금주 29/30 영단어 시험';
+      document.getElementById('quizTitle').textContent = '영단어 확인(29/30)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1749,7 +2315,7 @@
       correctCount = 0;
       wrongCount = 0;
       weeklyWordOrder = buildShuffledOrder(weeklyVocabData.length);
-      document.getElementById('quizTitle').textContent = '축복이 금주 27/28 영단어 시험';
+      document.getElementById('quizTitle').textContent = '영단어 확인(27/28)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1761,7 +2327,7 @@
       correctCount = 0;
       wrongCount = 0;
       hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
-      document.getElementById('quizTitle').textContent = '하동이의 금주 Stage 5 단어시험';
+      document.getElementById('quizTitle').textContent = '영단어 확인(Stage5)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1773,7 +2339,7 @@
       correctCount = 0;
       wrongCount = 0;
       hadongStage6WordOrder = buildShuffledOrder(hadongStage6Data.length);
-      document.getElementById('quizTitle').textContent = '하동이 금주 Stage 6 단어시험';
+      document.getElementById('quizTitle').textContent = '영단어 확인(Stage6)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1785,7 +2351,7 @@
       correctCount = 0;
       wrongCount = 0;
       grammarUsedKeys = new Set();
-      document.getElementById('quizTitle').textContent = '축복이와 하동이의 English 문법 Game';
+      document.getElementById('quizTitle').textContent = '영문법 확인';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1797,7 +2363,7 @@
       correctCount = 0;
       wrongCount = 0;
       wordOrder = buildShuffledOrder(vocabData.length);
-      document.getElementById('quizTitle').textContent = '축복이와 하동이의 English 단어 Game';
+      document.getElementById('quizTitle').textContent = '영단어 확인';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -1807,7 +2373,152 @@
       showScreen('mathBookScreen');
     }
 
+    function renderMiniGameRankingBoard() {
+      const board = document.getElementById('miniGameRankingBoard');
+      if (!board) return;
+      const gameDefs = [
+        { key: 'car', label: '🚗 자동차 피하기' },
+        { key: 'plane', label: '✈️ 비행기' },
+        { key: 'tetris', label: '🧩 테트리스' },
+        { key: 'brick', label: '🧱 벽돌깨기' }
+      ];
+      board.innerHTML = gameDefs.map(def => {
+        const rows = arcadeRankings
+          .filter(item => item.game === def.key)
+          .sort((a, b) => b.score - a.score || a.createdAtMs - b.createdAtMs)
+          .slice(0, 3);
+        const content = rows.length ? rows.map((item, index) => {
+          const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+          const timeText = item.createdAtText || (item.createdAtMs ? formatDateTime(new Date(item.createdAtMs)) : '시간 정보 없음');
+          return `
+            <div class="mini-ranking-row">
+              <div class="mini-rank-badge">${medal} ${index + 1}위</div>
+              <div>
+                <div class="mini-rank-name">${item.name}</div>
+                <div class="mini-rank-time">${timeText}</div>
+              </div>
+              <div class="mini-rank-score">${item.score}점</div>
+            </div>
+          `;
+        }).join('') : '<div class="mini-ranking-empty">아직 기록이 없어요.</div>';
+        return `<div class="mini-ranking-card"><h3>${def.label}</h3>${content}</div>`;
+      }).join('');
+    }
+
+    function renderRankingList() {
+      const list = document.getElementById('rankingList');
+      if (!list) return;
+      const gameKey = activeArcade || 'car';
+      const filtered = arcadeRankings
+        .filter(item => item.game === gameKey)
+        .sort((a, b) => b.score - a.score || a.createdAtMs - b.createdAtMs)
+        .slice(0, 10);
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="ranking-empty">아직 등록된 점수가 없어요.</div>';
+        return;
+      }
+      list.innerHTML = filtered.map((item, index) => {
+        const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+        const timeText = item.createdAtText || (item.createdAtMs ? formatDateTime(new Date(item.createdAtMs)) : '시간 정보 없음');
+        return `
+          <div class="ranking-item">
+            <div class="ranking-rank"><span class="ranking-medal">${medal}</span><span>#${index + 1}</span></div>
+            <div>
+              <div class="ranking-name">${item.name}</div>
+              <div class="ranking-meta">${timeText}</div>
+            </div>
+            <div class="ranking-score">${item.score}점</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function getArcadeGameLabel(gameKey) {
+      if (gameKey === 'car') return '미니 자동차 피하기 Game';
+      if (gameKey === 'plane') return '미니 비행기 Game';
+      if (gameKey === 'tetris') return '테트리스';
+      if (gameKey === 'brick') return '벽돌깨기';
+      return '미니게임';
+    }
+
+    function openRankingModal() {
+      const modal = document.getElementById('rankingModal');
+      const input = document.getElementById('rankingNameInput');
+      const desc = document.getElementById('rankingModalDesc');
+      if (!modal || !input || !desc || !activeArcade) return;
+      const gameLabel = getArcadeGameLabel(activeArcade);
+      desc.textContent = `${gameLabel} 점수 ${arcadeScore}점을 저장할 이름을 입력하세요.`;
+      input.value = '';
+      modal.classList.remove('hidden');
+      setTimeout(() => input.focus(), 30);
+    }
+
+    function closeRankingModal() {
+      const modal = document.getElementById('rankingModal');
+      if (modal) modal.classList.add('hidden');
+      pendingRankingScore = null;
+    }
+
+    async function saveArcadeRanking(nameValue) {
+      const gameKey = activeArcade;
+      if (!gameKey) return;
+      const trimmedName = String(nameValue || '').trim();
+      if (!trimmedName) return;
+      const finalScore = pendingRankingScore ?? arcadeScore;
+      const payload = {
+        game: gameKey,
+        gameLabel: getArcadeGameLabel(gameKey),
+        name: trimmedName.slice(0, 20),
+        score: Number(finalScore || 0),
+        createdAt: serverTimestamp(),
+        createdAtText: formatDateTime(new Date()),
+        createdAtMs: Date.now()
+      };
+      try {
+        if (db) {
+          await addDoc(collection(db, 'arcadeRankings'), payload);
+        } else {
+          arcadeRankings.push({
+            game: payload.game,
+            name: payload.name,
+            score: payload.score,
+            createdAtMs: payload.createdAtMs,
+            createdAtText: payload.createdAtText
+          });
+          renderRankingList();
+          renderMiniGameRankingBoard();
+        }
+      } catch (error) {
+        console.error('랭킹 저장 실패:', error);
+        arcadeRankings.push({
+            game: payload.game,
+            name: payload.name,
+            score: payload.score,
+            createdAtMs: payload.createdAtMs,
+            createdAtText: payload.createdAtText
+          });
+        renderRankingList();
+        renderMiniGameRankingBoard();
+      }
+      closeRankingModal();
+    }
+
+    function submitRankingModal() {
+      const input = document.getElementById('rankingNameInput');
+      if (!input) return;
+      const value = input.value.trim();
+      if (!value) {
+        alert('이름을 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      saveArcadeRanking(value);
+    }
+
     function goMenu() {
+      setTetrisControlsVisible(false);
+      setStandardArcadeControlsVisible(false);
+      closeRankingModal();
       stopArcadeLoop();
       document.getElementById('answerInput').value = '';
       document.getElementById('answerInput').disabled = false;
@@ -1858,14 +2569,41 @@
     let animationId = null;
     let activeArcade = '';
     let arcadeScore = 0;
-    let bestScores = { car: 0, plane: 0 };
+    let tetrisBoard = [];
+    let tetrisCurrent = null;
+    let tetrisNextType = null;
+    let tetrisDropCounter = 0;
+    let tetrisDropInterval = 700;
+    let lastFrameTime = 0;
+    let bestScores = { car: 0, plane: 0, tetris: 0, brick: 0 };
+    let arcadeRankings = [];
+    let rankingSubmittedForGameOver = false;
+    let pendingRankingScore = null;
     let keys = {};
     let player, obstacles, stars, speed, gameOver, spawnTick, bgOffset;
+    let brickPaddle, brickBall, brickBlocks;
 
     document.addEventListener('keydown', e => {
       const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
       const isTypingField = tag === 'input' || tag === 'textarea' || e.target?.isContentEditable;
       keys[e.key] = true;
+      if (activeArcade === 'tetris' && !isTypingField && !gameOver) {
+        if (e.key === 'ArrowLeft') {
+          moveTetris(-1, 0);
+          e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+          moveTetris(1, 0);
+          e.preventDefault();
+        } else if (e.key === 'ArrowDown') {
+          hardDropTetrisStep();
+          arcadeScore += 1;
+          updateArcadeHud();
+          e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+          rotateCurrentTetris();
+          e.preventDefault();
+        }
+      }
       if (!isTypingField && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) {
         e.preventDefault();
       }
@@ -1874,7 +2612,16 @@
 
     function bindControlButton(buttonId, keyName) {
       const btn = document.getElementById(buttonId);
-      const press = (e) => { if (e) e.preventDefault(); keys[keyName] = true; };
+      const press = (e) => {
+        if (e) e.preventDefault();
+        if (activeArcade === 'tetris' && !gameOver) {
+          if (keyName === 'ArrowLeft') moveTetris(-1, 0);
+          if (keyName === 'ArrowRight') moveTetris(1, 0);
+          updateArcadeHud();
+          return;
+        }
+        keys[keyName] = true;
+      };
       const release = (e) => { if (e) e.preventDefault(); keys[keyName] = false; };
       btn.addEventListener('mousedown', press);
       btn.addEventListener('mouseup', release);
@@ -1887,6 +2634,20 @@
     bindControlButton('leftControlBtn', 'ArrowLeft');
     bindControlButton('rightControlBtn', 'ArrowRight');
 
+    document.getElementById('rotateControlBtn').addEventListener('click', () => {
+      if (activeArcade === 'tetris' && !gameOver) {
+        rotateCurrentTetris();
+        updateArcadeHud();
+      }
+    });
+    document.getElementById('dropControlBtn').addEventListener('click', () => {
+      if (activeArcade === 'tetris' && !gameOver) {
+        hardDropTetrisStep();
+        arcadeScore += 1;
+        updateArcadeHud();
+      }
+    });
+
     document.getElementById('answerInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && document.getElementById('nextBtn').disabled) submitTypingAnswer();
       else if (e.key === 'Enter') nextQuizStage();
@@ -1895,13 +2656,28 @@
     function resetArcadeBase(type) {
       activeArcade = type;
       arcadeScore = 0;
+      rankingSubmittedForGameOver = false;
+      pendingRankingScore = null;
       obstacles = [];
       stars = [];
       speed = 4;
       gameOver = false;
       spawnTick = 0;
       bgOffset = 0;
-      player = type === 'car' ? { x: 430, y: 420, w: 40, h: 70, speed: 7 } : { x: 430, y: 390, w: 56, h: 56, speed: 6 };
+      tetrisDropCounter = 0;
+      tetrisDropInterval = 700;
+      lastFrameTime = 0;
+      if (type === 'car') {
+        player = { x: 430, y: 420, w: 40, h: 70, speed: 7 };
+      } else if (type === 'plane') {
+        player = { x: 430, y: 390, w: 56, h: 56, speed: 6 };
+      } else if (type === 'tetris') {
+        player = null;
+        initTetris();
+      } else {
+        player = null;
+        initBrickGame();
+      }
       updateArcadeHud();
     }
 
@@ -1910,10 +2686,22 @@
       document.getElementById('arcadeScore').textContent = `점수: ${arcadeScore}`;
       document.getElementById('arcadeBest').textContent = `최고점수: ${best}`;
       document.getElementById('arcadeStatus').textContent = gameOver ? '상태: 게임 오버' : '상태: 플레이 중';
+      renderRankingList();
+    }
+
+    function setTetrisControlsVisible(isVisible) {
+      document.getElementById('tetrisControlsRow').classList.toggle('hidden', !isVisible);
+    }
+
+    function setStandardArcadeControlsVisible(isVisible) {
+      document.getElementById('leftControlBtn').parentElement.classList.toggle('standard-layout', isVisible);
     }
 
     function startCarGame() {
+      setTetrisControlsVisible(false);
+      setStandardArcadeControlsVisible(true);
       document.getElementById('arcadeTitle').textContent = '미니 자동차 피하기 Game';
+      document.getElementById('rankingTitle').textContent = '자동차 게임 랭킹';
       document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 자동차를 움직여 다른 차를 피하세요.';
       showScreen('arcadeScreen');
       resetArcadeBase('car');
@@ -1921,10 +2709,35 @@
     }
 
     function startPlaneGame() {
+      setTetrisControlsVisible(false);
+      setStandardArcadeControlsVisible(true);
       document.getElementById('arcadeTitle').textContent = '미니 비행기 Game';
+      document.getElementById('rankingTitle').textContent = '비행기 게임 랭킹';
       document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 비행기를 움직여 장애물을 피하세요.';
       showScreen('arcadeScreen');
       resetArcadeBase('plane');
+      runArcadeLoop();
+    }
+
+    function startTetrisGame() {
+      setTetrisControlsVisible(true);
+      setStandardArcadeControlsVisible(false);
+      document.getElementById('arcadeTitle').textContent = '테트리스';
+      document.getElementById('rankingTitle').textContent = '테트리스 랭킹';
+      document.getElementById('arcadeHelp').innerHTML = '← → 이동, ↓ 빠르게 내리기, ↑ 회전. 줄을 지워 점수를 올리세요.';
+      showScreen('arcadeScreen');
+      resetArcadeBase('tetris');
+      runArcadeLoop();
+    }
+
+    function startBrickGame() {
+      setTetrisControlsVisible(false);
+      setStandardArcadeControlsVisible(true);
+      document.getElementById('arcadeTitle').textContent = '벽돌깨기';
+      document.getElementById('rankingTitle').textContent = '벽돌깨기 랭킹';
+      document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 패들을 움직여 공을 튕기고 벽돌을 모두 깨보세요.';
+      showScreen('arcadeScreen');
+      resetArcadeBase('brick');
       runArcadeLoop();
     }
 
@@ -2038,13 +2851,242 @@
         if (keys['ArrowLeft']) player.x -= player.speed;
         if (keys['ArrowRight']) player.x += player.speed;
         player.x = Math.max(220, Math.min(640, player.x));
-      } else {
+      } else if (activeArcade === 'plane') {
         if (keys['ArrowLeft']) player.x -= player.speed;
         if (keys['ArrowRight']) player.x += player.speed;
         if (keys['ArrowUp']) player.y -= player.speed;
         if (keys['ArrowDown']) player.y += player.speed;
         player.x = Math.max(0, Math.min(canvas.width - player.w, player.x));
         player.y = Math.max(0, Math.min(canvas.height - player.h, player.y));
+      } else if (activeArcade === 'brick') {
+        if (keys['ArrowLeft']) brickPaddle.x -= brickPaddle.speed;
+        if (keys['ArrowRight']) brickPaddle.x += brickPaddle.speed;
+        brickPaddle.x = Math.max(0, Math.min(canvas.width - brickPaddle.w, brickPaddle.x));
+      }
+    }
+
+    function initBrickGame() {
+      brickPaddle = { x: canvas.width / 2 - 60, y: canvas.height - 36, w: 120, h: 14, speed: 9 };
+      brickBall = { x: canvas.width / 2, y: canvas.height - 56, r: 9, vx: 4, vy: -4 };
+      brickBlocks = [];
+      const rows = 5;
+      const cols = 9;
+      const gap = 8;
+      const bw = 84;
+      const bh = 24;
+      const startX = Math.floor((canvas.width - (cols * bw + (cols - 1) * gap)) / 2);
+      const startY = 60;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          brickBlocks.push({
+            x: startX + c * (bw + gap),
+            y: startY + r * (bh + gap),
+            w: bw,
+            h: bh,
+            alive: true,
+            color: ['#fb7185','#f59e0b','#facc15','#4ade80','#60a5fa'][r % 5]
+          });
+        }
+      }
+    }
+
+    function updateBrickGame() {
+      updatePlayer();
+      brickBall.x += brickBall.vx;
+      brickBall.y += brickBall.vy;
+
+      if (brickBall.x - brickBall.r <= 0 || brickBall.x + brickBall.r >= canvas.width) {
+        brickBall.vx *= -1;
+      }
+      if (brickBall.y - brickBall.r <= 0) {
+        brickBall.vy *= -1;
+      }
+      if (brickBall.y + brickBall.r >= canvas.height) {
+        triggerArcadeGameOver();
+        return;
+      }
+
+      if (
+        brickBall.x >= brickPaddle.x &&
+        brickBall.x <= brickPaddle.x + brickPaddle.w &&
+        brickBall.y + brickBall.r >= brickPaddle.y &&
+        brickBall.y - brickBall.r <= brickPaddle.y + brickPaddle.h &&
+        brickBall.vy > 0
+      ) {
+        const hitPoint = (brickBall.x - (brickPaddle.x + brickPaddle.w / 2)) / (brickPaddle.w / 2);
+        brickBall.vx = hitPoint * 5.5;
+        brickBall.vy = -Math.abs(brickBall.vy);
+      }
+
+      let aliveCount = 0;
+      brickBlocks.forEach(block => {
+        if (!block.alive) return;
+        aliveCount += 1;
+        const nearestX = Math.max(block.x, Math.min(brickBall.x, block.x + block.w));
+        const nearestY = Math.max(block.y, Math.min(brickBall.y, block.y + block.h));
+        const dx = brickBall.x - nearestX;
+        const dy = brickBall.y - nearestY;
+        if (dx * dx + dy * dy <= brickBall.r * brickBall.r) {
+          block.alive = false;
+          arcadeScore += 20;
+          const overlapX = Math.min(Math.abs(brickBall.x - block.x), Math.abs(brickBall.x - (block.x + block.w)));
+          const overlapY = Math.min(Math.abs(brickBall.y - block.y), Math.abs(brickBall.y - (block.y + block.h)));
+          if (overlapX < overlapY) brickBall.vx *= -1;
+          else brickBall.vy *= -1;
+        }
+      });
+
+      if (brickBlocks.every(block => !block.alive)) {
+        arcadeScore += 200;
+        triggerArcadeGameOver();
+      }
+    }
+
+    function drawBrickGame() {
+      ctx.fillStyle = '#0b1220';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      brickBlocks.forEach(block => {
+        if (!block.alive) return;
+        ctx.fillStyle = block.color;
+        ctx.fillRect(block.x, block.y, block.w, block.h);
+        ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+        ctx.strokeRect(block.x, block.y, block.w, block.h);
+      });
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(brickPaddle.x, brickPaddle.y, brickPaddle.w, brickPaddle.h);
+      ctx.beginPath();
+      ctx.fillStyle = '#f97316';
+      ctx.arc(brickBall.x, brickBall.y, brickBall.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '16px Arial';
+      ctx.fillText('벽돌을 모두 깨면 보너스 +200점', 24, 28);
+    }
+
+    const TETRIS_SHAPES = {
+      I: [[1,1,1,1]],
+      O: [[1,1],[1,1]],
+      T: [[0,1,0],[1,1,1]],
+      S: [[0,1,1],[1,1,0]],
+      Z: [[1,1,0],[0,1,1]],
+      J: [[1,0,0],[1,1,1]],
+      L: [[0,0,1],[1,1,1]]
+    };
+    const TETRIS_COLORS = {
+      I: '#06b6d4', O: '#facc15', T: '#a855f7', S: '#22c55e',
+      Z: '#ef4444', J: '#3b82f6', L: '#f97316'
+    };
+
+    function initTetris() {
+      tetrisBoard = Array.from({ length: 20 }, () => Array(10).fill(null));
+      tetrisNextType = randomTetrisType();
+      spawnTetrisPiece();
+    }
+
+    function randomTetrisType() {
+      const keys = Object.keys(TETRIS_SHAPES);
+      return keys[Math.floor(Math.random() * keys.length)];
+    }
+
+    function spawnTetrisPiece() {
+      const type = tetrisNextType || randomTetrisType();
+      tetrisNextType = randomTetrisType();
+      const shape = TETRIS_SHAPES[type].map(row => [...row]);
+      tetrisCurrent = { type, shape, x: Math.floor((10 - shape[0].length) / 2), y: 0 };
+      if (tetrisCollides(tetrisCurrent.x, tetrisCurrent.y, tetrisCurrent.shape)) triggerArcadeGameOver();
+    }
+
+    function tetrisCollides(x, y, shape) {
+      for (let r = 0; r < shape.length; r++) {
+        for (let c = 0; c < shape[r].length; c++) {
+          if (!shape[r][c]) continue;
+          const bx = x + c;
+          const by = y + r;
+          if (bx < 0 || bx >= 10 || by >= 20) return true;
+          if (by >= 0 && tetrisBoard[by][bx]) return true;
+        }
+      }
+      return false;
+    }
+
+    function rotateTetris(shape) {
+      return shape[0].map((_, i) => shape.map(row => row[i]).reverse());
+    }
+
+    function mergeTetrisPiece() {
+      for (let r = 0; r < tetrisCurrent.shape.length; r++) {
+        for (let c = 0; c < tetrisCurrent.shape[r].length; c++) {
+          if (!tetrisCurrent.shape[r][c]) continue;
+          const y = tetrisCurrent.y + r;
+          const x = tetrisCurrent.x + c;
+          if (y >= 0) tetrisBoard[y][x] = tetrisCurrent.type;
+        }
+      }
+      clearTetrisLines();
+      spawnTetrisPiece();
+    }
+
+    function clearTetrisLines() {
+      let cleared = 0;
+      for (let y = tetrisBoard.length - 1; y >= 0; y--) {
+        if (tetrisBoard[y].every(Boolean)) {
+          tetrisBoard.splice(y, 1);
+          tetrisBoard.unshift(Array(10).fill(null));
+          cleared += 1;
+          y += 1;
+        }
+      }
+      if (cleared > 0) {
+        arcadeScore += cleared * 100;
+        if (cleared >= 4) arcadeScore += 200;
+        tetrisDropInterval = Math.max(180, tetrisDropInterval - cleared * 20);
+      }
+    }
+
+    function moveTetris(dx, dy) {
+      if (!tetrisCurrent) return false;
+      const nx = tetrisCurrent.x + dx;
+      const ny = tetrisCurrent.y + dy;
+      if (!tetrisCollides(nx, ny, tetrisCurrent.shape)) {
+        tetrisCurrent.x = nx;
+        tetrisCurrent.y = ny;
+        return true;
+      }
+      if (dy > 0) mergeTetrisPiece();
+      return false;
+    }
+
+    function rotateCurrentTetris() {
+      if (!tetrisCurrent) return;
+      const rotated = rotateTetris(tetrisCurrent.shape);
+      if (!tetrisCollides(tetrisCurrent.x, tetrisCurrent.y, rotated)) {
+        tetrisCurrent.shape = rotated;
+      } else if (!tetrisCollides(tetrisCurrent.x - 1, tetrisCurrent.y, rotated)) {
+        tetrisCurrent.x -= 1;
+        tetrisCurrent.shape = rotated;
+      } else if (!tetrisCollides(tetrisCurrent.x + 1, tetrisCurrent.y, rotated)) {
+        tetrisCurrent.x += 1;
+        tetrisCurrent.shape = rotated;
+      }
+    }
+
+    function hardDropTetrisStep() {
+      if (!tetrisCurrent) return;
+      moveTetris(0, 1);
+    }
+
+    function triggerArcadeGameOver() {
+      gameOver = true;
+      bestScores[activeArcade] = Math.max(bestScores[activeArcade] || 0, arcadeScore);
+      updateArcadeHud();
+      stopArcadeLoop();
+      if (!rankingSubmittedForGameOver) {
+        rankingSubmittedForGameOver = true;
+        pendingRankingScore = arcadeScore;
+        setTimeout(() => { openRankingModal(); }, 120);
       }
     }
 
@@ -2052,8 +3094,25 @@
       return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
     }
 
-    function updateArcade() {
+    function updateArcade(delta = 16) {
       if (gameOver) return;
+
+      if (activeArcade === 'tetris') {
+        tetrisDropCounter += delta;
+        if (tetrisDropCounter >= tetrisDropInterval) {
+          tetrisDropCounter = 0;
+          moveTetris(0, 1);
+        }
+        updateArcadeHud();
+        return;
+      }
+
+      if (activeArcade === 'brick') {
+        updateBrickGame();
+        updateArcadeHud();
+        return;
+      }
+
       spawnTick++;
       bgOffset += speed;
       if (activeArcade === 'car' && spawnTick % 28 === 0) spawnObstacle();
@@ -2083,9 +3142,7 @@
       }
       for (const obs of obstacles) {
         if (isColliding(player, obs)) {
-          gameOver = true;
-          bestScores[activeArcade] = Math.max(bestScores[activeArcade], arcadeScore);
-          updateArcadeHud();
+          triggerArcadeGameOver();
           return;
         }
       }
@@ -2096,10 +3153,18 @@
     function drawArcade() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       if (activeArcade === 'car') drawCarBackground();
-      else drawPlaneBackground();
-      obstacles.forEach(drawObstacle);
-      if (activeArcade === 'car') drawCarPlayer();
-      else drawPlanePlayer();
+      else if (activeArcade === 'plane') drawPlaneBackground();
+      else if (activeArcade === 'brick') drawBrickGame();
+      else drawTetrisBackground();
+
+      if (activeArcade === 'car' || activeArcade === 'plane') {
+        obstacles.forEach(drawObstacle);
+        if (activeArcade === 'car') drawCarPlayer();
+        else drawPlanePlayer();
+      } else if (activeArcade === 'tetris') {
+        drawTetris();
+      }
+
       if (gameOver) {
         ctx.fillStyle = 'rgba(0,0,0,0.55)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -2112,8 +3177,95 @@
       }
     }
 
-    function arcadeFrame() {
-      updateArcade();
+    function drawTetrisBackground() {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawTetris() {
+      const cell = 22;
+      const boardW = 10 * cell;
+      const boardH = 20 * cell;
+      const ox = Math.floor((canvas.width - boardW) / 2);
+      const oy = 30;
+
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(ox - 4, oy - 4, boardW + 8, boardH + 8);
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(ox, oy, boardW, boardH);
+
+      for (let y = 0; y < 20; y++) {
+        for (let x = 0; x < 10; x++) {
+          const cellType = tetrisBoard[y]?.[x];
+          ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+          ctx.strokeRect(ox + x * cell, oy + y * cell, cell, cell);
+          if (cellType) {
+            ctx.fillStyle = TETRIS_COLORS[cellType];
+            ctx.fillRect(ox + x * cell + 1, oy + y * cell + 1, cell - 2, cell - 2);
+          }
+        }
+      }
+
+      if (tetrisCurrent) {
+        ctx.fillStyle = TETRIS_COLORS[tetrisCurrent.type];
+        for (let r = 0; r < tetrisCurrent.shape.length; r++) {
+          for (let c = 0; c < tetrisCurrent.shape[r].length; c++) {
+            if (!tetrisCurrent.shape[r][c]) continue;
+            const dx = ox + (tetrisCurrent.x + c) * cell;
+            const dy = oy + (tetrisCurrent.y + r) * cell;
+            ctx.fillRect(dx + 1, dy + 1, cell - 2, cell - 2);
+            ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+            ctx.strokeRect(dx, dy, cell, cell);
+          }
+        }
+      }
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#e5e7eb';
+      ctx.font = 'bold 22px Arial';
+      ctx.fillText('TETRIS', 70, 70);
+      ctx.font = '16px Arial';
+      ctx.fillStyle = '#cbd5e1';
+      ctx.fillText('← → 이동', 70, 110);
+      ctx.fillText('↑ 회전', 70, 136);
+      ctx.fillText('↓ 빠르게 내리기', 70, 162);
+      ctx.fillText(`점수: ${arcadeScore}`, 70, 210);
+
+      const previewX = ox + boardW + 70;
+      const previewY = 55;
+      ctx.fillStyle = '#e5e7eb';
+      ctx.font = 'bold 18px Arial';
+      ctx.fillText('다음 블록', previewX, previewY);
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(previewX - 6, previewY + 18, 120, 120);
+      ctx.fillStyle = '#1f2937';
+      ctx.fillRect(previewX, previewY + 24, 108, 108);
+
+      if (tetrisNextType) {
+        const nextShape = TETRIS_SHAPES[tetrisNextType];
+        const previewCell = 18;
+        const shapeW = nextShape[0].length * previewCell;
+        const shapeH = nextShape.length * previewCell;
+        const startX = previewX + Math.floor((108 - shapeW) / 2);
+        const startY = previewY + 24 + Math.floor((108 - shapeH) / 2);
+        ctx.fillStyle = TETRIS_COLORS[tetrisNextType];
+        for (let r = 0; r < nextShape.length; r++) {
+          for (let c = 0; c < nextShape[r].length; c++) {
+            if (!nextShape[r][c]) continue;
+            const px = startX + c * previewCell;
+            const py = startY + r * previewCell;
+            ctx.fillRect(px + 1, py + 1, previewCell - 2, previewCell - 2);
+            ctx.strokeStyle = 'rgba(255,255,255,0.16)';
+            ctx.strokeRect(px, py, previewCell, previewCell);
+          }
+        }
+      }
+    }
+
+    function arcadeFrame(timestamp = 0) {
+      const delta = lastFrameTime ? (timestamp - lastFrameTime) : 16;
+      lastFrameTime = timestamp;
+      updateArcade(delta);
       drawArcade();
       animationId = requestAnimationFrame(arcadeFrame);
     }
@@ -2134,6 +3286,7 @@
     subscribeFirebaseData();
     renderFamilyCalendar();
     renderBoardPosts();
+    renderMiniGameRankingBoard();
     resetMathBook();
     showScreen('menuScreen');
 
@@ -2142,6 +3295,11 @@
     window.addUserCalendarSchedule = addUserCalendarSchedule;
     window.addBoardPost = addBoardPost;
     window.startWeeklyVocab2930Game = startWeeklyVocab2930Game;
+    window.goChukbokMenu = goChukbokMenu;
+    window.goEnglishMenu = goEnglishMenu;
+    window.goMathMenu = goMathMenu;
+    window.goMiniGameMenu = goMiniGameMenu;
+    window.goHadongMenu = goHadongMenu;
     window.startWeeklyVocabGame = startWeeklyVocabGame;
     window.startHadongStage5Game = startHadongStage5Game;
     window.startHadongStage6Game = startHadongStage6Game;
@@ -2149,6 +3307,8 @@
     window.startWordGame = startWordGame;
     window.startCarGame = startCarGame;
     window.startPlaneGame = startPlaneGame;
+    window.startTetrisGame = startTetrisGame;
+    window.startBrickGame = startBrickGame;
     window.restartArcadeGame = restartArcadeGame;
     window.nextQuizStage = nextQuizStage;
     window.submitTypingAnswer = submitTypingAnswer;
@@ -2163,13 +3323,27 @@
     window.resetMaster2930 = resetMaster2930;
     window.toggleAllStage6Master = toggleAllStage6Master;
     window.resetStage6Master = resetStage6Master;
+    window.closeRankingModal = closeRankingModal;
+    window.submitRankingModal = submitRankingModal;
+    window.renderMiniGameRankingBoard = renderMiniGameRankingBoard;
 
     console.assert(typeof startMathConceptBook === 'function', 'startMathConceptBook should exist');
+    console.assert(typeof goChukbokMenu === 'function', 'goChukbokMenu should exist');
+    console.assert(typeof goHadongMenu === 'function', 'goHadongMenu should exist');
+    console.assert(typeof goEnglishMenu === 'function', 'goEnglishMenu should exist');
+    console.assert(typeof goMathMenu === 'function', 'goMathMenu should exist');
+    console.assert(typeof goMiniGameMenu === 'function', 'goMiniGameMenu should exist');
     console.assert(typeof moveMathPage === 'function', 'moveMathPage should exist');
     console.assert(getMonthOffset(2026, 4, 1).month === 5, 'getMonthOffset should work');
     console.assert(['weekly-vocab', 'weekly-vocab-2930', 'hadong-stage5', 'hadong-stage6'].includes('weekly-vocab-2930'), 'weekly-vocab-2930 should be typing quiz');
     console.assert(typeof startStage6Master === 'function', 'startStage6Master should exist');
     console.assert(stage6MasterData.length === 30, 'stage6MasterData should contain 30 rows');
+    console.assert(typeof saveArcadeRanking === 'function', 'saveArcadeRanking should exist');
+    console.assert(typeof renderRankingList === 'function', 'renderRankingList should exist');
+    console.assert(typeof submitRankingModal === 'function', 'submitRankingModal should exist');
+    console.assert(typeof startTetrisGame === 'function', 'startTetrisGame should exist');
+    console.assert(typeof startBrickGame === 'function', 'startBrickGame should exist');
   </script>
+
 </body>
 </html>
