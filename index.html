@@ -393,6 +393,202 @@
       margin-top: 20px;
       font-size: 0.95rem;
     }
+    .vote-section,
+    .calendar-section,
+    .board-section {
+      margin-top: 28px;
+      background: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .vote-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .vote-tab-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #e5e7eb;
+      color: #111827;
+    }
+    .vote-tab-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+    .vote-panel {
+      border: 1px solid #dbeafe;
+      border-radius: 16px;
+      padding: 16px;
+      background: #f8fbff;
+    }
+    .vote-form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .vote-form-grid input,
+    .vote-form-grid textarea,
+    .vote-option-input,
+    .vote-member-select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #dbeafe;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      outline: none;
+      background: white;
+    }
+    .vote-options-builder {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .vote-option-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .vote-option-row .vote-option-input {
+      flex: 1;
+    }
+    .vote-option-remove-btn {
+      border: none;
+      border-radius: 10px;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px 12px;
+      min-width: 44px;
+    }
+    .vote-option-add-btn {
+      border: none;
+      border-radius: 12px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px 14px;
+      width: fit-content;
+    }
+    .vote-card {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 18px rgba(37,99,235,0.06);
+    }
+    .vote-card:last-child { margin-bottom: 0; }
+    .vote-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+    .vote-meta {
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .vote-options-list {
+      display: grid;
+      gap: 8px;
+    }
+    .vote-option-btn {
+      border: 2px solid #dbeafe;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+    }
+    .vote-member-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .vote-member-btn {
+      border: 2px solid #dbeafe;
+      background: white;
+      color: #1d4ed8;
+      border-radius: 14px;
+      padding: 12px 10px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.18s ease;
+    }
+    .vote-member-btn.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+      box-shadow: 0 8px 16px rgba(37,99,235,0.18);
+    }
+    .vote-member-time {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: #64748b;
+      text-align: center;
+      min-height: 18px;
+    }
+    .vote-complete-time {
+      margin: 8px 0 10px;
+      font-size: 0.86rem;
+      color: #166534;
+      font-weight: 700;
+    }
+    .vote-option-result {
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10px 12px;
+    }
+    .vote-progress {
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .vote-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+    }
+    .vote-completed-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .vote-member-votes {
+      margin-top: 10px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+    .vote-empty {
+      color: #6b7280;
+      padding: 8px 2px;
+    }
     .calendar-section,
     .board-section {
       margin-top: 28px;
@@ -626,7 +822,7 @@
       width: 100%;
       justify-content: space-between;
     }
-    .tetris-controls-wrap {
+    \.tetris-controls-wrap {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -634,6 +830,26 @@
       flex-wrap: wrap;
       margin-top: 12px;
     }
+    .snake-dpad {
+      display: grid;
+      grid-template-columns: 74px 74px 74px;
+      grid-template-rows: 58px 58px;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .snake-dpad .control-btn {
+      min-width: 74px;
+      min-height: 58px;
+      padding: 10px 12px;
+      font-size: 1rem;
+    }
+    .snake-up { grid-column: 2; grid-row: 1; }
+    .snake-left { grid-column: 1; grid-row: 2; }
+    .snake-down { grid-column: 2; grid-row: 2; }
+    .snake-right { grid-column: 3; grid-row: 2; }
+    
     .tetris-controls {
       display: flex;
       gap: 10px;
@@ -1070,15 +1286,15 @@
       <div class="animal-parade">
         <div class="animal-card">
           <div class="animal-face">🐶</div>
-          <div class="animal-name">강아지 친구</div>
+          <div class="animal-name"></div>
         </div>
         <div class="animal-card">
           <div class="animal-face">🐰</div>
-          <div class="animal-name">토끼 친구</div>
+          <div class="animal-name"></div>
         </div>
         <div class="animal-card">
           <div class="animal-face">🐱</div>
-          <div class="animal-name">고양이 친구</div>
+          <div class="animal-name"></div>
         </div>
       </div>
       <div class="love-message">오늘도 사랑 가득, 웃음 가득한 하루 보내요 🌷</div>
@@ -1094,6 +1310,43 @@
     </div>
 
     <div class="footer-note">5월은 가정의날 군산 일정 참고!</div>
+
+    <div class="vote-section">
+      <div class="section-header">
+        <div class="section-title">우리 가족 투표</div>
+      </div>
+      <div class="vote-toolbar">
+        <button class="vote-tab-btn" id="voteTabCreate" onclick="switchVoteTab('create')">투표 만들기</button>
+        <button class="vote-tab-btn active" id="voteTabOpen" onclick="switchVoteTab('open')">투표 보기</button>
+        <button class="vote-tab-btn" id="voteTabDone" onclick="switchVoteTab('done')">완료된 투표</button>
+      </div>
+
+      <div class="vote-panel hidden" id="voteCreatePanel">
+        <div class="vote-form-grid">
+          <input id="voteQuestionInput" type="text" placeholder="질문 예: 이번 주말에 뭐 먹을까?" />
+          <textarea id="voteDescriptionInput" placeholder="설명(선택) 예: 토요일 저녁 메뉴를 정해요"></textarea>
+        </div>
+        <div class="vote-options-builder" id="voteOptionsBuilder">
+          <div class="vote-option-row"><input class="vote-option-input" id="voteOption1" type="text" placeholder="선택지 1" /></div>
+          <div class="vote-option-row"><input class="vote-option-input" id="voteOption2" type="text" placeholder="선택지 2" /></div>
+          <div class="vote-option-row"><input class="vote-option-input" id="voteOption3" type="text" placeholder="선택지 3 (선택)" /><button class="vote-option-remove-btn" type="button" onclick="removeVoteOption(this)">－</button></div>
+          <div class="vote-option-row"><input class="vote-option-input" id="voteOption4" type="text" placeholder="선택지 4 (선택)" /><button class="vote-option-remove-btn" type="button" onclick="removeVoteOption(this)">－</button></div>
+        </div>
+        <button class="vote-option-add-btn" type="button" onclick="addVoteOptionField()">＋ 선택지 추가</button>
+        <div class="calendar-form-actions">
+          <button class="board-save-btn" onclick="createFamilyVote()">투표 생성</button>
+        </div>
+        <div class="board-mini-note">아빠 / 엄마 / 축복 / 하동이 모두 참여할 수 있는 가족 투표를 만들어요.</div>
+      </div>
+
+      <div class="vote-panel" id="voteOpenPanel">
+        <div id="openVotesList" class="vote-empty">진행 중인 투표가 없어요.</div>
+      </div>
+
+      <div class="vote-panel hidden" id="voteDonePanel">
+        <div id="doneVotesList" class="vote-empty">완료된 투표가 아직 없어요.</div>
+      </div>
+    </div>
 
     <div class="calendar-section">
       <div class="calendar-header">
@@ -1175,6 +1428,7 @@
       <div class="card"><button class="menu-btn" onclick="startPlaneGame()">비행기</button></div>
       <div class="card"><button class="menu-btn" onclick="startTetrisGame()">테트리스</button></div>
       <div class="card"><button class="menu-btn" onclick="startBrickGame()">벽돌깨기</button></div>
+      <div class="card"><button class="menu-btn" onclick="startSnakeGame()">스네이크</button></div>
     </div>
     <div class="mini-ranking-board">
       <div class="mini-ranking-title">🎮 미니게임 랭킹 게시판</div>
@@ -1237,7 +1491,7 @@
     </div>
     <canvas id="gameCanvas" width="900" height="500"></canvas>
     <div class="tetris-controls-wrap">
-      <div class="mobile-controls">
+      <div class="mobile-controls" id="standardControlsRow">
         <button class="control-btn" id="leftControlBtn">◀ 왼쪽</button>
         <button class="control-btn" id="rightControlBtn">오른쪽 ▶</button>
       </div>
@@ -1245,6 +1499,18 @@
         <button class="control-btn" id="dropControlBtn">⤓ 빠르게 내리기</button>
         <button class="control-btn" id="rotateControlBtn">↻ 회전</button>
       </div>
+    </div>
+    <div class="snake-dpad hidden" id="snakeControlsRow">
+      <button class="control-btn snake-up" id="snakeUpBtn">▲ 위</button>
+      <button class="control-btn snake-left" id="snakeLeftBtn">◀</button>
+      <button class="control-btn snake-down" id="snakeDownBtn">▼ 아래</button>
+      <button class="control-btn snake-right" id="snakeRightBtn">▶</button>
+    </div>
+    <div class="snake-dpad hidden" id="arcadeDpadRow">
+      <button class="control-btn snake-up" id="arcadeUpBtn">▲ 위</button>
+      <button class="control-btn snake-left" id="arcadeLeftBtn">◀</button>
+      <button class="control-btn snake-down" id="arcadeDownBtn">▼ 아래</button>
+      <button class="control-btn snake-right" id="arcadeRightBtn">▶</button>
     </div>
     <div class="action-row">
       <button class="action-btn" onclick="restartArcadeGame()">다시 시작</button>
@@ -1450,6 +1716,9 @@
     let grammarUsedKeys = new Set();
     let userCalendarSchedules = {};
     let boardPosts = [];
+    let familyVotes = [];
+    let currentVoteTab = 'open';
+    let voteOptionCounter = 4;
     let mathCurrentIdx = 1;
     const mathTotalPages = 6;
 
@@ -1697,7 +1966,8 @@
         });
       }
       detail.innerHTML = html;
-      renderFamilyCalendar();
+      switchVoteTab('open');
+    renderFamilyCalendar();
     }
 
     async function addUserCalendarSchedule() {
@@ -1734,6 +2004,247 @@
       } catch (error) {
         console.error('일정 저장 실패:', error);
         alert('일정 저장 중 오류가 발생했습니다. Firebase 설정과 Firestore 권한을 확인해 주세요.');
+      }
+    }
+
+    function switchVoteTab(tab) {
+      currentVoteTab = tab;
+      document.getElementById('voteCreatePanel').classList.toggle('hidden', tab !== 'create');
+      document.getElementById('voteOpenPanel').classList.toggle('hidden', tab !== 'open');
+      document.getElementById('voteDonePanel').classList.toggle('hidden', tab !== 'done');
+      document.getElementById('voteTabCreate').classList.toggle('active', tab === 'create');
+      document.getElementById('voteTabOpen').classList.toggle('active', tab === 'open');
+      document.getElementById('voteTabDone').classList.toggle('active', tab === 'done');
+    }
+
+    function getFamilyMemberNames() {
+      return ['아빠', '엄마', '축복', '하동'];
+    }
+
+    function getVoteCounts(vote) {
+      const counts = {};
+      vote.options.forEach(option => { counts[option] = 0; });
+      Object.values(vote.votes || {}).forEach(entry => {
+        const selected = typeof entry === 'string' ? entry : entry?.option;
+        if (counts[selected] !== undefined) counts[selected] += 1;
+      });
+      return counts;
+    }
+
+    function isVoteCompleted(vote) {
+      const members = getFamilyMemberNames();
+      return members.every(member => Boolean(vote.votes && vote.votes[member]));
+    }
+
+    function getVoteEntry(vote, member) {
+      const entry = vote?.votes?.[member];
+      if (!entry) return null;
+      return typeof entry === 'string' ? { option: entry, votedAtText: '' } : entry;
+    }
+
+    function getVoteCompletedAtText(vote) {
+      if (vote.completedAtText) return vote.completedAtText;
+      const entries = Object.values(vote.votes || {}).map(entry => typeof entry === 'string' ? null : entry).filter(Boolean);
+      if (!entries.length) return '';
+      const last = entries.map(entry => entry.votedAtText).filter(Boolean).sort().slice(-1)[0];
+      return last || '';
+    }
+
+    function renderFamilyVotes() {
+      const openList = document.getElementById('openVotesList');
+      const doneList = document.getElementById('doneVotesList');
+      if (!openList || !doneList) return;
+
+      const openVotes = familyVotes.filter(vote => !isVoteCompleted(vote));
+      const doneVotes = familyVotes.filter(vote => isVoteCompleted(vote));
+
+      if (openVotes.length === 0) {
+        openList.innerHTML = '<div class="vote-empty">진행 중인 투표가 없어요.</div>';
+      } else {
+        openList.innerHTML = openVotes.map(vote => {
+          const members = getFamilyMemberNames();
+          const counts = getVoteCounts(vote);
+          const pendingMembers = members.filter(member => !(vote.votes && vote.votes[member]));
+          const selectedMember = vote.selectedMember || members[0];
+          return `
+            <div class="vote-card">
+              <div class="vote-question">${vote.question}</div>
+              <div class="vote-meta">${vote.description || '설명 없음'} · 생성일 ${vote.createdAtText || '방금 전'}</div>
+              <div class="vote-meta">아직 투표하지 않은 사람: ${pendingMembers.join(', ') || '없음'}</div>
+              <div class="vote-member-buttons">
+                ${members.map(member => {
+                  const entry = getVoteEntry(vote, member);
+                  const timeText = entry?.votedAtText || '미투표';
+                  return `
+                    <div>
+                      <button class="vote-member-btn ${selectedMember === member ? 'active' : ''}" onclick="selectVoteMember('${vote.id}', '${member}')">${member === '하동' ? '하동이' : member}</button>
+                      <div class="vote-member-time">${timeText}</div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+              <div class="vote-options-list">
+                ${vote.options.map(option => `<button class="vote-option-btn" onclick="submitFamilyVote('${vote.id}', '${option.replace(/'/g, "\'")}')">${option} (${counts[option] || 0}표)</button>`).join('')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (doneVotes.length === 0) {
+        doneList.innerHTML = '<div class="vote-empty">완료된 투표가 아직 없어요.</div>';
+      } else {
+        doneList.innerHTML = doneVotes.map(vote => {
+          const members = getFamilyMemberNames();
+          const counts = getVoteCounts(vote);
+          const totalVotes = members.length;
+          const completedAtText = getVoteCompletedAtText(vote);
+          return `
+            <div class="vote-card">
+              <div class="vote-completed-badge">✅ 완료된 투표</div>
+              <div class="vote-question">${vote.question}</div>
+              <div class="vote-meta">${vote.description || '설명 없음'} · 생성일 ${vote.createdAtText || '방금 전'}</div>
+              <div class="vote-complete-time">투표 완료일/시간: ${completedAtText || '기록 없음'}</div>
+              <div class="vote-options-list">
+                ${vote.options.map(option => {
+                  const count = counts[option] || 0;
+                  const percent = totalVotes ? Math.round((count / totalVotes) * 100) : 0;
+                  return `
+                    <div class="vote-option-result">
+                      <div><strong>${option}</strong> · ${count}표 (${percent}%)</div>
+                      <div class="vote-progress"><div class="vote-progress-bar" style="width:${percent}%"></div></div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+              <div class="vote-member-votes">
+                ${members.map(member => {
+                  const entry = getVoteEntry(vote, member);
+                  return `<div>• ${member === '하동' ? '하동이' : member}: ${entry?.option || '미참여'} ${entry?.votedAtText ? `(${entry.votedAtText})` : ''}</div>`;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function addVoteOptionField() {
+      voteOptionCounter += 1;
+      const builder = document.getElementById('voteOptionsBuilder');
+      const row = document.createElement('div');
+      row.className = 'vote-option-row';
+      row.innerHTML = `<input class="vote-option-input" id="voteOption${voteOptionCounter}" type="text" placeholder="선택지 ${voteOptionCounter} (선택)" /><button class="vote-option-remove-btn" type="button" onclick="removeVoteOption(this)">－</button>`;
+      builder.appendChild(row);
+    }
+
+    function removeVoteOption(button) {
+      const builder = document.getElementById('voteOptionsBuilder');
+      if (!builder) return;
+      const rows = builder.querySelectorAll('.vote-option-row');
+      if (rows.length <= 2) {
+        alert('선택지는 최소 2개가 필요해요.');
+        return;
+      }
+      const row = button.closest('.vote-option-row');
+      if (row) row.remove();
+    }
+
+    function resetVoteOptionFields() {
+      const builder = document.getElementById('voteOptionsBuilder');
+      if (!builder) return;
+      builder.innerHTML = `
+        <div class="vote-option-row"><input class="vote-option-input" id="voteOption1" type="text" placeholder="선택지 1" /></div>
+        <div class="vote-option-row"><input class="vote-option-input" id="voteOption2" type="text" placeholder="선택지 2" /></div>
+        <div class="vote-option-row"><input class="vote-option-input" id="voteOption3" type="text" placeholder="선택지 3 (선택)" /><button class="vote-option-remove-btn" type="button" onclick="removeVoteOption(this)">－</button></div>
+        <div class="vote-option-row"><input class="vote-option-input" id="voteOption4" type="text" placeholder="선택지 4 (선택)" /><button class="vote-option-remove-btn" type="button" onclick="removeVoteOption(this)">－</button></div>
+      `;
+      voteOptionCounter = 4;
+    }
+
+    async function createFamilyVote() {
+      const question = document.getElementById('voteQuestionInput').value.trim();
+      const description = document.getElementById('voteDescriptionInput').value.trim();
+      const options = Array.from(document.querySelectorAll('#voteOptionsBuilder .vote-option-input'))
+        .map(input => input.value.trim())
+        .filter(Boolean);
+      if (!question) {
+        alert('투표 질문을 입력해 주세요.');
+        return;
+      }
+      if (options.length < 2) {
+        alert('선택지는 2개 이상 입력해 주세요.');
+        return;
+      }
+      const payload = {
+        question,
+        description,
+        options,
+        votes: {},
+        selectedMember: '아빠',
+        status: 'open',
+        createdAt: serverTimestamp(),
+        createdAtText: formatDateTime(new Date()),
+        completedAt: null,
+        completedAtText: ''
+      };
+      try {
+        if (db) {
+          await addDoc(collection(db, 'familyVotes'), payload);
+        } else {
+          familyVotes.unshift({ id: `local-${Date.now()}`, ...payload });
+          renderFamilyVotes();
+        }
+        document.getElementById('voteQuestionInput').value = '';
+        document.getElementById('voteDescriptionInput').value = '';
+        resetVoteOptionFields();
+        switchVoteTab('open');
+      } catch (error) {
+        console.error('투표 생성 실패:', error);
+        alert('투표 생성 중 오류가 발생했습니다.');
+      }
+    }
+
+    function selectVoteMember(voteId, member) {
+      const targetVote = familyVotes.find(vote => vote.id === voteId);
+      if (!targetVote) return;
+      targetVote.selectedMember = member;
+      renderFamilyVotes();
+    }
+
+    async function submitFamilyVote(voteId, option) {
+      const targetVote = familyVotes.find(vote => vote.id === voteId);
+      if (!targetVote) return;
+      const member = targetVote.selectedMember || getFamilyMemberNames()[0];
+      if (!member) {
+        alert('가족 구성원을 선택해 주세요.');
+        return;
+      }
+      const voteEntry = {
+        option,
+        votedAtText: formatDateTime(new Date())
+      };
+      const updatedVotes = { ...(targetVote.votes || {}), [member]: voteEntry };
+      const completed = getFamilyMemberNames().every(name => Boolean(updatedVotes[name]));
+      const completedAtText = completed ? formatDateTime(new Date()) : '';
+      try {
+        if (db) {
+          const { doc, updateDoc } = await import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js');
+          await updateDoc(doc(db, 'familyVotes', voteId), {
+            votes: updatedVotes,
+            status: completed ? 'done' : 'open',
+            completedAt: completed ? serverTimestamp() : null,
+            completedAtText
+          });
+        } else {
+          targetVote.votes = updatedVotes;
+          targetVote.status = completed ? 'done' : 'open';
+          targetVote.completedAtText = completedAtText;
+          renderFamilyVotes();
+        }
+      } catch (error) {
+        console.error('투표 저장 실패:', error);
+        alert('투표 저장 중 오류가 발생했습니다.');
       }
     }
 
@@ -1781,6 +2292,26 @@
         });
         renderFamilyCalendar();
         if (selectedCalendarDate) showCalendarDetail(selectedCalendarDate);
+      });
+
+      const voteQuery = query(collection(db, 'familyVotes'), orderBy('createdAt', 'desc'));
+      onSnapshot(voteQuery, snapshot => {
+        familyVotes = snapshot.docs.map(docSnap => {
+          const data = docSnap.data();
+          const created = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
+          return {
+            id: docSnap.id,
+            question: data.question || '',
+            description: data.description || '',
+            options: Array.isArray(data.options) ? data.options : [],
+            votes: data.votes || {},
+            selectedMember: data.selectedMember || '아빠',
+            status: data.status || 'open',
+            createdAtText: data.createdAtText || formatDateTime(created),
+            completedAtText: data.completedAtText || ''
+          };
+        });
+        renderFamilyVotes();
       });
 
       const boardQuery = query(collection(db, 'familyBoardPosts'), orderBy('createdAt', 'desc'));
@@ -2380,7 +2911,8 @@
         { key: 'car', label: '🚗 자동차 피하기' },
         { key: 'plane', label: '✈️ 비행기' },
         { key: 'tetris', label: '🧩 테트리스' },
-        { key: 'brick', label: '🧱 벽돌깨기' }
+        { key: 'brick', label: '🧱 벽돌깨기' },
+        { key: 'snake', label: '🐍 스네이크' }
       ];
       board.innerHTML = gameDefs.map(def => {
         const rows = arcadeRankings
@@ -2438,6 +2970,7 @@
       if (gameKey === 'plane') return '미니 비행기 Game';
       if (gameKey === 'tetris') return '테트리스';
       if (gameKey === 'brick') return '벽돌깨기';
+      if (gameKey === 'snake') return '스네이크';
       return '미니게임';
     }
 
@@ -2517,6 +3050,8 @@
 
     function goMenu() {
       setTetrisControlsVisible(false);
+      setSnakeControlsVisible(false);
+      setArcadeDpadVisible(false);
       setStandardArcadeControlsVisible(false);
       closeRankingModal();
       stopArcadeLoop();
@@ -2575,13 +3110,14 @@
     let tetrisDropCounter = 0;
     let tetrisDropInterval = 700;
     let lastFrameTime = 0;
-    let bestScores = { car: 0, plane: 0, tetris: 0, brick: 0 };
+    let bestScores = { car: 0, plane: 0, tetris: 0, brick: 0, snake: 0 };
     let arcadeRankings = [];
     let rankingSubmittedForGameOver = false;
     let pendingRankingScore = null;
     let keys = {};
     let player, obstacles, stars, speed, gameOver, spawnTick, bgOffset;
     let brickPaddle, brickBall, brickBlocks;
+    let snakeCells, snakeDir, snakeNextDir, snakeFood, snakeGridSize, snakeMoveCounter, snakeMoveInterval;
 
     document.addEventListener('keydown', e => {
       const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
@@ -2604,11 +3140,22 @@
           e.preventDefault();
         }
       }
+      if (activeArcade === 'snake' && !isTypingField && !gameOver) {
+        updateSnakeDirectionFromKey(e.key);
+      }
       if (!isTypingField && ['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key)) {
         e.preventDefault();
       }
     });
     document.addEventListener('keyup', e => { keys[e.key] = false; });
+
+    function updateSnakeDirectionFromKey(keyName) {
+      if (activeArcade !== 'snake' || gameOver) return;
+      if (keyName === 'ArrowLeft' && snakeDir.x !== 1) snakeNextDir = { x: -1, y: 0 };
+      else if (keyName === 'ArrowRight' && snakeDir.x !== -1) snakeNextDir = { x: 1, y: 0 };
+      else if (keyName === 'ArrowUp' && snakeDir.y !== 1) snakeNextDir = { x: 0, y: -1 };
+      else if (keyName === 'ArrowDown' && snakeDir.y !== -1) snakeNextDir = { x: 0, y: 1 };
+    }
 
     function bindControlButton(buttonId, keyName) {
       const btn = document.getElementById(buttonId);
@@ -2617,8 +3164,16 @@
         if (activeArcade === 'tetris' && !gameOver) {
           if (keyName === 'ArrowLeft') moveTetris(-1, 0);
           if (keyName === 'ArrowRight') moveTetris(1, 0);
+          if (keyName === 'ArrowUp') rotateCurrentTetris();
+          if (keyName === 'ArrowDown') {
+            hardDropTetrisStep();
+            arcadeScore += 1;
+          }
           updateArcadeHud();
           return;
+        }
+        if (activeArcade === 'snake') {
+          updateSnakeDirectionFromKey(keyName);
         }
         keys[keyName] = true;
       };
@@ -2633,6 +3188,14 @@
 
     bindControlButton('leftControlBtn', 'ArrowLeft');
     bindControlButton('rightControlBtn', 'ArrowRight');
+    bindControlButton('snakeLeftBtn', 'ArrowLeft');
+    bindControlButton('snakeRightBtn', 'ArrowRight');
+    bindControlButton('snakeUpBtn', 'ArrowUp');
+    bindControlButton('snakeDownBtn', 'ArrowDown');
+    bindControlButton('arcadeUpBtn', 'ArrowUp');
+    bindControlButton('arcadeDownBtn', 'ArrowDown');
+    bindControlButton('arcadeLeftBtn', 'ArrowLeft');
+    bindControlButton('arcadeRightBtn', 'ArrowRight');
 
     document.getElementById('rotateControlBtn').addEventListener('click', () => {
       if (activeArcade === 'tetris' && !gameOver) {
@@ -2674,9 +3237,12 @@
       } else if (type === 'tetris') {
         player = null;
         initTetris();
-      } else {
+      } else if (type === 'brick') {
         player = null;
         initBrickGame();
+      } else {
+        player = null;
+        initSnakeGame();
       }
       updateArcadeHud();
     }
@@ -2694,11 +3260,22 @@
     }
 
     function setStandardArcadeControlsVisible(isVisible) {
-      document.getElementById('leftControlBtn').parentElement.classList.toggle('standard-layout', isVisible);
+      document.getElementById('standardControlsRow').classList.toggle('hidden', !isVisible);
+      document.getElementById('standardControlsRow').classList.toggle('standard-layout', isVisible);
+    }
+
+    function setSnakeControlsVisible(isVisible) {
+      document.getElementById('snakeControlsRow').classList.toggle('hidden', !isVisible);
+    }
+
+    function setArcadeDpadVisible(isVisible) {
+      document.getElementById('arcadeDpadRow').classList.toggle('hidden', !isVisible);
     }
 
     function startCarGame() {
       setTetrisControlsVisible(false);
+      setSnakeControlsVisible(false);
+      setArcadeDpadVisible(false);
       setStandardArcadeControlsVisible(true);
       document.getElementById('arcadeTitle').textContent = '미니 자동차 피하기 Game';
       document.getElementById('rankingTitle').textContent = '자동차 게임 랭킹';
@@ -2710,7 +3287,9 @@
 
     function startPlaneGame() {
       setTetrisControlsVisible(false);
-      setStandardArcadeControlsVisible(true);
+      setSnakeControlsVisible(false);
+      setArcadeDpadVisible(true);
+      setStandardArcadeControlsVisible(false);
       document.getElementById('arcadeTitle').textContent = '미니 비행기 Game';
       document.getElementById('rankingTitle').textContent = '비행기 게임 랭킹';
       document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 비행기를 움직여 장애물을 피하세요.';
@@ -2721,6 +3300,8 @@
 
     function startTetrisGame() {
       setTetrisControlsVisible(true);
+      setSnakeControlsVisible(false);
+      setArcadeDpadVisible(true);
       setStandardArcadeControlsVisible(false);
       document.getElementById('arcadeTitle').textContent = '테트리스';
       document.getElementById('rankingTitle').textContent = '테트리스 랭킹';
@@ -2732,12 +3313,27 @@
 
     function startBrickGame() {
       setTetrisControlsVisible(false);
+      setSnakeControlsVisible(false);
+      setArcadeDpadVisible(false);
       setStandardArcadeControlsVisible(true);
       document.getElementById('arcadeTitle').textContent = '벽돌깨기';
       document.getElementById('rankingTitle').textContent = '벽돌깨기 랭킹';
       document.getElementById('arcadeHelp').innerHTML = '← → 방향키 또는 아래 버튼으로 패들을 움직여 공을 튕기고 벽돌을 모두 깨보세요.';
       showScreen('arcadeScreen');
       resetArcadeBase('brick');
+      runArcadeLoop();
+    }
+
+    function startSnakeGame() {
+      setTetrisControlsVisible(false);
+      setStandardArcadeControlsVisible(false);
+      setSnakeControlsVisible(true);
+      setArcadeDpadVisible(false);
+      document.getElementById('arcadeTitle').textContent = '스네이크';
+      document.getElementById('rankingTitle').textContent = '스네이크 랭킹';
+      document.getElementById('arcadeHelp').innerHTML = '← ↑ ↓ → 방향키 또는 아래 버튼으로 움직이며 먹이를 먹어 몸을 늘려보세요.';
+      showScreen('arcadeScreen');
+      resetArcadeBase('snake');
       runArcadeLoop();
     }
 
@@ -2966,6 +3562,86 @@
       ctx.fillText('벽돌을 모두 깨면 보너스 +200점', 24, 28);
     }
 
+    function initSnakeGame() {
+      snakeGridSize = 20;
+      snakeCells = [
+        { x: 12, y: 12 },
+        { x: 11, y: 12 },
+        { x: 10, y: 12 }
+      ];
+      snakeDir = { x: 1, y: 0 };
+      snakeNextDir = { x: 1, y: 0 };
+      snakeMoveCounter = 0;
+      snakeMoveInterval = 120;
+      placeSnakeFood();
+    }
+
+    function placeSnakeFood() {
+      const cols = Math.floor(canvas.width / snakeGridSize);
+      const rows = Math.floor(canvas.height / snakeGridSize);
+      let placed = false;
+      while (!placed) {
+        const fx = Math.floor(Math.random() * cols);
+        const fy = Math.floor(Math.random() * rows);
+        const onSnake = snakeCells.some(cell => cell.x === fx && cell.y === fy);
+        if (!onSnake) {
+          snakeFood = { x: fx, y: fy };
+          placed = true;
+        }
+      }
+    }
+
+    function updateSnakeGame(delta) {
+      snakeMoveCounter += delta;
+      if (snakeMoveCounter < snakeMoveInterval) return;
+      snakeMoveCounter = 0;
+      snakeDir = { ...snakeNextDir };
+      const cols = Math.floor(canvas.width / snakeGridSize);
+      const rows = Math.floor(canvas.height / snakeGridSize);
+      const head = snakeCells[0];
+      const nextHead = { x: head.x + snakeDir.x, y: head.y + snakeDir.y };
+      if (nextHead.x < 0 || nextHead.y < 0 || nextHead.x >= cols || nextHead.y >= rows) {
+        triggerArcadeGameOver();
+        return;
+      }
+      if (snakeCells.some(cell => cell.x === nextHead.x && cell.y === nextHead.y)) {
+        triggerArcadeGameOver();
+        return;
+      }
+      snakeCells.unshift(nextHead);
+      if (nextHead.x === snakeFood.x && nextHead.y === snakeFood.y) {
+        arcadeScore += 10;
+        placeSnakeFood();
+      } else {
+        snakeCells.pop();
+      }
+    }
+
+    function drawSnakeGame() {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const cols = Math.floor(canvas.width / snakeGridSize);
+      const rows = Math.floor(canvas.height / snakeGridSize);
+      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+      for (let x = 0; x < cols; x++) {
+        for (let y = 0; y < rows; y++) {
+          ctx.strokeRect(x * snakeGridSize, y * snakeGridSize, snakeGridSize, snakeGridSize);
+        }
+      }
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath();
+      ctx.arc(snakeFood.x * snakeGridSize + snakeGridSize / 2, snakeFood.y * snakeGridSize + snakeGridSize / 2, snakeGridSize / 2.8, 0, Math.PI * 2);
+      ctx.fill();
+      snakeCells.forEach((cell, index) => {
+        ctx.fillStyle = index === 0 ? '#22c55e' : '#86efac';
+        ctx.fillRect(cell.x * snakeGridSize + 1, cell.y * snakeGridSize + 1, snakeGridSize - 2, snakeGridSize - 2);
+      });
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = '16px Arial';
+      ctx.fillText('먹이를 먹을 때마다 +10점', 20, 28);
+    }
+
     const TETRIS_SHAPES = {
       I: [[1,1,1,1]],
       O: [[1,1],[1,1]],
@@ -3113,6 +3789,12 @@
         return;
       }
 
+      if (activeArcade === 'snake') {
+        updateSnakeGame(delta);
+        updateArcadeHud();
+        return;
+      }
+
       spawnTick++;
       bgOffset += speed;
       if (activeArcade === 'car' && spawnTick % 28 === 0) spawnObstacle();
@@ -3155,6 +3837,7 @@
       if (activeArcade === 'car') drawCarBackground();
       else if (activeArcade === 'plane') drawPlaneBackground();
       else if (activeArcade === 'brick') drawBrickGame();
+      else if (activeArcade === 'snake') drawSnakeGame();
       else drawTetrisBackground();
 
       if (activeArcade === 'car' || activeArcade === 'plane') {
@@ -3286,6 +3969,7 @@
     subscribeFirebaseData();
     renderFamilyCalendar();
     renderBoardPosts();
+    renderFamilyVotes();
     renderMiniGameRankingBoard();
     resetMathBook();
     showScreen('menuScreen');
@@ -3309,6 +3993,7 @@
     window.startPlaneGame = startPlaneGame;
     window.startTetrisGame = startTetrisGame;
     window.startBrickGame = startBrickGame;
+    window.startSnakeGame = startSnakeGame;
     window.restartArcadeGame = restartArcadeGame;
     window.nextQuizStage = nextQuizStage;
     window.submitTypingAnswer = submitTypingAnswer;
@@ -3326,6 +4011,12 @@
     window.closeRankingModal = closeRankingModal;
     window.submitRankingModal = submitRankingModal;
     window.renderMiniGameRankingBoard = renderMiniGameRankingBoard;
+    window.switchVoteTab = switchVoteTab;
+    window.createFamilyVote = createFamilyVote;
+    window.submitFamilyVote = submitFamilyVote;
+    window.selectVoteMember = selectVoteMember;
+    window.addVoteOptionField = addVoteOptionField;
+    window.removeVoteOption = removeVoteOption;
 
     console.assert(typeof startMathConceptBook === 'function', 'startMathConceptBook should exist');
     console.assert(typeof goChukbokMenu === 'function', 'goChukbokMenu should exist');
@@ -3343,6 +4034,13 @@
     console.assert(typeof submitRankingModal === 'function', 'submitRankingModal should exist');
     console.assert(typeof startTetrisGame === 'function', 'startTetrisGame should exist');
     console.assert(typeof startBrickGame === 'function', 'startBrickGame should exist');
+    console.assert(typeof startSnakeGame === 'function', 'startSnakeGame should exist');
+    console.assert(typeof setArcadeDpadVisible === 'function', 'setArcadeDpadVisible should exist');
+    console.assert(typeof updateSnakeDirectionFromKey === 'function', 'updateSnakeDirectionFromKey should exist');
+    console.assert(typeof createFamilyVote === 'function', 'createFamilyVote should exist');
+    console.assert(typeof submitFamilyVote === 'function', 'submitFamilyVote should exist');
+    console.assert(typeof selectVoteMember === 'function', 'selectVoteMember should exist');
+    console.assert(typeof addVoteOptionField === 'function', 'addVoteOptionField should exist');
   </script>
 
 </body>
