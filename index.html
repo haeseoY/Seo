@@ -1414,7 +1414,12 @@
     <div class="menu-grid">
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocab2930Game()">영단어 확인(29/30)</button></div>
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocabGame()">영단어 확인(27/28)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab34Game()">영단어 확인(3/4)</button></div>
       <div class="card"><button class="menu-btn" onclick="startWordMaster2930Study()">영단어 암기(29/30)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMasterStudy()">영단어 암기(27/28)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster34Study()">영단어 암기(3/4)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster56Study()">영단어 암기(5/6)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab56Game()">영단어 확인(5/6)</button></div>
     </div>
     <div class="action-row" style="justify-content:center;">
       <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
@@ -1535,6 +1540,30 @@
     </div>
   </div>
 
+  <div id="masterScreen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Day 27 &amp; Day 28 Vocabulary</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllMaster('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllMaster('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetMaster()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 27/28 · Vocabulary List</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="masterTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="master2930Screen" class="screen hidden">
     <div class="master-wrap">
       <div class="master-header">
@@ -1562,6 +1591,72 @@
           <table class="master-table">
             <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th style="width:90px;text-align:center;">Part</th><th>Meaning</th></tr></thead>
             <tbody id="master2930Table30"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="master34Screen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Day 3 (감정) &amp; Day 4 (음식/요리)</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllMaster34('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllMaster34('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetMaster34()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 3 · Mood &amp; Emotion</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master34Table3"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 4 · Food &amp; Cooking</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master34Table4"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="master56Screen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Day 5 (의류/패션) &amp; Day 6 (집/생활)</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllMaster56('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllMaster56('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetMaster56()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 5 · Clothes &amp; Fashion</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master56Table5"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 6 · Home &amp; Daily Life</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master56Table6"></tbody>
           </table>
         </div>
       </div>
@@ -1696,6 +1791,8 @@
     const TOTAL_STAGES = 1000;
     const WEEKLY_VOCAB_TOTAL = 60;
     const WEEKLY_VOCAB_2930_TOTAL = 60;
+    const WEEKLY_VOCAB_34_TOTAL = 60;
+    const WEEKLY_VOCAB_56_TOTAL = 60;
     const HADONG_STAGE5_TOTAL = 30;
     const HADONG_STAGE6_TOTAL = 30;
 
@@ -1711,6 +1808,8 @@
     let wordOrder = [];
     let weeklyWordOrder = [];
     let weekly2930WordOrder = [];
+    let weekly34WordOrder = [];
+    let weekly56WordOrder = [];
     let hadongWordOrder = [];
     let hadongStage6WordOrder = [];
     let grammarUsedKeys = new Set();
@@ -1812,6 +1911,132 @@
       ['hesitate', '주저하다, 망설이다'], ['suppose', '1. 가정하다, 상상하다 2. ~라고 생각하다'], ['combine', '결합시키다'], ['keep in touch with', '1. ~와 접촉[연락]을 유지하다 2. 계속 접촉[대응]하다'], ['cut in', '남의 대화에 끼어들다, 남의 말을 자르다']
     ];
 
+    const weeklyVocab34Data = [
+      ['mood', '기분, 분위기'],
+      ['sorrow', '슬픔, 비애'],
+      ['emotion', '감정'],
+      ['anxious', '1. 불안해하는, 걱정하는 2. 갈망하는'],
+      ['ashamed', '부끄러워하는'],
+      ['depression', '1. 우울 2. 불경기'],
+      ['weep', '울다'],
+      ['annoy', '짜증 나게 하다, 귀찮게 하다'],
+      ['relieve', '완화하다, 긴장을 풀게 하다'],
+      ['amaze', '놀라게 하다'],
+      ['sentiment', '감정, 정서'],
+      ['envy', '부러워하다; 부러움, 질투'],
+      ['jealous', '부러워하는, 질투하는'],
+      ['nerve', '1. 신경 2. 용기'],
+      ['temper', '성질, 기질, 화'],
+      ['resent', '화를 내다, 분개하다'],
+      ['desperate', '필사적인, 절망적인'],
+      ['awful', '지독한, 아주 심한'],
+      ['miserable', '비참한, 불행한'],
+      ['disgust', '역겹게 하다; 반감, 혐오감'],
+      ['astound', '놀라게 하다'],
+      ['frighten', '겁먹게 하다, 놀라게 하다'],
+      ['panic', '당황하다, 공포에 질리다; 당황, 공포'],
+      ['scream', '비명; 소리 지르다'],
+      ['sympathy', '동정, 공감'],
+      ['ridicule', '비웃다, 조롱하다; 비웃음, 조롱'],
+      ['warm-hearted', '마음이 따뜻한, 친절한'],
+      ['burst into', '갑자기 ~을 터뜨리다, 내뿜다'],
+      ['be tired of', '~에 신물이 나다, 난더리 나다'],
+      ['put up with', '~을 참다, 참고 견디다'],
+      ['fiber', '섬유, 섬유질'],
+      ['contain', '담고 있다, 포함하다'],
+      ['instant', '1. 즉석 요리의 2. 즉각적인; 순간'],
+      ['peel', '(과일·채소 등의) 껍질을 벗기다; 껍질'],
+      ['nourish', '영양분을 공급하다, (사람·생물을) 기르다'],
+      ['chop', '자르다, 썰다'],
+      ['grind', '잘게 갈다[빻다], 가루로 만들다'],
+      ['roast', '굽다, 볶다; 구운'],
+      ['rotten', '썩은, 부패한'],
+      ['cuisine', '요리'],
+      ['raw', '1. 날것의 2. 가공하지 않은'],
+      ['grill', '석쇠; 석쇠에 굽다'],
+      ['edible', '먹을 수 있는'],
+      ['nutrition', '영양, 영양물 섭취'],
+      ['vegetarian', '채식주의자; 채식주의(자)의'],
+      ['dairy', '우유의, 유제품의; 유제품 판매점'],
+      ['kettle', '주전자'],
+      ['tray', '쟁반'],
+      ['seasoning', '조미료, 양념'],
+      ['flavor', '(재료 특유의) 맛과 향; 풍미를 더하다'],
+      ['scent', '향기'],
+      ['leftover', '남은; 남은 음식'],
+      ['swallow', '삼키다; 삼키기'],
+      ['beverage', '음료'],
+      ['squeeze', '짜다, 압착하다'],
+      ['ripen', '익다; 익히다'],
+      ['paste', '1. 반죽 2. 풀; 붙이다'],
+      ['blend', '1. 섞다 2. 조화되다'],
+      ['go off', '(음식 등이) 상하다, 부패하다'],
+      ['feed on', '~을 먹고 살다']
+    ];
+
+    const weeklyVocab56Data = [
+      ['uniform', '유니폼, 제복; 일정한, 균등한'],
+      ['costume', '1. 의상, 복장 2. 분장'],
+      ['collar', '깃, 칼라'],
+      ['thread', '실; 실을 꿰다'],
+      ['length', '길이, 기간'],
+      ['casual', '1. 격식을 차리지 않은, 평상복의 2. 우연의'],
+      ['fashion', '1. 유행, 인기 2. 패션'],
+      ['loose', '1. 헐거운, 느슨한 2. 풀린, 벗겨진'],
+      ['stripe', '줄무늬'],
+      ['comfort', '1. 편안함 2. 위로, 위안; 편하게 하다, 위로하다'],
+      ['fade', '(색이) 바래다, (색을) 바래게 하다'],
+      ['fold', '(종이·천 등을) 접다'],
+      ['plain', '1. (의복 등이) 수수한, 무늬가 없는 2. 명백한, 분명한'],
+      ['premium', '고가의, 고급의; 할증금, 포상금'],
+      ['formal', '공식적인, 격식을 차린'],
+      ['fancy', '1. 화려한, 장식적인 2. 값비싼'],
+      ['outfit', '(특별한 날 입는) 옷, 의상 한 벌'],
+      ['sew', '바느질하다, (바느질로) 만들다'],
+      ['alter', '변경하다, (옷을) 고쳐 만들다'],
+      ['trousers', '바지'],
+      ['suit', '정장; 어울리다, 잘 맞다'],
+      ['vest', '조끼'],
+      ['fabric', '1. 천, 직물 2. 직물의 짜임새'],
+      ['cotton', '1. 솜, 면화 2. 면직물, 무명실'],
+      ['fur', '모피'],
+      ['laundry', '1. 세탁물 2. 세탁소'],
+      ['detergent', '세탁 세제, 세정제'],
+      ['dress up', '옷을 갖춰 입다[격식을 차려 입다]'],
+      ['wear out', '많이 써서 낡게 하다, 닳다; 지치게 하다'],
+      ['show off', '~을 과시하다'],
+      ['cottage', '(시골의) 작은 집, 오두막집; (교외의) 작은 주택[별장]'],
+      ['priceless', '값을 매길 수 없는, 대단히 귀중한'],
+      ['tap', '(수도 등의) 꼭지, (통의) 주둥이, 마개'],
+      ['alarm', '1. 경보기 2. 자명종 3. 놀람, 공포; 놀라게 하다'],
+      ['mess', '1. 어질러진 것, 쓰레기 더미 2. 어수선함, 혼란'],
+      ['usual', '평소의, 일상의'],
+      ['routine', '판에 박힌 일, 일과; 일상적인, 판에 박힌'],
+      ['rely', '믿다, 의지[의존]하다'],
+      ['dust', '먼지를 털다; 먼지, 흙'],
+      ['spread', '펴다, 펼치다, 퍼지다'],
+      ['cleanse', '1. 세척하다, 씻다 2. 정화하다'],
+      ['wipe', '닦다, 훔치다, 가볍게 문지르다'],
+      ['mop', '(대걸레로) 닦다; 대걸레'],
+      ['drawer', '1. 서랍 2. (항상 복수형) 장롱'],
+      ['stair', '(보통 복수형) 계단'],
+      ['rubbish', '쓰레기, 폐물'],
+      ['dispose', '처리하다, 처분하다'],
+      ['discard', '(불필요한 것을) 버리다, 처분하다'],
+      ['appliance', '(가정용) 기구, 장치, 전기 제품'],
+      ['spacious', '넓은, 광활한'],
+      ['chore', '(집안의) 자질구레한 일, 허드렛일'],
+      ['polish', '1. 닦다, 광[윤]을 내다 2. (문장 등을) 다듬다'],
+      ['flush', '1. (물·액체 등으로) 씻어 내리다 2. (얼굴을) 붉히다, 상기시키다'],
+      ['nap', '낮잠, 선잠; 낮잠을 자다, 졸다'],
+      ['outlet', '1. 코드 구멍, 콘센트 2. 할인점'],
+      ['trim', '다듬다, 손질하다; 정돈[된 상태]; 잘 정돈된'],
+      ['crack', '깨지다, 금이 가다; 갈라진 금, 틈'],
+      ['leak', '새어 나옴, 누출; 새다, 누출하다'],
+      ['run out of', '~을 다 써 버리다, ~을 바닥내다'],
+      ['hang up', '1. ~을 걸다[매달다] 2. 전화를 끊다']
+    ];
+
     const hadongStage5Data = [
       ['attack', '공격하다'], ['auditorium', '강당'], ['club', '동아리'], ['cooperate', '협력하다'], ['costume', '의상'],
       ['direct', '연출하다'], ['drama', '연극'], ['except', '~를 제외하고'], ['go on', '계속되다'], ['go over', '~을 살펴보다, 점검하다'],
@@ -1829,6 +2054,11 @@
       ['problem', '문제'], ['region', '지역'], ['represent', '대표하다'], ['send [sent]', '보내다'], ['solve', '(문제를) 해결하다'],
       ['stop', '끝내다, 멈추다'], ['strike [struck]', '(재난이) 덮치다'], ['thanks to', '~ 덕분에'], ['volunteer', '자원하다, 자원봉사자'], ['war', '전쟁']
     ];
+
+    const master34Day3Data = weeklyVocab34Data.slice(0, 30).map((item, index) => [61 + index, item[0], item[1]]);
+    const master34Day4Data = weeklyVocab34Data.slice(30).map((item, index) => [91 + index, item[0], item[1]]);
+    const master56Day5Data = weeklyVocab56Data.slice(0, 30).map((item, index) => [121 + index, item[0], item[1]]);
+    const master56Day6Data = weeklyVocab56Data.slice(30).map((item, index) => [151 + index, item[0], item[1]]);
 
     const master2930Day29Data = [
       [841, 'astronaut', 'n', '우주 비행사'], [842, 'solar', 'a', '태양의'], [843, 'remote', 'a', '1. 먼 2. 외진'], [844, 'benefit', 'n', '이익'], [845, 'efficiency', 'n', '효율, 능률'],
@@ -2553,6 +2783,24 @@
       };
     }
 
+    function generateWeeklyVocab34Question() {
+      if (weekly34WordOrder.length === 0) weekly34WordOrder = buildShuffledOrder(weeklyVocab34Data.length);
+      const item = weeklyVocab34Data[weekly34WordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
+    function generateWeeklyVocab56Question() {
+      if (weekly56WordOrder.length === 0) weekly56WordOrder = buildShuffledOrder(weeklyVocab56Data.length);
+      const item = weeklyVocab56Data[weekly56WordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
     function generateHadongStage5Question() {
       if (hadongWordOrder.length === 0) hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
       const item = hadongStage5Data[hadongWordOrder.shift()];
@@ -2575,6 +2823,8 @@
       let total = TOTAL_STAGES;
       if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
       if (currentQuizType === 'weekly-vocab-2930') total = WEEKLY_VOCAB_2930_TOTAL;
+      if (currentQuizType === 'weekly-vocab-34') total = WEEKLY_VOCAB_34_TOTAL;
+      if (currentQuizType === 'weekly-vocab-56') total = WEEKLY_VOCAB_56_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentQuizType === 'hadong-stage6') total = HADONG_STAGE6_TOTAL;
       document.getElementById('stageBox').textContent = `Stage ${currentStage} / ${total}`;
@@ -2601,6 +2851,20 @@
         choicesBox.classList.remove('hidden');
       } else if (currentQuizType === 'weekly-vocab-2930') {
         currentQuestion = generateWeeklyVocab2930Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else if (currentQuizType === 'weekly-vocab-34') {
+        currentQuestion = generateWeeklyVocab34Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else if (currentQuizType === 'weekly-vocab-56') {
+        currentQuestion = generateWeeklyVocab56Question();
         typingPanel.classList.remove('hidden');
         choicesBox.classList.add('hidden');
         answerInput.value = '';
@@ -2671,7 +2935,7 @@
     }
 
     function submitTypingAnswer() {
-      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'hadong-stage5', 'hadong-stage6'].includes(currentQuizType)) return;
+      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'hadong-stage5', 'hadong-stage6'].includes(currentQuizType)) return;
       answered = true;
       const input = document.getElementById('answerInput');
       const userAnswer = normalizeAnswer(input.value);
@@ -2693,6 +2957,8 @@
       let total = TOTAL_STAGES;
       if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
       if (currentQuizType === 'weekly-vocab-2930') total = WEEKLY_VOCAB_2930_TOTAL;
+      if (currentQuizType === 'weekly-vocab-34') total = WEEKLY_VOCAB_34_TOTAL;
+      if (currentQuizType === 'weekly-vocab-56') total = WEEKLY_VOCAB_56_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentStage < total) {
         currentStage += 1;
@@ -2713,9 +2979,76 @@
       document.getElementById('quizScreen').classList.add('hidden');
       document.getElementById('arcadeScreen').classList.add('hidden');
       document.getElementById('mathBookScreen').classList.add('hidden');
+      document.getElementById('masterScreen').classList.add('hidden');
       document.getElementById('master2930Screen').classList.add('hidden');
       document.getElementById('stage6MasterScreen').classList.add('hidden');
+      document.getElementById('master34Screen').classList.add('hidden');
+      document.getElementById('master56Screen').classList.add('hidden');
       document.getElementById(id).classList.remove('hidden');
+    }
+
+    function renderMasterTable() {
+      const body = document.getElementById('masterTable');
+      if (body && !body.dataset.loaded) {
+        body.innerHTML = weeklyVocabData.map((item, index) => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${index + 1}</td>
+            <td class="master-word-cell master-word" onclick="toggleMasterCell(this)">${item[0]}</td>
+            <td class="master-meaning-cell master-meaning" onclick="toggleMasterCell(this)">${item[1]}</td>
+          </tr>
+        `).join('');
+        body.dataset.loaded = 'true';
+      }
+    }
+
+    function renderMaster34Tables() {
+      const body3 = document.getElementById('master34Table3');
+      const body4 = document.getElementById('master34Table4');
+      if (body3 && !body3.dataset.loaded) {
+        body3.innerHTML = master34Day3Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master34-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master34-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body3.dataset.loaded = 'true';
+      }
+      if (body4 && !body4.dataset.loaded) {
+        body4.innerHTML = master34Day4Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master34-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master34-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body4.dataset.loaded = 'true';
+      }
+    }
+
+    function renderMaster56Tables() {
+      const body5 = document.getElementById('master56Table5');
+      const body6 = document.getElementById('master56Table6');
+      if (body5 && !body5.dataset.loaded) {
+        body5.innerHTML = master56Day5Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master56-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master56-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body5.dataset.loaded = 'true';
+      }
+      if (body6 && !body6.dataset.loaded) {
+        body6.innerHTML = master56Day6Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master56-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master56-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body6.dataset.loaded = 'true';
+      }
     }
 
     function renderMaster2930Tables() {
@@ -2772,6 +3105,30 @@
       });
     }
 
+    function toggleAllMaster(type) {
+      toggleMasterGroup(type === 'word' ? '.master-word' : '.master-meaning');
+    }
+
+    function resetMaster() {
+      document.querySelectorAll('.master-word.master-hidden, .master-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
+    function toggleAllMaster34(type) {
+      toggleMasterGroup(type === 'word' ? '.master34-word' : '.master34-meaning');
+    }
+
+    function resetMaster34() {
+      document.querySelectorAll('.master34-word.master-hidden, .master34-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
+    function toggleAllMaster56(type) {
+      toggleMasterGroup(type === 'word' ? '.master56-word' : '.master56-meaning');
+    }
+
+    function resetMaster56() {
+      document.querySelectorAll('.master56-word.master-hidden, .master56-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
     function toggleAllMaster2930(type) {
       toggleMasterGroup(type === 'word' ? '.master2930-word' : '.master2930-meaning');
     }
@@ -2813,6 +3170,27 @@
       window.scrollTo(0, 0);
     }
 
+    function startWordMasterStudy() {
+      renderMasterTable();
+      resetMaster();
+      showScreen('masterScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function startWordMaster34Study() {
+      renderMaster34Tables();
+      resetMaster34();
+      showScreen('master34Screen');
+      window.scrollTo(0, 0);
+    }
+
+    function startWordMaster56Study() {
+      renderMaster56Tables();
+      resetMaster56();
+      showScreen('master56Screen');
+      window.scrollTo(0, 0);
+    }
+
     function startWordMaster2930Study() {
       renderMaster2930Tables();
       resetMaster2930();
@@ -2835,6 +3213,30 @@
       wrongCount = 0;
       weekly2930WordOrder = buildShuffledOrder(weeklyVocab2930Data.length);
       document.getElementById('quizTitle').textContent = '영단어 확인(29/30)';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startWeeklyVocab34Game() {
+      currentQuizType = 'weekly-vocab-34';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      weekly34WordOrder = buildShuffledOrder(weeklyVocab34Data.length);
+      document.getElementById('quizTitle').textContent = '영단어 확인(3/4)';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startWeeklyVocab56Game() {
+      currentQuizType = 'weekly-vocab-56';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      weekly56WordOrder = buildShuffledOrder(weeklyVocab56Data.length);
+      document.getElementById('quizTitle').textContent = '영단어 확인(5/6)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -3979,6 +4381,8 @@
     window.addUserCalendarSchedule = addUserCalendarSchedule;
     window.addBoardPost = addBoardPost;
     window.startWeeklyVocab2930Game = startWeeklyVocab2930Game;
+    window.startWeeklyVocab34Game = startWeeklyVocab34Game;
+    window.startWeeklyVocab56Game = startWeeklyVocab56Game;
     window.goChukbokMenu = goChukbokMenu;
     window.goEnglishMenu = goEnglishMenu;
     window.goMathMenu = goMathMenu;
@@ -4002,10 +4406,19 @@
     window.moveMathPage = moveMathPage;
     window.resetMathBook = resetMathBook;
     window.startWordMaster2930Study = startWordMaster2930Study;
+    window.startWordMasterStudy = startWordMasterStudy;
+    window.startWordMaster34Study = startWordMaster34Study;
+    window.startWordMaster56Study = startWordMaster56Study;
     window.startStage6Master = startStage6Master;
     window.toggleMasterCell = toggleMasterCell;
+    window.toggleAllMaster = toggleAllMaster;
+    window.resetMaster = resetMaster;
     window.toggleAllMaster2930 = toggleAllMaster2930;
     window.resetMaster2930 = resetMaster2930;
+    window.toggleAllMaster34 = toggleAllMaster34;
+    window.resetMaster34 = resetMaster34;
+    window.toggleAllMaster56 = toggleAllMaster56;
+    window.resetMaster56 = resetMaster56;
     window.toggleAllStage6Master = toggleAllStage6Master;
     window.resetStage6Master = resetStage6Master;
     window.closeRankingModal = closeRankingModal;
@@ -4041,6 +4454,15 @@
     console.assert(typeof submitFamilyVote === 'function', 'submitFamilyVote should exist');
     console.assert(typeof selectVoteMember === 'function', 'selectVoteMember should exist');
     console.assert(typeof addVoteOptionField === 'function', 'addVoteOptionField should exist');
+    console.assert(weeklyVocab34Data.length === 60, 'weeklyVocab34Data should contain 60 rows');
+    console.assert(weeklyVocab34Data[0][0] === 'mood' && weeklyVocab34Data[59][0] === 'feed on', 'weeklyVocab34Data should match Day 3/4 vocabulary');
+    console.assert(typeof startWeeklyVocab34Game === 'function', 'startWeeklyVocab34Game should exist');
+    console.assert(typeof startWordMaster34Study === 'function', 'startWordMaster34Study should exist');
+    console.assert(typeof startWordMasterStudy === 'function', 'startWordMasterStudy should exist');
+    console.assert(weeklyVocab56Data.length === 60, 'weeklyVocab56Data should contain 60 rows');
+    console.assert(weeklyVocab56Data[0][0] === 'uniform' && weeklyVocab56Data[59][0] === 'hang up', 'weeklyVocab56Data should match Day 5/6 vocabulary');
+    console.assert(typeof startWeeklyVocab56Game === 'function', 'startWeeklyVocab56Game should exist');
+    console.assert(typeof startWordMaster56Study === 'function', 'startWordMaster56Study should exist');
   </script>
 
 </body>
