@@ -1424,6 +1424,8 @@
       <div class="card"><button class="menu-btn" onclick="startWordMaster34Study()">영단어 암기(3/4)</button></div>
       <div class="card"><button class="menu-btn" onclick="startWordMaster56Study()">영단어 암기(5/6)</button></div>
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocab56Game()">영단어 확인(5/6)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster518Study()">영단어 암기(5/18)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab518Game()">영단어 확인(5/18)</button></div>
     </div>
     <div class="action-row" style="justify-content:center;">
       <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
@@ -1667,6 +1669,39 @@
     </div>
   </div>
 
+  <div id="master518Screen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Day 11 (신문/방송) &amp; Day 12 (형태/성질)</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllMaster518('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllMaster518('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetMaster518()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 11 · News &amp; Media</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master518Table11"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 12 · Shape &amp; Quality</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master518Table12"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="stage6MasterScreen" class="screen hidden">
     <div class="master-wrap">
       <div class="master-header">
@@ -1845,6 +1880,7 @@
     const WEEKLY_VOCAB_2930_TOTAL = 60;
     const WEEKLY_VOCAB_34_TOTAL = 60;
     const WEEKLY_VOCAB_56_TOTAL = 60;
+    const WEEKLY_VOCAB_518_TOTAL = 60;
     const HADONG_STAGE5_TOTAL = 30;
     const HADONG_STAGE6_TOTAL = 30;
     const HADONG_511_TOTAL = 30;
@@ -1864,6 +1900,7 @@
     let weekly2930WordOrder = [];
     let weekly34WordOrder = [];
     let weekly56WordOrder = [];
+    let weekly518WordOrder = [];
     let hadongWordOrder = [];
     let hadongStage6WordOrder = [];
     let hadong511WordOrder = [];
@@ -2093,6 +2130,69 @@
       ['hang up', '1. ~을 걸다[매달다] 2. 전화를 끊다']
     ];
 
+    const weeklyVocab518Data = [
+      ['report', 'ⓥ 보도하다, 전하다 ⓝ 보도, 보고'],
+      ['press', 'ⓝ 신문, 잡지, 언론; 언론인, 기자'],
+      ['article', 'ⓝ (신문·잡지의) 기사, 논설; (문법) 관사'],
+      ['journal', 'ⓝ 잡지, 정기 간행물; (일간) 신문; 일기, 일지'],
+      ['broadcast', 'ⓥ 방송하다, 방영하다 ⓝ 방송, 방영'],
+      ['post', 'ⓥ (안내문 등을) 게시하다, 포스트하다'],
+      ['pose', 'ⓥ (사진 등을 위한) 자세를 취하다 ⓝ 자세, 포즈'],
+      ['scene', 'ⓝ (연극·영화의) 장면, 무대; 현장'],
+      ['survey', 'ⓝ 조사, 검사, 측량 ⓥ 조사하다, 살피보다'],
+      ['mass', 'ⓝ 대중, 집단; 다수, 대량'],
+      ['factual', 'ⓐ 사실의, 사실에 입각한'],
+      ['fame', 'ⓝ 명성, 평판'],
+      ['poll', 'ⓝ 투표; 여론 조사 ⓥ 투표하다; 여론 조사하다'],
+      ['channel', 'ⓝ 채널; 수로, 해협'],
+      ['criticize', 'ⓥ 비판하다, 혹평하다'],
+      ['compliment', 'ⓝ 칭찬, 칭찬의 말 ⓥ 칭찬하다'],
+      ['series', 'ⓝ 연속물, (TV 프로그램의) 연속 프로'],
+      ['feature', 'ⓝ (신문·잡지 등의) 연재 기사, 특집 기사; 특징 ⓥ (~을) 대서특필하다'],
+      ['script', 'ⓝ (방송의) 대본, 각본; 필기 문자'],
+      ['bulletin', 'ⓝ 보고, 게시; 뉴스 속보'],
+      ['preview', 'ⓝ (영화의) 시사회, 미리보기, 예고편 ⓥ 예습하다'],
+      ['column', 'ⓝ 신문의 칸, 특정 기고를 하는 공간(칼럼)'],
+      ['release', 'ⓥ (레코드 등을) 발매하다, (영화들을) 개봉하다, 발표하다'],
+      ['announce', 'ⓥ 알리다, 공표하다, 공고하다'],
+      ['reveal', 'ⓥ 드러내다, 폭로하다'],
+      ['audience', 'ⓝ 청중, 관중, 관객'],
+      ['panel', 'ⓝ 패널, (토론회의) 토론자단, 심사위원단'],
+      ['focus', 'ⓥ 초점을 맞추다, 관심을 집중하다 ⓝ 초점, 집중'],
+      ['argue over', '~을 두고 논쟁하다, 왈가왈부하다'],
+      ['come up with', '~을 생각해 내다, 창안하다'],
+      ['variety', 'ⓝ 다양성; 변화'],
+      ['square', 'ⓝ 정사각형; 제곱; 광장 ⓐ 정사각형의'],
+      ['delicate', 'ⓐ 연약한, 하얀; 섬세한, 우아한'],
+      ['flat', 'ⓐ 평평한 ⓝ 아파트(영국식)'],
+      ['broad', 'ⓐ 폭 넓은, 광범위한'],
+      ['compact', 'ⓐ 소형의, 간편한; 빽빽한, 촘촘한'],
+      ['brief', 'ⓐ 간단한, 짧은'],
+      ['sharp', 'ⓐ 날카로운; 예리한; 급격한'],
+      ['precious', 'ⓐ 소중한, 값비싼'],
+      ['artificial', 'ⓐ 인공적인; 가짜의'],
+      ['gigantic', 'ⓐ 거인 같은, 거대한'],
+      ['enormous', 'ⓐ 엄청난, 거대한'],
+      ['ultimate', 'ⓐ 궁극적인, 최후의'],
+      ['faint', 'ⓐ 희미한, 어렴풋한 ⓥ 기절하다'],
+      ['steep', 'ⓐ 가파른, 경사가 급한'],
+      ['fundamental', 'ⓐ 근본[기본]적인; 중요한'],
+      ['shallow', 'ⓐ 얕은; 얄팍한'],
+      ['symbolic', 'ⓐ 상징적인'],
+      ['appropriate', 'ⓐ 적당한, 알맞은'],
+      ['moderate', 'ⓐ 중간 정도의, 적당한'],
+      ['flexible', 'ⓐ 유연성 있는, 융통성 있는'],
+      ['monotonous', 'ⓐ 단조로운, 변화 없는, 지루한'],
+      ['obscure', 'ⓐ 애매한, 분명하지 않은'],
+      ['drawback', 'ⓝ 결점, 문제점'],
+      ['paradox', 'ⓝ 역설, 패러독스'],
+      ['describe', 'ⓥ 묘사하다'],
+      ['marvel', 'ⓝ 놀라운 일 ⓥ 놀라다, 감탄하다'],
+      ['glitter', 'ⓥ 반짝이다 ⓝ 반짝거림'],
+      ['differ from', '~와 다르다'],
+      ['stand for', '1. ~을 상징하다, 나타내다 2. ~을 옹호[찬성]하다']
+    ];
+
     const hadongStage5Data = [
       ['attack', '공격하다'], ['auditorium', '강당'], ['club', '동아리'], ['cooperate', '협력하다'], ['costume', '의상'],
       ['direct', '연출하다'], ['drama', '연극'], ['except', '~를 제외하고'], ['go on', '계속되다'], ['go over', '~을 살펴보다, 점검하다'],
@@ -2181,6 +2281,8 @@
     const master34Day4Data = weeklyVocab34Data.slice(30).map((item, index) => [91 + index, item[0], item[1]]);
     const master56Day5Data = weeklyVocab56Data.slice(0, 30).map((item, index) => [121 + index, item[0], item[1]]);
     const master56Day6Data = weeklyVocab56Data.slice(30).map((item, index) => [151 + index, item[0], item[1]]);
+    const master518Day11Data = weeklyVocab518Data.slice(0, 30).map((item, index) => [301 + index, item[0], item[1]]);
+    const master518Day12Data = weeklyVocab518Data.slice(30).map((item, index) => [331 + index, item[0], item[1]]);
 
     const master2930Day29Data = [
       [841, 'astronaut', 'n', '우주 비행사'], [842, 'solar', 'a', '태양의'], [843, 'remote', 'a', '1. 먼 2. 외진'], [844, 'benefit', 'n', '이익'], [845, 'efficiency', 'n', '효율, 능률'],
@@ -2926,6 +3028,15 @@
       };
     }
 
+    function generateWeeklyVocab518Question() {
+      if (weekly518WordOrder.length === 0) weekly518WordOrder = buildShuffledOrder(weeklyVocab518Data.length);
+      const item = weeklyVocab518Data[weekly518WordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
     function generateHadongStage5Question() {
       if (hadongWordOrder.length === 0) hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
       const item = hadongStage5Data[hadongWordOrder.shift()];
@@ -2968,6 +3079,8 @@
       if (currentQuizType === 'weekly-vocab-2930') total = WEEKLY_VOCAB_2930_TOTAL;
       if (currentQuizType === 'weekly-vocab-34') total = WEEKLY_VOCAB_34_TOTAL;
       if (currentQuizType === 'weekly-vocab-56') total = WEEKLY_VOCAB_56_TOTAL;
+      if (currentQuizType === 'weekly-vocab-518') total = WEEKLY_VOCAB_518_TOTAL;
+      if (currentQuizType === 'weekly-vocab-518') total = WEEKLY_VOCAB_518_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentQuizType === 'hadong-511') total = HADONG_511_TOTAL;
       if (currentQuizType === 'hadong-513') total = HADONG_513_TOTAL;
@@ -3010,6 +3123,13 @@
         setTimeout(() => answerInput.focus(), 50);
       } else if (currentQuizType === 'weekly-vocab-56') {
         currentQuestion = generateWeeklyVocab56Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else if (currentQuizType === 'weekly-vocab-518') {
+        currentQuestion = generateWeeklyVocab518Question();
         typingPanel.classList.remove('hidden');
         choicesBox.classList.add('hidden');
         answerInput.value = '';
@@ -3094,7 +3214,7 @@
     }
 
     function submitTypingAnswer() {
-      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'hadong-stage5', 'hadong-stage6', 'hadong-511', 'hadong-513'].includes(currentQuizType)) return;
+      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'weekly-vocab-518', 'hadong-stage5', 'hadong-stage6', 'hadong-511', 'hadong-513'].includes(currentQuizType)) return;
       answered = true;
       const input = document.getElementById('answerInput');
       const userAnswer = normalizeAnswer(input.value);
@@ -3146,6 +3266,7 @@
       document.getElementById('stage6MasterScreen').classList.add('hidden');
       document.getElementById('master34Screen').classList.add('hidden');
       document.getElementById('master56Screen').classList.add('hidden');
+      document.getElementById('master518Screen').classList.add('hidden');
       document.getElementById('hadong511MasterScreen').classList.add('hidden');
       document.getElementById('hadong513MasterScreen').classList.add('hidden');
       document.getElementById(id).classList.remove('hidden');
@@ -3212,6 +3333,31 @@
           </tr>
         `).join('');
         body6.dataset.loaded = 'true';
+      }
+    }
+
+    function renderMaster518Tables() {
+      const body11 = document.getElementById('master518Table11');
+      const body12 = document.getElementById('master518Table12');
+      if (body11 && !body11.dataset.loaded) {
+        body11.innerHTML = master518Day11Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master518-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master518-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body11.dataset.loaded = 'true';
+      }
+      if (body12 && !body12.dataset.loaded) {
+        body12.innerHTML = master518Day12Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master518-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master518-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body12.dataset.loaded = 'true';
       }
     }
 
@@ -3321,6 +3467,14 @@
       document.querySelectorAll('.master56-word.master-hidden, .master56-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
     }
 
+    function toggleAllMaster518(type) {
+      toggleMasterGroup(type === 'word' ? '.master518-word' : '.master518-meaning');
+    }
+
+    function resetMaster518() {
+      document.querySelectorAll('.master518-word.master-hidden, .master518-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
     function toggleAllMaster2930(type) {
       toggleMasterGroup(type === 'word' ? '.master2930-word' : '.master2930-meaning');
     }
@@ -3399,6 +3553,13 @@
       window.scrollTo(0, 0);
     }
 
+    function startWordMaster518Study() {
+      renderMaster518Tables();
+      resetMaster518();
+      showScreen('master518Screen');
+      window.scrollTo(0, 0);
+    }
+
     function startWordMaster2930Study() {
       renderMaster2930Tables();
       resetMaster2930();
@@ -3459,6 +3620,18 @@
       wrongCount = 0;
       weekly56WordOrder = buildShuffledOrder(weeklyVocab56Data.length);
       document.getElementById('quizTitle').textContent = '영단어 확인(5/6)';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startWeeklyVocab518Game() {
+      currentQuizType = 'weekly-vocab-518';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      weekly518WordOrder = buildShuffledOrder(weeklyVocab518Data.length);
+      document.getElementById('quizTitle').textContent = '영단어 확인(5/18)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -4629,6 +4802,7 @@
     window.startWeeklyVocab2930Game = startWeeklyVocab2930Game;
     window.startWeeklyVocab34Game = startWeeklyVocab34Game;
     window.startWeeklyVocab56Game = startWeeklyVocab56Game;
+    window.startWeeklyVocab518Game = startWeeklyVocab518Game;
     window.goChukbokMenu = goChukbokMenu;
     window.goEnglishMenu = goEnglishMenu;
     window.goMathMenu = goMathMenu;
@@ -4657,6 +4831,7 @@
     window.startWordMasterStudy = startWordMasterStudy;
     window.startWordMaster34Study = startWordMaster34Study;
     window.startWordMaster56Study = startWordMaster56Study;
+    window.startWordMaster518Study = startWordMaster518Study;
     window.startStage6Master = startStage6Master;
     window.startHadong511Master = startHadong511Master;
     window.startHadong513Master = startHadong513Master;
@@ -4669,6 +4844,8 @@
     window.resetMaster34 = resetMaster34;
     window.toggleAllMaster56 = toggleAllMaster56;
     window.resetMaster56 = resetMaster56;
+    window.toggleAllMaster518 = toggleAllMaster518;
+    window.resetMaster518 = resetMaster518;
     window.toggleAllStage6Master = toggleAllStage6Master;
     window.resetStage6Master = resetStage6Master;
     window.toggleAllHadong511Master = toggleAllHadong511Master;
@@ -4723,6 +4900,10 @@
     console.assert(weeklyVocab56Data[0][0] === 'uniform' && weeklyVocab56Data[59][0] === 'hang up', 'weeklyVocab56Data should match Day 5/6 vocabulary');
     console.assert(typeof startWeeklyVocab56Game === 'function', 'startWeeklyVocab56Game should exist');
     console.assert(typeof startWordMaster56Study === 'function', 'startWordMaster56Study should exist');
+    console.assert(weeklyVocab518Data.length === 60, 'weeklyVocab518Data should contain 60 rows');
+    console.assert(weeklyVocab518Data[0][0] === 'report' && weeklyVocab518Data[59][0] === 'stand for', 'weeklyVocab518Data should match Day 11/12 vocabulary');
+    console.assert(typeof startWeeklyVocab518Game === 'function', 'startWeeklyVocab518Game should exist');
+    console.assert(typeof startWordMaster518Study === 'function', 'startWordMaster518Study should exist');
   </script>
 
 </body>
