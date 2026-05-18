@@ -1407,6 +1407,8 @@
       <div class="card"><button class="menu-btn" onclick="startHadong511Master()">영단어 암기(5/11)</button></div>
       <div class="card"><button class="menu-btn" onclick="startHadong513Game()">영단어 확인(5/13)</button></div>
       <div class="card"><button class="menu-btn" onclick="startHadong513Master()">영단어 암기(5/13)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startHadong518Game()">영단어 확인(5/18)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startHadong518Master()">영단어 암기(5/18)</button></div>
     </div>
     <div class="action-row" style="justify-content:center;">
       <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
@@ -1774,6 +1776,30 @@
     </div>
   </div>
 
+  <div id="hadong518MasterScreen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>하동이 5/18 Vocabulary</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllHadong518Master('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllHadong518Master('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetHadong518Master()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">5/18 · Vocabulary List</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="hadong518MasterTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="mathBookScreen" class="screen hidden">
     <div class="title">중등 1학년 1학기 수학 노트</div>
     <div class="ebook-wrap">
@@ -1885,6 +1911,7 @@
     const HADONG_STAGE6_TOTAL = 30;
     const HADONG_511_TOTAL = 30;
     const HADONG_513_TOTAL = 30;
+    const HADONG_518_TOTAL = 30;
 
     let currentQuizType = '';
     let currentStage = 1;
@@ -1905,6 +1932,7 @@
     let hadongStage6WordOrder = [];
     let hadong511WordOrder = [];
     let hadong513WordOrder = [];
+    let hadong518WordOrder = [];
     let grammarUsedKeys = new Set();
     let userCalendarSchedules = {};
     let boardPosts = [];
@@ -2277,6 +2305,39 @@
       ['writer', '작가']
     ];
 
+    const hadong518Data = [
+      ['boot', '장화'],
+      ['bottom', '바닥'],
+      ['cabin', '오두막집'],
+      ['cause', '초래하다'],
+      ['confused', '혼란스러워 하는'],
+      ['earthquake', '지진'],
+      ['excitement', '신나는 일'],
+      ['explanation', '설명'],
+      ['fall [fell]', '쓰러지다'],
+      ['follow', '따라가다'],
+      ['grind', '갈다'],
+      ['ground', '땅'],
+      ['hard', '심하게'],
+      ['head', '(특정 방향으로) 가다'],
+      ['hold on to [held on to]', '~을 붙잡다'],
+      ['investigate', '(상황에 대해) 살펴보다'],
+      ['live', '살다'],
+      ['minor', '가벼운, 작은'],
+      ['over', '끝난'],
+      ['pair', '켤레, 쌍'],
+      ['sell', '팔다'],
+      ['shake [shook]', '흔들리다'],
+      ['sign', '표지판'],
+      ['suddenly', '갑자기'],
+      ['tightly', '꽉'],
+      ['track', '발자국'],
+      ['trick', '속이다'],
+      ['vibration', '진동'],
+      ['whole', '전체'],
+      ['wooden', '나무로 된']
+    ];
+
     const master34Day3Data = weeklyVocab34Data.slice(0, 30).map((item, index) => [61 + index, item[0], item[1]]);
     const master34Day4Data = weeklyVocab34Data.slice(30).map((item, index) => [91 + index, item[0], item[1]]);
     const master56Day5Data = weeklyVocab56Data.slice(0, 30).map((item, index) => [121 + index, item[0], item[1]]);
@@ -2313,6 +2374,7 @@
 
     const hadong511MasterData = hadong511Data.map((item, index) => [String(index + 1), item[0], item[1]]);
     const hadong513MasterData = hadong513Data.map((item, index) => [String(index + 1), item[0], item[1]]);
+    const hadong518MasterData = hadong518Data.map((item, index) => [String(index + 1), item[0], item[1]]);
 
     const koreaHolidayMap = {
       '2026-03-01': '삼일절',
@@ -3073,6 +3135,15 @@
       };
     }
 
+    function generateHadong518Question() {
+      if (hadong518WordOrder.length === 0) hadong518WordOrder = buildShuffledOrder(hadong518Data.length);
+      const item = hadong518Data[hadong518WordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
     function updateQuizHud() {
       let total = TOTAL_STAGES;
       if (currentQuizType === 'weekly-vocab') total = WEEKLY_VOCAB_TOTAL;
@@ -3084,6 +3155,7 @@
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentQuizType === 'hadong-511') total = HADONG_511_TOTAL;
       if (currentQuizType === 'hadong-513') total = HADONG_513_TOTAL;
+      if (currentQuizType === 'hadong-518') total = HADONG_518_TOTAL;
       if (currentQuizType === 'hadong-stage6') total = HADONG_STAGE6_TOTAL;
       document.getElementById('stageBox').textContent = `Stage ${currentStage} / ${total}`;
       document.getElementById('scoreBox').textContent = `점수: ${currentScore}`;
@@ -3163,8 +3235,15 @@
         answerInput.value = '';
         answerInput.disabled = false;
         setTimeout(() => answerInput.focus(), 50);
-      } else {
+      } else if (currentQuizType === 'hadong-513') {
         currentQuestion = generateHadong513Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else {
+        currentQuestion = generateHadong518Question();
         typingPanel.classList.remove('hidden');
         choicesBox.classList.add('hidden');
         answerInput.value = '';
@@ -3214,7 +3293,7 @@
     }
 
     function submitTypingAnswer() {
-      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'weekly-vocab-518', 'hadong-stage5', 'hadong-stage6', 'hadong-511', 'hadong-513'].includes(currentQuizType)) return;
+      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'weekly-vocab-518', 'hadong-stage5', 'hadong-stage6', 'hadong-511', 'hadong-513', 'hadong-518'].includes(currentQuizType)) return;
       answered = true;
       const input = document.getElementById('answerInput');
       const userAnswer = normalizeAnswer(input.value);
@@ -3242,6 +3321,7 @@
       if (currentQuizType === 'hadong-stage6') total = HADONG_STAGE6_TOTAL;
       if (currentQuizType === 'hadong-511') total = HADONG_511_TOTAL;
       if (currentQuizType === 'hadong-513') total = HADONG_513_TOTAL;
+      if (currentQuizType === 'hadong-518') total = HADONG_518_TOTAL;
       if (currentStage < total) {
         currentStage += 1;
         renderQuizQuestion();
@@ -3269,6 +3349,7 @@
       document.getElementById('master518Screen').classList.add('hidden');
       document.getElementById('hadong511MasterScreen').classList.add('hidden');
       document.getElementById('hadong513MasterScreen').classList.add('hidden');
+      document.getElementById('hadong518MasterScreen').classList.add('hidden');
       document.getElementById(id).classList.remove('hidden');
     }
 
@@ -3430,6 +3511,20 @@
       }
     }
 
+    function renderHadong518MasterTable() {
+      const body = document.getElementById('hadong518MasterTable');
+      if (body && !body.dataset.loaded) {
+        body.innerHTML = hadong518MasterData.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell hadong518-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell hadong518-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body.dataset.loaded = 'true';
+      }
+    }
+
     function toggleMasterCell(el) {
       el.classList.toggle('master-hidden');
     }
@@ -3505,6 +3600,14 @@
 
     function resetHadong513Master() {
       document.querySelectorAll('.hadong513-word.master-hidden, .hadong513-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
+    function toggleAllHadong518Master(type) {
+      toggleMasterGroup(type === 'word' ? '.hadong518-word' : '.hadong518-meaning');
+    }
+
+    function resetHadong518Master() {
+      document.querySelectorAll('.hadong518-word.master-hidden, .hadong518-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
     }
 
     function goHadongMenu() {
@@ -3585,6 +3688,13 @@
       renderHadong513MasterTable();
       resetHadong513Master();
       showScreen('hadong513MasterScreen');
+      window.scrollTo(0, 0);
+    }
+
+    function startHadong518Master() {
+      renderHadong518MasterTable();
+      resetHadong518Master();
+      showScreen('hadong518MasterScreen');
       window.scrollTo(0, 0);
     }
 
@@ -3692,6 +3802,18 @@
       wrongCount = 0;
       hadong513WordOrder = buildShuffledOrder(hadong513Data.length);
       document.getElementById('quizTitle').textContent = '영단어 확인(5/13)';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startHadong518Game() {
+      currentQuizType = 'hadong-518';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      hadong518WordOrder = buildShuffledOrder(hadong518Data.length);
+      document.getElementById('quizTitle').textContent = '영단어 확인(5/18)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -4813,6 +4935,7 @@
     window.startHadongStage6Game = startHadongStage6Game;
     window.startHadong511Game = startHadong511Game;
     window.startHadong513Game = startHadong513Game;
+    window.startHadong518Game = startHadong518Game;
     window.startGrammarGame = startGrammarGame;
     window.startWordGame = startWordGame;
     window.startCarGame = startCarGame;
@@ -4835,6 +4958,7 @@
     window.startStage6Master = startStage6Master;
     window.startHadong511Master = startHadong511Master;
     window.startHadong513Master = startHadong513Master;
+    window.startHadong518Master = startHadong518Master;
     window.toggleMasterCell = toggleMasterCell;
     window.toggleAllMaster = toggleAllMaster;
     window.resetMaster = resetMaster;
@@ -4852,6 +4976,8 @@
     window.resetHadong511Master = resetHadong511Master;
     window.toggleAllHadong513Master = toggleAllHadong513Master;
     window.resetHadong513Master = resetHadong513Master;
+    window.toggleAllHadong518Master = toggleAllHadong518Master;
+    window.resetHadong518Master = resetHadong518Master;
     window.closeRankingModal = closeRankingModal;
     window.submitRankingModal = submitRankingModal;
     window.renderMiniGameRankingBoard = renderMiniGameRankingBoard;
@@ -4878,6 +5004,9 @@
     console.assert(hadong513Data.length === 30, 'hadong513Data should contain 30 rows');
     console.assert(typeof startHadong513Game === 'function', 'startHadong513Game should exist');
     console.assert(typeof startHadong513Master === 'function', 'startHadong513Master should exist');
+    console.assert(hadong518Data.length === 30, 'hadong518Data should contain 30 rows');
+    console.assert(typeof startHadong518Game === 'function', 'startHadong518Game should exist');
+    console.assert(typeof startHadong518Master === 'function', 'startHadong518Master should exist');
     console.assert(stage6MasterData.length === 30, 'stage6MasterData should contain 30 rows');
     console.assert(typeof saveArcadeRanking === 'function', 'saveArcadeRanking should exist');
     console.assert(typeof renderRankingList === 'function', 'renderRankingList should exist');
