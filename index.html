@@ -1428,6 +1428,8 @@
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocab56Game()">영단어 확인(5/6)</button></div>
       <div class="card"><button class="menu-btn" onclick="startWordMaster518Study()">영단어 암기(5/18)</button></div>
       <div class="card"><button class="menu-btn" onclick="startWeeklyVocab518Game()">영단어 확인(5/18)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWordMaster521Study()">영단어 암기(5/21)</button></div>
+      <div class="card"><button class="menu-btn" onclick="startWeeklyVocab521Game()">영단어 확인(5/21)</button></div>
     </div>
     <div class="action-row" style="justify-content:center;">
       <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
@@ -1704,6 +1706,39 @@
     </div>
   </div>
 
+  <div id="master521Screen" class="screen hidden">
+    <div class="master-wrap">
+      <div class="master-header">
+        <h1>📚 영단어 암기 마스터</h1>
+        <p>Day 13 (Shopping) &amp; Day 14 (Sports)</p>
+      </div>
+      <div class="master-controls">
+        <button class="master-btn-word" onclick="toggleAllMaster521('word')">단어 전체 숨기기/보이기</button>
+        <button class="master-btn-meaning" onclick="toggleAllMaster521('meaning')">해석 전체 숨기기/보이기</button>
+        <button class="master-btn-reset" onclick="resetMaster521()">모두 초기화</button>
+        <button class="action-btn secondary" onclick="goMenu()">메인으로</button>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 13 · Shopping</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master521Table13"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="master-section">
+        <div class="master-label indigo">Day 14 · Sports</div>
+        <div class="master-table-wrap">
+          <table class="master-table">
+            <thead><tr><th style="width:70px;text-align:center;">No.</th><th>Word</th><th>Meaning</th></tr></thead>
+            <tbody id="master521Table14"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="stage6MasterScreen" class="screen hidden">
     <div class="master-wrap">
       <div class="master-header">
@@ -1907,6 +1942,7 @@
     const WEEKLY_VOCAB_34_TOTAL = 60;
     const WEEKLY_VOCAB_56_TOTAL = 60;
     const WEEKLY_VOCAB_518_TOTAL = 60;
+    const WEEKLY_VOCAB_521_TOTAL = 60;
     const HADONG_STAGE5_TOTAL = 30;
     const HADONG_STAGE6_TOTAL = 30;
     const HADONG_511_TOTAL = 30;
@@ -1928,6 +1964,7 @@
     let weekly34WordOrder = [];
     let weekly56WordOrder = [];
     let weekly518WordOrder = [];
+    let weekly521WordOrder = [];
     let hadongWordOrder = [];
     let hadongStage6WordOrder = [];
     let hadong511WordOrder = [];
@@ -2221,6 +2258,69 @@
       ['stand for', '1. ~을 상징하다, 나타내다 2. ~을 옹호[찬성]하다']
     ];
 
+    const weeklyVocab521Data = [
+      ['goods', '상품, 제품, 물품'],
+      ['label', '꼬리표, 상표'],
+      ['tag', '꼬리표, 가격표'],
+      ['wrap', '감싸다, 포장하다'],
+      ['bargain', '싸게 산 물건, 값싼 물건'],
+      ['purchase', '사다, 구입하다 / 구입, 구입품'],
+      ['total', '합계, 전체 / 합계가 ~이 되다'],
+      ['quality', '질, 품질 / 양질의, 고급의'],
+      ['value', '가치 있게 여기다, 평가하다 / 가치'],
+      ['reduce', '줄이다, 낮추다'],
+      ['trend', '유행, 경향, 흐름'],
+      ['quantity', '양, 수량'],
+      ['retail', '소매 / 소매로 팔다'],
+      ['merchandise', '상품, 물품'],
+      ['insert', '집어넣다, 삽입하다'],
+      ['necessity', '필요(성), 필수품'],
+      ['luxury', '호화, 사치(품) / 사치스러운'],
+      ['auction', '경매 / 경매에서 팔다'],
+      ['receipt', '영수증'],
+      ['refund', '환불(액) / 환불하다'],
+      ['exchange', '교환하다 / 교환(물)'],
+      ['claim', '요구하다, 주장하다 / 요구, 주장'],
+      ['satisfy', '만족시키다, 충족시키다'],
+      ['guarantee', '보증(서), 담보 / 보증하다'],
+      ['exclude', '배제하다, 제외하다'],
+      ['reasonable', '합리적인, 적절한'],
+      ['steady', '안정된, 꾸준한'],
+      ['pay for', '~의 대금을 지불하다, 대가를 치르다'],
+      ['leave out', '~을 빠뜨리다, 생략하다'],
+      ['add up', '합산하다'],
+      ['champion', '챔피언, 우승자'],
+      ['match', '경기, 시합 / ~와 대결하다, 어울리다'],
+      ['tournament', '토너먼트, 승자 진출전'],
+      ['rival', '경쟁자, 경쟁 상대 / ~와 경쟁하다'],
+      ['rank', '(순위를) 매기다 / 순위, 계급'],
+      ['coach', '코치, 감독 / 코치하다, 지도하다'],
+      ['serve', '공을 서브하다 / 시중들다'],
+      ['glide', '미끄러지다, 활주하다 / 미끄러짐'],
+      ['beat', '이기다, (심장이) 뛰다'],
+      ['compete', '경쟁하다, 겨루다'],
+      ['ability', '능력, 할 수 있음'],
+      ['leisure', '여가, 레저, 자유 시간'],
+      ['pastime', '취미, 오락'],
+      ['outdoor', '야외의, 집 밖의'],
+      ['defeat', '패배 / 패배시키다, 물리치다'],
+      ['amateur', '아마추어, 비전문가 / 비전문가의'],
+      ['mound', '(야구 투수의) 마운드'],
+      ['athletic', '운동 경기의, 운동선수다운'],
+      ['opponent', '적수, 반대자, 경쟁 상대'],
+      ['referee', '(경기·시합의) 심판, 중재자'],
+      ['fair', '공평한, 정정당당한'],
+      ['penalty', '벌칙, 페널티, 처벌'],
+      ['foul', '반칙하다, 파울을 범하다 / 반칙'],
+      ['outstanding', '눈에 띄는, 우수한'],
+      ['participate', '참여하다, 참가하다'],
+      ['applaud', '박수치다'],
+      ['encourage', '용기를 북돋우다, 격려하다'],
+      ['extreme', '극단적인'],
+      ['call off', '~을 취소하다, 철회하다'],
+      ['take place', '개최되다, 열리다']
+    ];
+
     const hadongStage5Data = [
       ['attack', '공격하다'], ['auditorium', '강당'], ['club', '동아리'], ['cooperate', '협력하다'], ['costume', '의상'],
       ['direct', '연출하다'], ['drama', '연극'], ['except', '~를 제외하고'], ['go on', '계속되다'], ['go over', '~을 살펴보다, 점검하다'],
@@ -2344,6 +2444,8 @@
     const master56Day6Data = weeklyVocab56Data.slice(30).map((item, index) => [151 + index, item[0], item[1]]);
     const master518Day11Data = weeklyVocab518Data.slice(0, 30).map((item, index) => [301 + index, item[0], item[1]]);
     const master518Day12Data = weeklyVocab518Data.slice(30).map((item, index) => [331 + index, item[0], item[1]]);
+    const master521Day13Data = weeklyVocab521Data.slice(0, 30).map((item, index) => [361 + index, item[0], item[1]]);
+    const master521Day14Data = weeklyVocab521Data.slice(30).map((item, index) => [391 + index, item[0], item[1]]);
 
     const master2930Day29Data = [
       [841, 'astronaut', 'n', '우주 비행사'], [842, 'solar', 'a', '태양의'], [843, 'remote', 'a', '1. 먼 2. 외진'], [844, 'benefit', 'n', '이익'], [845, 'efficiency', 'n', '효율, 능률'],
@@ -3099,6 +3201,15 @@
       };
     }
 
+    function generateWeeklyVocab521Question() {
+      if (weekly521WordOrder.length === 0) weekly521WordOrder = buildShuffledOrder(weeklyVocab521Data.length);
+      const item = weeklyVocab521Data[weekly521WordOrder.shift()];
+      return {
+        sentence: `다음 한글 뜻에 맞는 영어 단어를 입력하세요.<br><br><strong>${item[1]}</strong>`,
+        answer: item[0]
+      };
+    }
+
     function generateHadongStage5Question() {
       if (hadongWordOrder.length === 0) hadongWordOrder = buildShuffledOrder(hadongStage5Data.length);
       const item = hadongStage5Data[hadongWordOrder.shift()];
@@ -3151,7 +3262,7 @@
       if (currentQuizType === 'weekly-vocab-34') total = WEEKLY_VOCAB_34_TOTAL;
       if (currentQuizType === 'weekly-vocab-56') total = WEEKLY_VOCAB_56_TOTAL;
       if (currentQuizType === 'weekly-vocab-518') total = WEEKLY_VOCAB_518_TOTAL;
-      if (currentQuizType === 'weekly-vocab-518') total = WEEKLY_VOCAB_518_TOTAL;
+      if (currentQuizType === 'weekly-vocab-521') total = WEEKLY_VOCAB_521_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentQuizType === 'hadong-511') total = HADONG_511_TOTAL;
       if (currentQuizType === 'hadong-513') total = HADONG_513_TOTAL;
@@ -3202,6 +3313,13 @@
         setTimeout(() => answerInput.focus(), 50);
       } else if (currentQuizType === 'weekly-vocab-518') {
         currentQuestion = generateWeeklyVocab518Question();
+        typingPanel.classList.remove('hidden');
+        choicesBox.classList.add('hidden');
+        answerInput.value = '';
+        answerInput.disabled = false;
+        setTimeout(() => answerInput.focus(), 50);
+      } else if (currentQuizType === 'weekly-vocab-521') {
+        currentQuestion = generateWeeklyVocab521Question();
         typingPanel.classList.remove('hidden');
         choicesBox.classList.add('hidden');
         answerInput.value = '';
@@ -3293,7 +3411,7 @@
     }
 
     function submitTypingAnswer() {
-      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'weekly-vocab-518', 'hadong-stage5', 'hadong-stage6', 'hadong-511', 'hadong-513', 'hadong-518'].includes(currentQuizType)) return;
+      if (answered || !['weekly-vocab', 'weekly-vocab-2930', 'weekly-vocab-34', 'weekly-vocab-56', 'weekly-vocab-518', 'weekly-vocab-521', 'hadong-stage5', 'hadong-stage6', 'hadong-511', 'hadong-513', 'hadong-518'].includes(currentQuizType)) return;
       answered = true;
       const input = document.getElementById('answerInput');
       const userAnswer = normalizeAnswer(input.value);
@@ -3317,6 +3435,8 @@
       if (currentQuizType === 'weekly-vocab-2930') total = WEEKLY_VOCAB_2930_TOTAL;
       if (currentQuizType === 'weekly-vocab-34') total = WEEKLY_VOCAB_34_TOTAL;
       if (currentQuizType === 'weekly-vocab-56') total = WEEKLY_VOCAB_56_TOTAL;
+      if (currentQuizType === 'weekly-vocab-518') total = WEEKLY_VOCAB_518_TOTAL;
+      if (currentQuizType === 'weekly-vocab-521') total = WEEKLY_VOCAB_521_TOTAL;
       if (currentQuizType === 'hadong-stage5') total = HADONG_STAGE5_TOTAL;
       if (currentQuizType === 'hadong-stage6') total = HADONG_STAGE6_TOTAL;
       if (currentQuizType === 'hadong-511') total = HADONG_511_TOTAL;
@@ -3347,6 +3467,7 @@
       document.getElementById('master34Screen').classList.add('hidden');
       document.getElementById('master56Screen').classList.add('hidden');
       document.getElementById('master518Screen').classList.add('hidden');
+      document.getElementById('master521Screen').classList.add('hidden');
       document.getElementById('hadong511MasterScreen').classList.add('hidden');
       document.getElementById('hadong513MasterScreen').classList.add('hidden');
       document.getElementById('hadong518MasterScreen').classList.add('hidden');
@@ -3439,6 +3560,31 @@
           </tr>
         `).join('');
         body12.dataset.loaded = 'true';
+      }
+    }
+
+    function renderMaster521Tables() {
+      const body13 = document.getElementById('master521Table13');
+      const body14 = document.getElementById('master521Table14');
+      if (body13 && !body13.dataset.loaded) {
+        body13.innerHTML = master521Day13Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master521-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master521-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body13.dataset.loaded = 'true';
+      }
+      if (body14 && !body14.dataset.loaded) {
+        body14.innerHTML = master521Day14Data.map(item => `
+          <tr class="master-row">
+            <td style="text-align:center;color:#9ca3af;font-family:monospace;">${item[0]}</td>
+            <td class="master-word-cell master521-word" onclick="toggleMasterCell(this)">${item[1]}</td>
+            <td class="master-meaning-cell master521-meaning" onclick="toggleMasterCell(this)">${item[2]}</td>
+          </tr>
+        `).join('');
+        body14.dataset.loaded = 'true';
       }
     }
 
@@ -3570,6 +3716,14 @@
       document.querySelectorAll('.master518-word.master-hidden, .master518-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
     }
 
+    function toggleAllMaster521(type) {
+      toggleMasterGroup(type === 'word' ? '.master521-word' : '.master521-meaning');
+    }
+
+    function resetMaster521() {
+      document.querySelectorAll('.master521-word.master-hidden, .master521-meaning.master-hidden').forEach(el => el.classList.remove('master-hidden'));
+    }
+
     function toggleAllMaster2930(type) {
       toggleMasterGroup(type === 'word' ? '.master2930-word' : '.master2930-meaning');
     }
@@ -3663,6 +3817,13 @@
       window.scrollTo(0, 0);
     }
 
+    function startWordMaster521Study() {
+      renderMaster521Tables();
+      resetMaster521();
+      showScreen('master521Screen');
+      window.scrollTo(0, 0);
+    }
+
     function startWordMaster2930Study() {
       renderMaster2930Tables();
       resetMaster2930();
@@ -3742,6 +3903,18 @@
       wrongCount = 0;
       weekly518WordOrder = buildShuffledOrder(weeklyVocab518Data.length);
       document.getElementById('quizTitle').textContent = '영단어 확인(5/18)';
+      showScreen('quizScreen');
+      renderQuizQuestion();
+    }
+
+    function startWeeklyVocab521Game() {
+      currentQuizType = 'weekly-vocab-521';
+      currentStage = 1;
+      currentScore = 0;
+      correctCount = 0;
+      wrongCount = 0;
+      weekly521WordOrder = buildShuffledOrder(weeklyVocab521Data.length);
+      document.getElementById('quizTitle').textContent = '영단어 확인(5/21)';
       showScreen('quizScreen');
       renderQuizQuestion();
     }
@@ -4925,6 +5098,7 @@
     window.startWeeklyVocab34Game = startWeeklyVocab34Game;
     window.startWeeklyVocab56Game = startWeeklyVocab56Game;
     window.startWeeklyVocab518Game = startWeeklyVocab518Game;
+    window.startWeeklyVocab521Game = startWeeklyVocab521Game;
     window.goChukbokMenu = goChukbokMenu;
     window.goEnglishMenu = goEnglishMenu;
     window.goMathMenu = goMathMenu;
@@ -4955,6 +5129,7 @@
     window.startWordMaster34Study = startWordMaster34Study;
     window.startWordMaster56Study = startWordMaster56Study;
     window.startWordMaster518Study = startWordMaster518Study;
+    window.startWordMaster521Study = startWordMaster521Study;
     window.startStage6Master = startStage6Master;
     window.startHadong511Master = startHadong511Master;
     window.startHadong513Master = startHadong513Master;
@@ -4970,6 +5145,8 @@
     window.resetMaster56 = resetMaster56;
     window.toggleAllMaster518 = toggleAllMaster518;
     window.resetMaster518 = resetMaster518;
+    window.toggleAllMaster521 = toggleAllMaster521;
+    window.resetMaster521 = resetMaster521;
     window.toggleAllStage6Master = toggleAllStage6Master;
     window.resetStage6Master = resetStage6Master;
     window.toggleAllHadong511Master = toggleAllHadong511Master;
@@ -5033,6 +5210,10 @@
     console.assert(weeklyVocab518Data[0][0] === 'report' && weeklyVocab518Data[59][0] === 'stand for', 'weeklyVocab518Data should match Day 11/12 vocabulary');
     console.assert(typeof startWeeklyVocab518Game === 'function', 'startWeeklyVocab518Game should exist');
     console.assert(typeof startWordMaster518Study === 'function', 'startWordMaster518Study should exist');
+    console.assert(weeklyVocab521Data.length === 60, 'weeklyVocab521Data should contain 60 rows');
+    console.assert(weeklyVocab521Data[0][0] === 'goods' && weeklyVocab521Data[59][0] === 'take place', 'weeklyVocab521Data should match Day 13/14 vocabulary');
+    console.assert(typeof startWeeklyVocab521Game === 'function', 'startWeeklyVocab521Game should exist');
+    console.assert(typeof startWordMaster521Study === 'function', 'startWordMaster521Study should exist');
   </script>
 
 </body>
